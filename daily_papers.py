@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Daily paper digest: UQ · AI4Health · AI4Omics"""
 
-import os, json, time, random, smtplib, re, requests, feedparser
-from datetime import datetime
+import os, json, time, smtplib, re, requests, feedparser
+from datetime import datetime, timedelta
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from urllib.parse import quote
@@ -29,40 +29,53 @@ SS_QUERIES = [
     "single cell omics transformer",
 ]
 
+# Classic queries: foundational topics likely to yield high-citation older papers
+SS_CLASSIC_QUERIES = [
+    "conformal prediction coverage guarantee",
+    "deep learning electronic health records mortality prediction",
+    "single cell RNA sequencing dimensionality reduction",
+]
+
 PUBMED_QUERIES = [
     "deep learning single cell RNA sequencing",
     "uncertainty quantification clinical prediction model",
     "spatial transcriptomics machine learning",
 ]
 
-MAX_CANDIDATES = 35
+MAX_RECENT = 40    # recent pool cap (arXiv + SS + PubMed)
+MAX_CLASSIC = 15   # classics pool cap
 HISTORY_FILE = "history.md"
+CLASSIC_YEAR_CUTOFF = datetime.now().year - 3  # papers from ≤ this year are "classic"
+RECENT_YEAR_CUTOFF  = datetime.now().year - 1  # papers from ≥ this year are "recent"
 
 
 # ── History ──────────────────────────────────────────────────────────────────
 
-def load_history() -> set[str]:
-    """Load previously recommended paper title keys from history.md."""
+def load_history() -> tuple[set[str], list[str]]:
+    """Returns (all_title_keys, last_7_days_titles)."""
     if not os.path.exists(HISTORY_FILE):
-        return set()
+        return set(), []
     keys = set()
+    recent_titles = []
+    cutoff = (datetime.now() - timedelta(days=7)).strftime("%Y-%m-%d")
     with open(HISTORY_FILE, "r", encoding="utf-8") as f:
         for line in f:
-            # Match table rows: | Date | Title | ...
-            m = re.match(r"^\|\s*\d{4}-\d{2}-\d{2}\s*\|\s*(.+?)\s*\|", line)
+            m = re.match(r"^\|\s*(\d{4}-\d{2}-\d{2})\s*\|\s*(.+?)\s*\|", line)
             if m:
-                keys.add(m.group(1).strip().lower()[:70])
-    return keys
+                date_str, title = m.group(1), m.group(2).strip()
+                keys.add(title.lower()[:70])
+                if date_str >= cutoff:
+                    recent_titles.append(title)
+    return keys, recent_titles
 
 
 def save_history(papers: list[dict]):
-    """Append newly recommended papers to history.md."""
     today = datetime.now().strftime("%Y-%m-%d")
     with open(HISTORY_FILE, "a", encoding="utf-8") as f:
         for p in papers:
-            must = "⭐" if p.get("must_read") else ""
+            tag = p.get("must_read_tag", "⭐" if p.get("must_read") else "")
             title = p["title"].replace("|", "\\|")
-            f.write(f"| {today} | {title} | {p['url']} | {p['source']} | {must} |\n")
+            f.write(f"| {today} | {title} | {p['url']} | {p['source']} | {tag} |\n")
 
 
 # ── Fetchers ─────────────────────────────────────────────────────────────────
@@ -75,23 +88,39 @@ def fetch_arxiv(query: str, n: int = 15) -> list[dict]:
         f"&start=0&max_results={n}&sortBy=submittedDate&sortOrder=descending"
     )
     feed = feedparser.parse(url)
-    return [
-        {
+    results = []
+    for e in feed.entries:
+        # Parse year from published date (e.g. "2024-03-15T...")
+        year = None
+        if hasattr(e, "published"):
+            try:
+                year = int(e.published[:4])
+            except Exception:
+                pass
+        results.append({
             "title": e.title.replace("\n", " ").strip(),
             "abstract": e.summary.replace("\n", " ")[:600].strip(),
             "authors": ", ".join(a.name for a in e.authors[:3]),
             "url": e.link,
             "source": "arXiv",
-        }
-        for e in feed.entries
-    ]
+            "year": year,
+        })
+    return results
 
 
-def fetch_semantic_scholar(query: str, n: int = 10) -> list[dict]:
+def fetch_semantic_scholar(query: str, n: int = 10, min_year: int = None, max_year: int = None,
+                            sort: str = "relevance") -> list[dict]:
+    params = {
+        "query": query,
+        "fields": "title,abstract,authors,year,url,citationCount",
+        "limit": n,
+    }
+    if sort == "citations":
+        params["sort"] = "citationCount"
     try:
         r = requests.get(
             "https://api.semanticscholar.org/graph/v1/paper/search",
-            params={"query": query, "fields": "title,abstract,authors,year,url", "limit": n},
+            params=params,
             timeout=12,
         )
         r.raise_for_status()
@@ -99,12 +128,19 @@ def fetch_semantic_scholar(query: str, n: int = 10) -> list[dict]:
         for p in r.json().get("data", []):
             if not p.get("abstract"):
                 continue
+            year = p.get("year")
+            if min_year and year and year < min_year:
+                continue
+            if max_year and year and year > max_year:
+                continue
             papers.append({
                 "title": p["title"],
                 "abstract": p["abstract"][:600],
                 "authors": ", ".join(a["name"] for a in p.get("authors", [])[:3]),
                 "url": p.get("url", ""),
                 "source": "Semantic Scholar",
+                "year": year,
+                "citations": p.get("citationCount", 0),
             })
         return papers
     except Exception as e:
@@ -118,36 +154,57 @@ def fetch_pubmed(query: str, n: int = 8) -> list[dict]:
         ids = requests.get(
             f"{base}/esearch.fcgi",
             params={"db": "pubmed", "term": query, "retmax": n,
-                    "sort": "pub+date", "retmode": "json", "reldate": 60},
+                    "sort": "pub+date", "retmode": "json", "reldate": 90},
             timeout=12,
         ).json()["esearchresult"]["idlist"]
         if not ids:
             return []
-        result = requests.get(
-            f"{base}/esummary.fcgi",
-            params={"db": "pubmed", "id": ",".join(ids), "retmode": "json"},
-            timeout=12,
-        ).json()["result"]
-        return [
-            {
-                "title": result[uid].get("title", ""),
-                "abstract": result[uid].get("source", ""),
-                "authors": ", ".join(
-                    a["name"] for a in result[uid].get("authors", [])[:3]
-                ),
+        # Use efetch for real abstracts
+        fetch_r = requests.get(
+            f"{base}/efetch.fcgi",
+            params={"db": "pubmed", "id": ",".join(ids), "retmode": "xml", "rettype": "abstract"},
+            timeout=15,
+        )
+        papers = []
+        # Parse XML minimally to get title + abstract
+        for uid in ids:
+            title_m = re.search(
+                rf"<PubmedArticle>.*?<PMID[^>]*>{uid}</PMID>.*?<ArticleTitle>(.*?)</ArticleTitle>",
+                fetch_r.text, re.DOTALL
+            )
+            abstract_m = re.search(
+                rf"<PubmedArticle>.*?<PMID[^>]*>{uid}</PMID>.*?<AbstractText[^>]*>(.*?)</AbstractText>",
+                fetch_r.text, re.DOTALL
+            )
+            author_m = re.search(
+                rf"<PubmedArticle>.*?<PMID[^>]*>{uid}</PMID>.*?<LastName>(.*?)</LastName>.*?<ForeName>(.*?)</ForeName>",
+                fetch_r.text, re.DOTALL
+            )
+            year_m = re.search(
+                rf"<PubmedArticle>.*?<PMID[^>]*>{uid}</PMID>.*?<PubDate>.*?<Year>(\d{{4}})</Year>",
+                fetch_r.text, re.DOTALL
+            )
+            if not title_m:
+                continue
+            title = re.sub(r"<[^>]+>", "", title_m.group(1)).strip()
+            abstract = re.sub(r"<[^>]+>", "", abstract_m.group(1)).strip()[:600] if abstract_m else ""
+            author = f"{author_m.group(1)} {author_m.group(2)}" if author_m else ""
+            year = int(year_m.group(1)) if year_m else None
+            papers.append({
+                "title": title,
+                "abstract": abstract,
+                "authors": author,
                 "url": f"https://pubmed.ncbi.nlm.nih.gov/{uid}/",
                 "source": "PubMed",
-            }
-            for uid in ids
-            if uid in result and result[uid].get("title")
-        ]
+                "year": year,
+            })
+        return papers
     except Exception as e:
         print(f"[PubMed] {e}")
         return []
 
 
 def deduplicate(papers: list[dict], history_keys: set[str]) -> list[dict]:
-    """Remove duplicates within batch AND against history."""
     seen, unique = set(), []
     for p in papers:
         key = p["title"].lower()[:70]
@@ -167,34 +224,52 @@ Current research:
 Target venues: NeurIPS, ICML, ICLR (Datasets & Benchmarks track included)."""
 
 
-def select_papers(candidates: list[dict]) -> list[dict]:
+def select_papers(recent: list[dict], classics: list[dict], recent_history: list[str]) -> list[dict]:
     client = OpenAI(
         api_key=os.environ["GLM_API_KEY"],
         base_url="https://open.bigmodel.cn/api/paas/v4",
     )
 
-    listing = "\n\n".join(
-        f"[{i+1}] {p['title']}\n"
-        f"Authors: {p['authors']} | Source: {p['source']}\n"
-        f"Abstract: {p['abstract']}\n"
-        f"URL: {p['url']}"
-        for i, p in enumerate(candidates)
-    )
+    def fmt(papers, label):
+        return "\n\n".join(
+            f"[{label}{i+1}] {p['title']} ({p.get('year','?')})\n"
+            f"Authors: {p['authors']} | Source: {p['source']}"
+            + (f" | Citations: {p['citations']}" if p.get('citations') else "") + "\n"
+            f"Abstract: {p['abstract']}\n"
+            f"URL: {p['url']}"
+            for i, p in enumerate(papers)
+        )
 
-    prompt = f"""From the {len(candidates)} papers below, pick exactly 3 that are most relevant and impactful for this researcher:
+    history_note = ""
+    if recent_history:
+        titles = "\n".join(f"- {t}" for t in recent_history[-14:])
+        history_note = f"\nPapers recommended in the last 7 days (avoid thematic repetition):\n{titles}\n"
+
+    prompt = f"""You are a research paper recommendation assistant for this researcher:
 {RESEARCHER_BIO}
+{history_note}
+Select exactly 5 papers total — 3 from the RECENT pool and 2 from the CLASSIC pool.
 
-Mark exactly 1 as must_read (highest relevance or breakthrough result).
+Marking rules:
+- must_read_tag "⭐ 近期精读" → the single most impactful RECENT paper (≤1 year old)
+- must_read_tag "⭐ 经典精读" → the single most foundational CLASSIC paper (≥3 years old, high citation)
+- All other papers: must_read_tag ""
 
 Return ONLY valid JSON, no markdown fences:
 {{
   "papers": [
-    {{"index": <1-based>, "must_read": true/false, "why": "<2-3句中文推荐理由，说明与该研究者当前工作的关联>"}}
+    {{"pool": "recent", "index": <1-based in RECENT>, "must_read_tag": "⭐ 近期精读" or "", "why": "<2-3句中文推荐理由>"}},
+    ...3 recent entries...,
+    {{"pool": "classic", "index": <1-based in CLASSIC>, "must_read_tag": "⭐ 经典精读" or "", "why": "<2-3句中文推荐理由>"}},
+    ...2 classic entries...
   ]
 }}
 
-Papers:
-{listing}"""
+RECENT papers ({len(recent)} candidates):
+{fmt(recent, 'R')}
+
+CLASSIC papers ({len(classics)} candidates):
+{fmt(classics, 'C')}"""
 
     models = ["glm-5", "glm-4-plus"]
     messages = [
@@ -206,16 +281,17 @@ Papers:
     for model in models:
         for attempt in range(2):
             resp = client.chat.completions.create(
-                model=model, max_tokens=1000, messages=messages,
+                model=model, max_tokens=1500, messages=messages,
             )
             text = (resp.choices[0].message.content or "").strip()
             text = text.lstrip("```json").lstrip("```").rstrip("```").strip()
-            print(f"[{model} attempt {attempt+1}] {text[:200]}")
+            print(f"[{model} attempt {attempt+1}] {text[:300]}")
             if not text:
-                print(f"{model} returned empty, trying next...")
+                print(f"{model} returned empty, trying next model...")
                 break
             try:
                 result = json.loads(text)
+                print(f"✓ Parsed with {model}")
                 break
             except json.JSONDecodeError:
                 if attempt == 0:
@@ -229,9 +305,15 @@ Papers:
 
     selected = []
     for item in result["papers"]:
-        p = candidates[item["index"] - 1].copy()
-        p["must_read"] = item.get("must_read", False)
-        p["why"] = item.get("why", item.get("reason", ""))
+        pool = item.get("pool", "recent")
+        idx = item["index"] - 1
+        source = recent if pool == "recent" else classics
+        if idx < 0 or idx >= len(source):
+            continue
+        p = source[idx].copy()
+        p["must_read_tag"] = item.get("must_read_tag", "")
+        p["must_read"] = bool(p["must_read_tag"])
+        p["why"] = item.get("why", "")
         selected.append(p)
     return selected
 
@@ -244,8 +326,9 @@ def build_html(papers: list[dict]) -> str:
     today = datetime.now().strftime("%Y年%m月%d日")
     cards = ""
     for p in papers:
-        if p["must_read"]:
-            badge = '<span style="background:#c62828;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;letter-spacing:.5px;">⭐ 强烈推荐精读</span> '
+        tag = p.get("must_read_tag", "")
+        if tag:
+            badge = f'<span style="background:#c62828;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;letter-spacing:.5px;">{tag}</span> '
             border = "border-left:4px solid #c62828;"
             bg = "background:#fff8f8;"
         else:
@@ -253,9 +336,10 @@ def build_html(papers: list[dict]) -> str:
             border = "border-left:4px solid #e0e0e0;"
             bg = "background:#fff;"
 
+        year_str = f" · {p['year']}" if p.get("year") else ""
         cards += f"""
         <div style="{bg}{border}border-radius:6px;padding:18px 20px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.08);">
-          <div style="margin-bottom:6px;">{badge}<span style="color:#888;font-size:11px;">{p['source']}</span></div>
+          <div style="margin-bottom:6px;">{badge}<span style="color:#888;font-size:11px;">{p['source']}{year_str}</span></div>
           <h3 style="margin:0 0 5px;font-size:14px;line-height:1.5;">
             <a href="{p['url']}" style="color:#1565c0;text-decoration:none;">{p['title']}</a>
           </h3>
@@ -265,11 +349,12 @@ def build_html(papers: list[dict]) -> str:
           </div>
         </div>"""
 
+    must_count = sum(1 for p in papers if p.get("must_read"))
     return f"""<html><body style="margin:0;padding:20px;background:#f0f2f5;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
 <div style="max-width:580px;margin:0 auto;">
   <div style="background:#1565c0;color:#fff;padding:18px 22px;border-radius:8px 8px 0 0;">
     <h2 style="margin:0;font-size:17px;">📚 每日论文推荐 · {today}</h2>
-    <p style="margin:4px 0 0;font-size:12px;opacity:.8;">UQ · AI4Health · AI4Omics | Powered by GLM-5</p>
+    <p style="margin:4px 0 0;font-size:12px;opacity:.8;">UQ · AI4Health · AI4Omics | {len(papers)} 篇推荐 · {must_count} 篇精读 | Powered by GLM</p>
   </div>
   <div style="padding:14px 0;">{cards}</div>
   <p style="text-align:center;color:#aaa;font-size:11px;margin-top:4px;">
@@ -285,8 +370,9 @@ def send_email(papers: list[dict]):
     gmail_pass = os.environ["GMAIL_APP_PASSWORD"]
     to_email   = os.environ.get("TO_EMAIL", gmail_user)
 
+    must_count = sum(1 for p in papers if p.get("must_read"))
     msg = MIMEMultipart("alternative")
-    msg["Subject"] = f"📚 论文推荐 {datetime.now().strftime('%m/%d')} · {sum(1 for p in papers if p['must_read'])} 篇精读"
+    msg["Subject"] = f"📚 论文推荐 {datetime.now().strftime('%m/%d')} · {len(papers)} 篇 · {must_count} 篇精读"
     msg["From"]    = gmail_user
     msg["To"]      = to_email
     msg.attach(MIMEText(build_html(papers), "html"))
@@ -300,34 +386,51 @@ def send_email(papers: list[dict]):
 # ── Main ──────────────────────────────────────────────────────────────────────
 
 def main():
-    history_keys = load_history()
-    print(f"History: {len(history_keys)} papers already recommended")
+    history_keys, recent_history = load_history()
+    print(f"History: {len(history_keys)} papers seen, {len(recent_history)} in last 7 days")
 
-    pool = []
+    # ── Recent pool ──
+    recent_pool = []
 
-    print("Fetching arXiv...")
+    print("Fetching arXiv (recent)...")
     for q in ARXIV_QUERIES:
-        pool.extend(fetch_arxiv(q))
+        recent_pool.extend(fetch_arxiv(q))
         time.sleep(1)
 
-    print("Fetching Semantic Scholar...")
+    print("Fetching Semantic Scholar (recent)...")
     for q in SS_QUERIES:
-        pool.extend(fetch_semantic_scholar(q))
+        recent_pool.extend(fetch_semantic_scholar(q, min_year=RECENT_YEAR_CUTOFF))
         time.sleep(2)
 
-    print("Fetching PubMed...")
+    print("Fetching PubMed (recent)...")
     for q in PUBMED_QUERIES:
-        pool.extend(fetch_pubmed(q))
+        recent_pool.extend(fetch_pubmed(q))
         time.sleep(0.5)
 
-    pool = deduplicate(pool, history_keys)
-    print(f"Candidates after dedup (excl. history): {len(pool)}")
+    recent_pool = deduplicate(recent_pool, history_keys)
+    print(f"Recent candidates after dedup: {len(recent_pool)}")
+    # Prioritize: keep up to MAX_RECENT, prefer arXiv first (most recent)
+    arxiv_papers  = [p for p in recent_pool if p["source"] == "arXiv"]
+    other_papers  = [p for p in recent_pool if p["source"] != "arXiv"]
+    recent_pool   = (arxiv_papers + other_papers)[:MAX_RECENT]
 
-    if len(pool) > MAX_CANDIDATES:
-        pool = random.sample(pool, MAX_CANDIDATES)
+    # ── Classic pool ──
+    classic_pool = []
+    print("Fetching Semantic Scholar (classics)...")
+    for q in SS_CLASSIC_QUERIES:
+        classic_pool.extend(
+            fetch_semantic_scholar(q, n=8, max_year=CLASSIC_YEAR_CUTOFF, sort="citations")
+        )
+        time.sleep(2)
 
-    print("Asking GLM-5 to select...")
-    selected = select_papers(pool)
+    classic_pool = deduplicate(classic_pool, history_keys)
+    # Sort classics by citation count descending
+    classic_pool.sort(key=lambda p: p.get("citations", 0), reverse=True)
+    classic_pool = classic_pool[:MAX_CLASSIC]
+    print(f"Classic candidates after dedup: {len(classic_pool)}")
+
+    print("Asking GLM to select...")
+    selected = select_papers(recent_pool, classic_pool, recent_history)
 
     print("Sending email...")
     send_email(selected)
