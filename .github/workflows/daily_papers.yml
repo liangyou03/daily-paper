@@ -2,8 +2,8 @@ name: Daily Paper Digest
 
 on:
   schedule:
-    # UTC 13:00 = 北京时间 21:00
-    - cron: '0 13 * * *'
+    # UTC 12:00 = 宾州时间 08:00 (EDT) / 07:00 (EST)
+    - cron: '0 12 * * *'
   workflow_dispatch:
 
 permissions:
