@@ -245,10 +245,9 @@ def select_papers(recent: list[dict], classics: list[dict], recent_history: list
         titles = "\n".join(f"- {t}" for t in recent_history[-14:])
         history_note = f"\nPapers recommended in the last 7 days (avoid thematic repetition):\n{titles}\n"
 
-    prompt = f"""You are a research paper recommendation assistant for this researcher:
-{RESEARCHER_BIO}
-{history_note}
-Select exactly 5 papers total — 3 from the RECENT pool and 2 from the CLASSIC pool.
+    has_classics = len(classics) > 0
+    if has_classics:
+        task = f"""Select exactly 5 papers total — 3 from the RECENT pool and 2 from the CLASSIC pool.
 
 Marking rules:
 - must_read_tag "⭐ 近期精读" → the single most impactful RECENT paper (≤1 year old)
@@ -259,9 +258,7 @@ Return ONLY valid JSON, no markdown fences:
 {{
   "papers": [
     {{"pool": "recent", "index": <1-based in RECENT>, "must_read_tag": "⭐ 近期精读" or "", "why": "<2-3句中文推荐理由>"}},
-    ...3 recent entries...,
-    {{"pool": "classic", "index": <1-based in CLASSIC>, "must_read_tag": "⭐ 经典精读" or "", "why": "<2-3句中文推荐理由>"}},
-    ...2 classic entries...
+    {{"pool": "classic", "index": <1-based in CLASSIC>, "must_read_tag": "⭐ 经典精读" or "", "why": "<2-3句中文推荐理由>"}}
   ]
 }}
 
@@ -270,6 +267,27 @@ RECENT papers ({len(recent)} candidates):
 
 CLASSIC papers ({len(classics)} candidates):
 {fmt(classics, 'C')}"""
+    else:
+        task = f"""Select exactly 5 papers from the RECENT pool.
+
+Marking rules:
+- must_read_tag "⭐ 近期精读" → the single most impactful paper
+- All other papers: must_read_tag ""
+
+Return ONLY valid JSON, no markdown fences:
+{{
+  "papers": [
+    {{"pool": "recent", "index": <1-based>, "must_read_tag": "⭐ 近期精读" or "", "why": "<2-3句中文推荐理由>"}}
+  ]
+}}
+
+RECENT papers ({len(recent)} candidates):
+{fmt(recent, 'R')}"""
+
+    prompt = f"""You are a research paper recommendation assistant for this researcher:
+{RESEARCHER_BIO}
+{history_note}
+{task}"""
 
     models = ["glm-5", "glm-4-plus"]
     messages = [
