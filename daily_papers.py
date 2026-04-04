@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """Daily paper digest: UQ · AI4Health · AI4Omics"""
 
-import os, json, time, random, smtplib, requests, feedparser
+import os, json, time, random, smtplib, re, requests, feedparser
 from datetime import datetime
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+from urllib.parse import quote
 from openai import OpenAI
 
 # ── Search Config ────────────────────────────────────────────────────────────
@@ -34,13 +35,39 @@ PUBMED_QUERIES = [
     "spatial transcriptomics machine learning",
 ]
 
-MAX_CANDIDATES = 35  # cap before Claude selection
+MAX_CANDIDATES = 35
+HISTORY_FILE = "history.md"
+
+
+# ── History ──────────────────────────────────────────────────────────────────
+
+def load_history() -> set[str]:
+    """Load previously recommended paper title keys from history.md."""
+    if not os.path.exists(HISTORY_FILE):
+        return set()
+    keys = set()
+    with open(HISTORY_FILE, "r", encoding="utf-8") as f:
+        for line in f:
+            # Match table rows: | Date | Title | ...
+            m = re.match(r"^\|\s*\d{4}-\d{2}-\d{2}\s*\|\s*(.+?)\s*\|", line)
+            if m:
+                keys.add(m.group(1).strip().lower()[:70])
+    return keys
+
+
+def save_history(papers: list[dict]):
+    """Append newly recommended papers to history.md."""
+    today = datetime.now().strftime("%Y-%m-%d")
+    with open(HISTORY_FILE, "a", encoding="utf-8") as f:
+        for p in papers:
+            must = "⭐" if p.get("must_read") else ""
+            title = p["title"].replace("|", "\\|")
+            f.write(f"| {today} | {title} | {p['url']} | {p['source']} | {must} |\n")
 
 
 # ── Fetchers ─────────────────────────────────────────────────────────────────
 
 def fetch_arxiv(query: str, n: int = 15) -> list[dict]:
-    from urllib.parse import quote
     search = f"({query.replace(' ', '+')}) AND ({ARXIV_CATS})"
     url = (
         f"http://export.arxiv.org/api/query"
@@ -119,17 +146,18 @@ def fetch_pubmed(query: str, n: int = 8) -> list[dict]:
         return []
 
 
-def deduplicate(papers: list[dict]) -> list[dict]:
+def deduplicate(papers: list[dict], history_keys: set[str]) -> list[dict]:
+    """Remove duplicates within batch AND against history."""
     seen, unique = set(), []
     for p in papers:
         key = p["title"].lower()[:70]
-        if key not in seen and p["title"]:
+        if key not in seen and key not in history_keys and p["title"]:
             seen.add(key)
             unique.append(p)
     return unique
 
 
-# ── Claude Selection ──────────────────────────────────────────────────────────
+# ── GLM Selection ────────────────────────────────────────────────────────────
 
 RESEARCHER_BIO = """PhD student in Biostatistics, University of Pittsburgh.
 Current research:
@@ -153,10 +181,9 @@ def select_papers(candidates: list[dict]) -> list[dict]:
         for i, p in enumerate(candidates)
     )
 
-    prompt = f"""You are a research assistant for this researcher:
+    prompt = f"""From the {len(candidates)} papers below, pick exactly 3 that are most relevant and impactful for this researcher:
 {RESEARCHER_BIO}
 
-From the {len(candidates)} papers below, pick exactly 3 that are most relevant and impactful.
 Mark exactly 1 as must_read (highest relevance or breakthrough result).
 
 Return ONLY valid JSON, no markdown fences:
@@ -169,14 +196,25 @@ Return ONLY valid JSON, no markdown fences:
 Papers:
 {listing}"""
 
-    resp = client.chat.completions.create(
-        model="glm-4-plus",
-        max_tokens=1000,
-        messages=[{"role": "user", "content": prompt}],
-    )
-    text = resp.choices[0].message.content.strip().lstrip("```json").lstrip("```").rstrip("```")
-    print(f"[GLM raw response]\n{text}")
-    result = json.loads(text)
+    for attempt in range(2):
+        resp = client.chat.completions.create(
+            model="glm-5",
+            max_tokens=1000,
+            messages=[
+                {"role": "system", "content": "You are a research paper recommendation assistant. Always respond with valid JSON only."},
+                {"role": "user", "content": prompt},
+            ],
+        )
+        text = resp.choices[0].message.content.strip().lstrip("```json").lstrip("```").rstrip("```")
+        print(f"[GLM response attempt {attempt+1}]\n{text[:300]}")
+        try:
+            result = json.loads(text)
+            break
+        except json.JSONDecodeError:
+            if attempt == 1:
+                raise
+            print("JSON parse failed, retrying...")
+            time.sleep(2)
 
     selected = []
     for item in result["papers"]:
@@ -188,6 +226,8 @@ Papers:
 
 
 # ── Email ─────────────────────────────────────────────────────────────────────
+
+REPO_URL = "https://github.com/liangyou03/daily-paper"
 
 def build_html(papers: list[dict]) -> str:
     today = datetime.now().strftime("%Y年%m月%d日")
@@ -218,10 +258,13 @@ def build_html(papers: list[dict]) -> str:
 <div style="max-width:580px;margin:0 auto;">
   <div style="background:#1565c0;color:#fff;padding:18px 22px;border-radius:8px 8px 0 0;">
     <h2 style="margin:0;font-size:17px;">📚 每日论文推荐 · {today}</h2>
-    <p style="margin:4px 0 0;font-size:12px;opacity:.8;">UQ · AI4Health · AI4Omics | Powered by Claude</p>
+    <p style="margin:4px 0 0;font-size:12px;opacity:.8;">UQ · AI4Health · AI4Omics | Powered by GLM-5</p>
   </div>
   <div style="padding:14px 0;">{cards}</div>
-  <p style="text-align:center;color:#aaa;font-size:11px;margin-top:4px;">每日自动推送 · 为你的研究方向定制</p>
+  <p style="text-align:center;color:#aaa;font-size:11px;margin-top:4px;">
+    每日自动推送 · 为你的研究方向定制 ·
+    <a href="{REPO_URL}/blob/main/history.md" style="color:#aaa;">往期推荐</a>
+  </p>
 </div>
 </body></html>"""
 
@@ -246,6 +289,9 @@ def send_email(papers: list[dict]):
 # ── Main ──────────────────────────────────────────────────────────────────────
 
 def main():
+    history_keys = load_history()
+    print(f"History: {len(history_keys)} papers already recommended")
+
     pool = []
 
     print("Fetching arXiv...")
@@ -256,24 +302,27 @@ def main():
     print("Fetching Semantic Scholar...")
     for q in SS_QUERIES:
         pool.extend(fetch_semantic_scholar(q))
-        time.sleep(0.5)
+        time.sleep(2)
 
     print("Fetching PubMed...")
     for q in PUBMED_QUERIES:
         pool.extend(fetch_pubmed(q))
-        time.sleep(0.3)
+        time.sleep(0.5)
 
-    pool = deduplicate(pool)
-    print(f"Candidates after dedup: {len(pool)}")
+    pool = deduplicate(pool, history_keys)
+    print(f"Candidates after dedup (excl. history): {len(pool)}")
 
     if len(pool) > MAX_CANDIDATES:
         pool = random.sample(pool, MAX_CANDIDATES)
 
-    print("Asking Claude to select...")
+    print("Asking GLM-5 to select...")
     selected = select_papers(pool)
 
     print("Sending email...")
     send_email(selected)
+
+    print("Saving history...")
+    save_history(selected)
 
 
 if __name__ == "__main__":
