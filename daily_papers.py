@@ -5,7 +5,7 @@ import os, json, time, random, smtplib, requests, feedparser
 from datetime import datetime
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-import anthropic
+from openai import OpenAI
 
 # ── Search Config ────────────────────────────────────────────────────────────
 
@@ -138,7 +138,10 @@ Target venues: NeurIPS, ICML, ICLR (Datasets & Benchmarks track included)."""
 
 
 def select_papers(candidates: list[dict]) -> list[dict]:
-    client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
+    client = OpenAI(
+        api_key=os.environ["GLM_API_KEY"],
+        base_url="https://open.bigmodel.cn/api/paas/v4",
+    )
 
     listing = "\n\n".join(
         f"[{i+1}] {p['title']}\n"
@@ -164,12 +167,12 @@ Return ONLY valid JSON, no markdown fences:
 Papers:
 {listing}"""
 
-    resp = client.messages.create(
-        model="claude-sonnet-4-20250514",
+    resp = client.chat.completions.create(
+        model="glm-4-plus",
         max_tokens=1000,
         messages=[{"role": "user", "content": prompt}],
     )
-    text = resp.content[0].text.strip().lstrip("```json").lstrip("```").rstrip("```")
+    text = resp.choices[0].message.content.strip().lstrip("```json").lstrip("```").rstrip("```")
     result = json.loads(text)
 
     selected = []
