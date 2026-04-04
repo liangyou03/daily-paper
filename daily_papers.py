@@ -170,7 +170,7 @@ Papers:
 {listing}"""
 
     resp = client.chat.completions.create(
-        model="glm-5",
+        model="glm-4-plus",
         max_tokens=1000,
         messages=[{"role": "user", "content": prompt}],
     )
