@@ -196,25 +196,36 @@ Return ONLY valid JSON, no markdown fences:
 Papers:
 {listing}"""
 
-    for attempt in range(2):
-        resp = client.chat.completions.create(
-            model="glm-5",
-            max_tokens=1000,
-            messages=[
-                {"role": "system", "content": "You are a research paper recommendation assistant. Always respond with valid JSON only."},
-                {"role": "user", "content": prompt},
-            ],
-        )
-        text = resp.choices[0].message.content.strip().lstrip("```json").lstrip("```").rstrip("```")
-        print(f"[GLM response attempt {attempt+1}]\n{text[:300]}")
-        try:
-            result = json.loads(text)
+    models = ["glm-5", "glm-4-plus"]
+    messages = [
+        {"role": "system", "content": "You are a research paper recommendation assistant. Always respond with valid JSON only."},
+        {"role": "user", "content": prompt},
+    ]
+
+    result = None
+    for model in models:
+        for attempt in range(2):
+            resp = client.chat.completions.create(
+                model=model, max_tokens=1000, messages=messages,
+            )
+            text = (resp.choices[0].message.content or "").strip()
+            text = text.lstrip("```json").lstrip("```").rstrip("```").strip()
+            print(f"[{model} attempt {attempt+1}] {text[:200]}")
+            if not text:
+                print(f"{model} returned empty, trying next...")
+                break
+            try:
+                result = json.loads(text)
+                break
+            except json.JSONDecodeError:
+                if attempt == 0:
+                    print("JSON parse failed, retrying...")
+                    time.sleep(2)
+        if result:
             break
-        except json.JSONDecodeError:
-            if attempt == 1:
-                raise
-            print("JSON parse failed, retrying...")
-            time.sleep(2)
+
+    if not result:
+        raise RuntimeError("All GLM models failed to return valid JSON")
 
     selected = []
     for item in result["papers"]:
