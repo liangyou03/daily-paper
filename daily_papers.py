@@ -40,9 +40,11 @@ MAX_CANDIDATES = 35  # cap before Claude selection
 # ── Fetchers ─────────────────────────────────────────────────────────────────
 
 def fetch_arxiv(query: str, n: int = 15) -> list[dict]:
+    from urllib.parse import quote
+    search = f"({query.replace(' ', '+')}) AND ({ARXIV_CATS})"
     url = (
         f"http://export.arxiv.org/api/query"
-        f"?search_query=({query.replace(' ', '+')}) AND ({ARXIV_CATS})"
+        f"?search_query={quote(search)}"
         f"&start=0&max_results={n}&sortBy=submittedDate&sortOrder=descending"
     )
     feed = feedparser.parse(url)
