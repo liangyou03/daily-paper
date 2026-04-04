@@ -175,13 +175,14 @@ Papers:
         messages=[{"role": "user", "content": prompt}],
     )
     text = resp.choices[0].message.content.strip().lstrip("```json").lstrip("```").rstrip("```")
+    print(f"[GLM raw response]\n{text}")
     result = json.loads(text)
 
     selected = []
     for item in result["papers"]:
         p = candidates[item["index"] - 1].copy()
-        p["must_read"] = item["must_read"]
-        p["why"] = item["why"]
+        p["must_read"] = item.get("must_read", False)
+        p["why"] = item.get("why", item.get("reason", ""))
         selected.append(p)
     return selected
 
