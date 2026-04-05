@@ -20,3 +20,8 @@
 | 2026-04-04 | Discovering Interpretable Biological Concepts in Single-cell RNA-seq Foundation Models | https://arxiv.org/abs/2510.25807v1 | arXiv |  |
 | 2026-04-04 | Deep Learning with Heterogeneous Graph Embeddings for Mortality Prediction from Electronic Health Records | https://www.semanticscholar.org/paper/0fe95d89ea22b484a39eba96ec1b70429612fdc5 | Semantic Scholar | ⭐ 经典精读 |
 | 2026-04-04 | Deep learning approach for early prediction of COVID-19 mortality using chest X-ray and electronic health records | https://www.semanticscholar.org/paper/3235bef7d8fb1ccb243de5bee79cc31c2b756a20 | Semantic Scholar |  |
+| 2026-04-05 | Online Reasoning Calibration: Test-Time Training Enables Generalizable Conformal LLM Reasoning | https://arxiv.org/abs/2604.01170v1 | arXiv | ⭐ 近期精读 |
+| 2026-04-05 | Beyond a Single Signal: SPECTREG2, A Unified MultiExpert Anomaly Detector for Unknown Unknowns | https://arxiv.org/abs/2603.21160v1 | arXiv |  |
+| 2026-04-05 | Learning Clinical Representations Under Systematic Distribution Shift | https://arxiv.org/abs/2603.07348v1 | arXiv |  |
+| 2026-04-05 | Parameter-free representations outperform single-cell foundation models on downstream benchmarks | https://arxiv.org/abs/2602.16696v1 | arXiv |  |
+| 2026-04-05 | Clustering with Communication: A Variational Framework for Single Cell Representation Learning | https://arxiv.org/abs/2505.04891v2 | arXiv |  |
