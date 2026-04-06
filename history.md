@@ -25,3 +25,8 @@
 | 2026-04-05 | Learning Clinical Representations Under Systematic Distribution Shift | https://arxiv.org/abs/2603.07348v1 | arXiv |  |
 | 2026-04-05 | Parameter-free representations outperform single-cell foundation models on downstream benchmarks | https://arxiv.org/abs/2602.16696v1 | arXiv |  |
 | 2026-04-05 | Clustering with Communication: A Variational Framework for Single Cell Representation Learning | https://arxiv.org/abs/2505.04891v2 | arXiv |  |
+| 2026-04-06 | Energy Score-Guided Neural Gaussian Mixture Model for Predictive Uncertainty Quantification | https://arxiv.org/abs/2603.27672v1 | arXiv | ⭐ 近期精读 |
+| 2026-04-06 | Data-Driven Priors for Uncertainty-Aware Deterioration Risk Prediction with Multimodal Data | https://arxiv.org/abs/2603.08459v1 | arXiv |  |
+| 2026-04-06 | Central-to-Local Adaptive Generative Diffusion Framework for Improving Gene Expression Prediction in Data-Limited Spatial Transcriptomics | https://arxiv.org/abs/2603.26827v1 | arXiv |  |
+| 2026-04-06 | A Causal Framework for Mitigating Data Shifts in Healthcare | https://arxiv.org/abs/2603.13595v1 | arXiv |  |
+| 2026-04-06 | CellStream: Dynamical Optimal Transport Informed Embeddings for Reconstructing Cellular Trajectories from Snapshots Data | https://arxiv.org/abs/2511.13786v1 | arXiv |  |
