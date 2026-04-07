@@ -30,3 +30,8 @@
 | 2026-04-06 | Central-to-Local Adaptive Generative Diffusion Framework for Improving Gene Expression Prediction in Data-Limited Spatial Transcriptomics | https://arxiv.org/abs/2603.26827v1 | arXiv |  |
 | 2026-04-06 | A Causal Framework for Mitigating Data Shifts in Healthcare | https://arxiv.org/abs/2603.13595v1 | arXiv |  |
 | 2026-04-06 | CellStream: Dynamical Optimal Transport Informed Embeddings for Reconstructing Cellular Trajectories from Snapshots Data | https://arxiv.org/abs/2511.13786v1 | arXiv |  |
+| 2026-04-07 | Debiased Machine Learning for Conformal Prediction of Counterfactual Outcomes Under Runtime Confounding | https://arxiv.org/abs/2604.03772v1 | arXiv | ⭐ 近期精读 |
+| 2026-04-07 | Inference for Clustering: Conformal Sets for Cluster Labels | https://arxiv.org/abs/2604.03488v1 | arXiv |  |
+| 2026-04-07 | A Multimodal Foundation Model of Spatial Transcriptomics and Histology for Biological Discovery and Clinical Prediction | https://arxiv.org/abs/2604.03630v1 | arXiv |  |
+| 2026-04-07 | FEAST: Fully Connected Expressive Attention for Spatial Transcriptomics | https://arxiv.org/abs/2603.25247v1 | arXiv |  |
+| 2026-04-07 | Learning collective multi-cellular dynamics from temporal scRNA-seq via a transformer-enhanced Neural SDE | https://arxiv.org/abs/2505.16492v1 | arXiv |  |
