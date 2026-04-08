@@ -35,3 +35,8 @@
 | 2026-04-07 | A Multimodal Foundation Model of Spatial Transcriptomics and Histology for Biological Discovery and Clinical Prediction | https://arxiv.org/abs/2604.03630v1 | arXiv |  |
 | 2026-04-07 | FEAST: Fully Connected Expressive Attention for Spatial Transcriptomics | https://arxiv.org/abs/2603.25247v1 | arXiv |  |
 | 2026-04-07 | Learning collective multi-cellular dynamics from temporal scRNA-seq via a transformer-enhanced Neural SDE | https://arxiv.org/abs/2505.16492v1 | arXiv |  |
+| 2026-04-08 | A machine learning framework for uncovering stochastic nonlinear dynamics from noisy data | https://arxiv.org/abs/2604.06081v1 | arXiv | ⭐ 近期精读 |
+| 2026-04-08 | Variational Graph Neural Networks for Uncertainty Quantification in Inverse Problems | https://arxiv.org/abs/2603.29515v1 | arXiv |  |
+| 2026-04-08 | Mix-Geneformer: Unified Representation Learning for Human and Mouse scRNA-seq Data | https://arxiv.org/abs/2507.07454v1 | arXiv |  |
+| 2026-04-08 | MIOFlow 2.0: A unified framework for inferring cellular stochastic dynamics from single cell and spatial transcriptomics data | https://arxiv.org/abs/2603.22564v1 | arXiv |  |
+| 2026-04-08 | Domain Elastic Transform: Bayesian Function Registration for High-Dimensional Scientific Data | https://arxiv.org/abs/2603.21235v1 | arXiv |  |
