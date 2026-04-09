@@ -40,3 +40,8 @@
 | 2026-04-08 | Mix-Geneformer: Unified Representation Learning for Human and Mouse scRNA-seq Data | https://arxiv.org/abs/2507.07454v1 | arXiv |  |
 | 2026-04-08 | MIOFlow 2.0: A unified framework for inferring cellular stochastic dynamics from single cell and spatial transcriptomics data | https://arxiv.org/abs/2603.22564v1 | arXiv |  |
 | 2026-04-08 | Domain Elastic Transform: Bayesian Function Registration for High-Dimensional Scientific Data | https://arxiv.org/abs/2603.21235v1 | arXiv |  |
+| 2026-04-09 | Conformal Prediction with Time-Series Data via Sequential Conformalized Density Regions | https://arxiv.org/abs/2604.07325v1 | arXiv | ⭐ 近期精读 |
+| 2026-04-09 | Weighted Bayesian Conformal Prediction | https://arxiv.org/abs/2604.06464v1 | arXiv |  |
+| 2026-04-09 | Subspace Tensor Orthogonal Rotation Model (STORM) for Batch Alignment, Cell Type Deconvolution, and Gene Imputation in Spatial Transcriptomic Data | https://arxiv.org/abs/2603.22477v1 | arXiv |  |
+| 2026-04-09 | A deep adversarial variational autoencoder model for dimensionality reduction in single-cell RNA sequencing analysis | https://www.semanticscholar.org/paper/c43a444d32e46a9a8387a756b5c1df81ee719e18 | Semantic Scholar | ⭐ 经典精读 |
+| 2026-04-09 | Spatial Transcriptomics as Images for Large-Scale Pretraining | https://arxiv.org/abs/2603.13432v3 | arXiv |  |
