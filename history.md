@@ -45,3 +45,8 @@
 | 2026-04-09 | Subspace Tensor Orthogonal Rotation Model (STORM) for Batch Alignment, Cell Type Deconvolution, and Gene Imputation in Spatial Transcriptomic Data | https://arxiv.org/abs/2603.22477v1 | arXiv |  |
 | 2026-04-09 | A deep adversarial variational autoencoder model for dimensionality reduction in single-cell RNA sequencing analysis | https://www.semanticscholar.org/paper/c43a444d32e46a9a8387a756b5c1df81ee719e18 | Semantic Scholar | ⭐ 经典精读 |
 | 2026-04-09 | Spatial Transcriptomics as Images for Large-Scale Pretraining | https://arxiv.org/abs/2603.13432v3 | arXiv |  |
+| 2026-04-10 | RAFT-UP: Robust Alignment for Spatial Transcriptomics with Explicit Control of Spatial Distortion | https://arxiv.org/abs/2603.18249v1 | arXiv | ⭐ 近期精读 |
+| 2026-04-10 | Distribution-free screening of spatially variable genes in spatial transcriptomics | https://arxiv.org/abs/2603.09061v1 | arXiv |  |
+| 2026-04-10 | Towards Spatial Transcriptomics-driven Pathology Foundation Models | https://arxiv.org/abs/2602.14177v1 | arXiv |  |
+| 2026-04-10 | EXAONE Path 2.5: Pathology Foundation Model with Multi-Omics Alignment | https://arxiv.org/abs/2512.14019v1 | arXiv |  |
+| 2026-04-10 | Disease progression modeling of Alzheimer's disease based on variational probability principal component analysis. | https://pubmed.ncbi.nlm.nih.gov/41911308/ | PubMed |  |
