@@ -50,3 +50,8 @@
 | 2026-04-10 | Towards Spatial Transcriptomics-driven Pathology Foundation Models | https://arxiv.org/abs/2602.14177v1 | arXiv |  |
 | 2026-04-10 | EXAONE Path 2.5: Pathology Foundation Model with Multi-Omics Alignment | https://arxiv.org/abs/2512.14019v1 | arXiv |  |
 | 2026-04-10 | Disease progression modeling of Alzheimer's disease based on variational probability principal component analysis. | https://pubmed.ncbi.nlm.nih.gov/41911308/ | PubMed |  |
+| 2026-04-11 | From Debate to Decision: Conformal Social Choice for Safe Multi-Agent Deliberation | https://arxiv.org/abs/2604.07667v1 | arXiv | ⭐ 近期精读 |
+| 2026-04-11 | Conformal Margin Risk Minimization: An Envelope Framework for Robust Learning under Label Noise | https://arxiv.org/abs/2604.06468v1 | arXiv |  |
+| 2026-04-11 | BiTro: Bidirectional Transfer Learning Enhances Bulk and Spatial Transcriptomics Prediction in Cancer Pathological Images | https://arxiv.org/abs/2603.14897v1 | arXiv |  |
+| 2026-04-11 | MAD: Microenvironment-Aware Distillation -- A Pretraining Strategy for Virtual Spatial Omics from Microscopy | https://arxiv.org/abs/2603.13401v1 | arXiv |  |
+| 2026-04-11 | Histopathology-centered Computational Evolution of Spatial Omics: Integration, Mapping, and Foundation Models | https://arxiv.org/abs/2601.07826v1 | arXiv |  |
