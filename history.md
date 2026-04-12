@@ -55,3 +55,8 @@
 | 2026-04-11 | BiTro: Bidirectional Transfer Learning Enhances Bulk and Spatial Transcriptomics Prediction in Cancer Pathological Images | https://arxiv.org/abs/2603.14897v1 | arXiv |  |
 | 2026-04-11 | MAD: Microenvironment-Aware Distillation -- A Pretraining Strategy for Virtual Spatial Omics from Microscopy | https://arxiv.org/abs/2603.13401v1 | arXiv |  |
 | 2026-04-11 | Histopathology-centered Computational Evolution of Spatial Omics: Integration, Mapping, and Foundation Models | https://arxiv.org/abs/2601.07826v1 | arXiv |  |
+| 2026-04-12 | MEC: Machine-Learning-Assisted Generalized Entropy Calibration for Semi-Supervised Mean Estimation | https://arxiv.org/abs/2604.05446v1 | arXiv | ⭐ 近期精读 |
+| 2026-04-12 | Sampling Parallelism for Fast and Efficient Bayesian Learning | https://arxiv.org/abs/2604.04736v1 | arXiv |  |
+| 2026-04-12 | Physics-Embedded Feature Learning for AI in Medical Imaging | https://arxiv.org/abs/2603.28057v1 | arXiv |  |
+| 2026-04-12 | scMEDAL for the interpretable analysis of single-cell transcriptomics data with batch effect visualization using a deep mixed effects autoencoder | https://arxiv.org/abs/2411.06635v4 | arXiv |  |
+| 2026-04-12 | Open World Knowledge Aided Single-Cell Foundation Model with Robust Cross-Modal Cell-Language Pre-training | https://arxiv.org/abs/2601.05648v1 | arXiv |  |
