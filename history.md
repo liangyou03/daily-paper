@@ -60,3 +60,8 @@
 | 2026-04-12 | Physics-Embedded Feature Learning for AI in Medical Imaging | https://arxiv.org/abs/2603.28057v1 | arXiv |  |
 | 2026-04-12 | scMEDAL for the interpretable analysis of single-cell transcriptomics data with batch effect visualization using a deep mixed effects autoencoder | https://arxiv.org/abs/2411.06635v4 | arXiv |  |
 | 2026-04-12 | Open World Knowledge Aided Single-Cell Foundation Model with Robust Cross-Modal Cell-Language Pre-training | https://arxiv.org/abs/2601.05648v1 | arXiv |  |
+| 2026-04-13 | Uncertainty-Aware Transformers: Conformal Prediction for Language Models | https://arxiv.org/abs/2604.08885v1 | arXiv | ⭐ 近期精读 |
+| 2026-04-13 | VOLTA: The Surprising Ineffectiveness of Auxiliary Losses for Calibrated Deep Learning | https://arxiv.org/abs/2604.08639v1 | arXiv |  |
+| 2026-04-13 | Vision-based Deep Learning Analysis of Unordered Biomedical Tabular Datasets via Optimal Spatial Cartography | https://arxiv.org/abs/2603.22675v1 | arXiv |  |
+| 2026-04-13 | MoRE: Batch-Robust Multi-Omics Representations from Frozen Pre-trained Transformers | https://arxiv.org/abs/2511.20382v2 | arXiv |  |
+| 2026-04-13 | LLM4Cell: A Survey of Large Language and Agentic Models for Single-Cell Biology | https://arxiv.org/abs/2510.07793v3 | arXiv |  |
