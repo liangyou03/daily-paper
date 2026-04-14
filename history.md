@@ -70,3 +70,8 @@
 | 2026-04-14 | AEGIS: An Operational Infrastructure for Post-Market Governance of Adaptive Medical AI Under US and EU Regulations | https://arxiv.org/abs/2603.22322v1 | arXiv |  |
 | 2026-04-14 | Key-Embedded Privacy for Decentralized AI in Biomedical Omics | https://arxiv.org/abs/2603.28334v1 | arXiv |  |
 | 2026-04-14 | Nephrobase Cell+: Multimodal Single-Cell Foundation Model for Decoding Kidney Biology | https://arxiv.org/abs/2509.26223v1 | arXiv |  |
+| 2026-04-14 | Dual-model deep learning for Alzheimer's prognostication. | https://pubmed.ncbi.nlm.nih.gov/41962454/ | Computers in biology and medicine | ⭐ 近期精读 |
+| 2026-04-14 | SARS-CoV-2 infection during the first trimester leads to profound immune dysregulation at the maternal-fetal interface despite limited virus detection in placental tissues. | https://pubmed.ncbi.nlm.nih.gov/41974725/ | Nature communications |  |
+| 2026-04-14 | A sequence knowledge-guided deep learning method for single-cell multi-omics translation. | https://pubmed.ncbi.nlm.nih.gov/41975483/ | Genome biology |  |
+| 2026-04-14 | GRNFormer: accurate gene regulatory network inference using graph transformer. | https://pubmed.ncbi.nlm.nih.gov/41883144/ | Bioinformatics (Oxford, England) |  |
+| 2026-04-14 | STGNET: extending panel coverage in imaging-based spatial transcriptomics using deep generative adversarial networks. | https://pubmed.ncbi.nlm.nih.gov/41875024/ | Briefings in bioinformatics |  |
