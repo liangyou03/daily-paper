@@ -65,3 +65,8 @@
 | 2026-04-13 | Vision-based Deep Learning Analysis of Unordered Biomedical Tabular Datasets via Optimal Spatial Cartography | https://arxiv.org/abs/2603.22675v1 | arXiv |  |
 | 2026-04-13 | MoRE: Batch-Robust Multi-Omics Representations from Frozen Pre-trained Transformers | https://arxiv.org/abs/2511.20382v2 | arXiv |  |
 | 2026-04-13 | LLM4Cell: A Survey of Large Language and Agentic Models for Single-Cell Biology | https://arxiv.org/abs/2510.07793v3 | arXiv |  |
+| 2026-04-14 | Besag-Clifford e-values for unnormalized testing | https://arxiv.org/abs/2603.15845v1 | arXiv | ⭐ 近期精读 |
+| 2026-04-14 | Bayesian Elicitation with LLMs: Model Size Helps, Extra "Reasoning" Doesn't Always | https://arxiv.org/abs/2604.01896v1 | arXiv |  |
+| 2026-04-14 | AEGIS: An Operational Infrastructure for Post-Market Governance of Adaptive Medical AI Under US and EU Regulations | https://arxiv.org/abs/2603.22322v1 | arXiv |  |
+| 2026-04-14 | Key-Embedded Privacy for Decentralized AI in Biomedical Omics | https://arxiv.org/abs/2603.28334v1 | arXiv |  |
+| 2026-04-14 | Nephrobase Cell+: Multimodal Single-Cell Foundation Model for Decoding Kidney Biology | https://arxiv.org/abs/2509.26223v1 | arXiv |  |
