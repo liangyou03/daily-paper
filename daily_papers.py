@@ -23,13 +23,7 @@ ARXIV_CATS = (
     "OR cat:q-bio.QM OR cat:q-bio.GN OR cat:cs.AI"
 )
 
-SS_QUERIES = [
-    "uncertainty quantification deep learning",
-    "machine learning electronic health records",
-    "single cell omics transformer",
-]
-
-# Classic queries: foundational topics likely to yield high-citation older papers
+# Classic queries: foundational topics for high-citation older papers
 SS_CLASSIC_QUERIES = [
     "conformal prediction coverage guarantee",
     "deep learning electronic health records mortality prediction",
@@ -42,11 +36,29 @@ PUBMED_QUERIES = [
     "spatial transcriptomics machine learning",
 ]
 
-MAX_RECENT = 40    # recent pool cap (arXiv + SS + PubMed)
-MAX_CLASSIC = 15   # classics pool cap
+# Top journals relevant to UQ / AI4Health / AI4Omics
+JOURNAL_FILTER = (
+    '"Nature"[Journal] OR "Nature Methods"[Journal] OR "Nature Biotechnology"[Journal] OR '
+    '"Nature Medicine"[Journal] OR "Nature Communications"[Journal] OR '
+    '"Cell"[Journal] OR "Cell Systems"[Journal] OR "Cell Genomics"[Journal] OR '
+    '"Science"[Journal] OR "Science Translational Medicine"[Journal] OR '
+    '"The New England Journal of Medicine"[Journal] OR "Lancet"[Journal] OR '
+    '"JAMA"[Journal] OR "Bioinformatics"[Journal] OR "Genome Biology"[Journal] OR '
+    '"Genome Research"[Journal] OR "Journal of Machine Learning Research"[Journal]'
+)
+JOURNAL_CONTENT_QUERY = (
+    "(deep learning OR machine learning OR uncertainty quantification OR "
+    "conformal prediction OR single cell OR spatial transcriptomics OR foundation model)"
+)
+
+MAX_RECENT  = 40
+MAX_CLASSIC = 15
 HISTORY_FILE = "history.md"
-CLASSIC_YEAR_CUTOFF = datetime.now().year - 3  # papers from ≤ this year are "classic"
-RECENT_YEAR_CUTOFF  = datetime.now().year - 1  # papers from ≥ this year are "recent"
+CLASSIC_YEAR_CUTOFF = datetime.now().year - 3
+RECENT_YEAR_CUTOFF  = datetime.now().year - 1
+
+# Sources that are named journals (not preprint servers)
+JOURNAL_SOURCES = {"PubMed", "Semantic Scholar", "arXiv"}  # arXiv excluded below in sort
 
 
 # ── History ──────────────────────────────────────────────────────────────────
@@ -78,6 +90,22 @@ def save_history(papers: list[dict]):
             f.write(f"| {today} | {title} | {p['url']} | {p['source']} | {tag} |\n")
 
 
+# ── Domain Tagger ─────────────────────────────────────────────────────────────
+
+def tag_domain(p: dict) -> str:
+    text = (p.get("title", "") + " " + p.get("abstract", "")).lower()
+    if any(k in text for k in ["conformal", "uncertainty quantification", "coverage guarantee",
+                                "prediction interval", "calibration uncertainty", "credible interval"]):
+        return "UQ"
+    if any(k in text for k in ["icu", "ehr", "electronic health", "clinical prediction",
+                                "hospital mortality", "sepsis", "patient outcome", "intensive care"]):
+        return "AI4Health"
+    if any(k in text for k in ["single cell", "scrna", "spatial transcriptomics",
+                                "omics", "rna-seq", "sequencing", "genomics", "cell type"]):
+        return "AI4Omics"
+    return "other"
+
+
 # ── Fetchers ─────────────────────────────────────────────────────────────────
 
 def fetch_arxiv(query: str, n: int = 15) -> list[dict]:
@@ -90,7 +118,6 @@ def fetch_arxiv(query: str, n: int = 15) -> list[dict]:
     feed = feedparser.parse(url)
     results = []
     for e in feed.entries:
-        # Parse year from published date (e.g. "2024-03-15T...")
         year = None
         if hasattr(e, "published"):
             try:
@@ -120,8 +147,7 @@ def fetch_semantic_scholar(query: str, n: int = 10, min_year: int = None, max_ye
     try:
         r = requests.get(
             "https://api.semanticscholar.org/graph/v1/paper/search",
-            params=params,
-            timeout=12,
+            params=params, timeout=12,
         )
         r.raise_for_status()
         papers = []
@@ -148,6 +174,48 @@ def fetch_semantic_scholar(query: str, n: int = 10, min_year: int = None, max_ye
         return []
 
 
+def _parse_pubmed_xml(ids: list[str], xml_text: str, default_source: str = "PubMed") -> list[dict]:
+    """Parse PubMed efetch XML into paper dicts. Extracts journal name when present."""
+    papers = []
+    for uid in ids:
+        title_m = re.search(
+            rf"<PubmedArticle>.*?<PMID[^>]*>{uid}</PMID>.*?<ArticleTitle>(.*?)</ArticleTitle>",
+            xml_text, re.DOTALL
+        )
+        if not title_m:
+            continue
+        abstract_m = re.search(
+            rf"<PubmedArticle>.*?<PMID[^>]*>{uid}</PMID>.*?<AbstractText[^>]*>(.*?)</AbstractText>",
+            xml_text, re.DOTALL
+        )
+        author_m = re.search(
+            rf"<PubmedArticle>.*?<PMID[^>]*>{uid}</PMID>.*?<LastName>(.*?)</LastName>.*?<ForeName>(.*?)</ForeName>",
+            xml_text, re.DOTALL
+        )
+        year_m = re.search(
+            rf"<PubmedArticle>.*?<PMID[^>]*>{uid}</PMID>.*?<PubDate>.*?<Year>(\d{{4}})</Year>",
+            xml_text, re.DOTALL
+        )
+        journal_m = re.search(
+            rf"<PubmedArticle>.*?<PMID[^>]*>{uid}</PMID>.*?<Journal>.*?<Title>(.*?)</Title>",
+            xml_text, re.DOTALL
+        )
+        title    = re.sub(r"<[^>]+>", "", title_m.group(1)).strip()
+        abstract = re.sub(r"<[^>]+>", "", abstract_m.group(1)).strip()[:600] if abstract_m else ""
+        author   = f"{author_m.group(1)} {author_m.group(2)}" if author_m else ""
+        year     = int(year_m.group(1)) if year_m else None
+        source   = journal_m.group(1).strip() if journal_m else default_source
+        papers.append({
+            "title": title,
+            "abstract": abstract,
+            "authors": author,
+            "url": f"https://pubmed.ncbi.nlm.nih.gov/{uid}/",
+            "source": source,
+            "year": year,
+        })
+    return papers
+
+
 def fetch_pubmed(query: str, n: int = 8) -> list[dict]:
     base = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils"
     try:
@@ -159,48 +227,41 @@ def fetch_pubmed(query: str, n: int = 8) -> list[dict]:
         ).json()["esearchresult"]["idlist"]
         if not ids:
             return []
-        # Use efetch for real abstracts
         fetch_r = requests.get(
             f"{base}/efetch.fcgi",
             params={"db": "pubmed", "id": ",".join(ids), "retmode": "xml", "rettype": "abstract"},
             timeout=15,
         )
-        papers = []
-        # Parse XML minimally to get title + abstract
-        for uid in ids:
-            title_m = re.search(
-                rf"<PubmedArticle>.*?<PMID[^>]*>{uid}</PMID>.*?<ArticleTitle>(.*?)</ArticleTitle>",
-                fetch_r.text, re.DOTALL
-            )
-            abstract_m = re.search(
-                rf"<PubmedArticle>.*?<PMID[^>]*>{uid}</PMID>.*?<AbstractText[^>]*>(.*?)</AbstractText>",
-                fetch_r.text, re.DOTALL
-            )
-            author_m = re.search(
-                rf"<PubmedArticle>.*?<PMID[^>]*>{uid}</PMID>.*?<LastName>(.*?)</LastName>.*?<ForeName>(.*?)</ForeName>",
-                fetch_r.text, re.DOTALL
-            )
-            year_m = re.search(
-                rf"<PubmedArticle>.*?<PMID[^>]*>{uid}</PMID>.*?<PubDate>.*?<Year>(\d{{4}})</Year>",
-                fetch_r.text, re.DOTALL
-            )
-            if not title_m:
-                continue
-            title = re.sub(r"<[^>]+>", "", title_m.group(1)).strip()
-            abstract = re.sub(r"<[^>]+>", "", abstract_m.group(1)).strip()[:600] if abstract_m else ""
-            author = f"{author_m.group(1)} {author_m.group(2)}" if author_m else ""
-            year = int(year_m.group(1)) if year_m else None
-            papers.append({
-                "title": title,
-                "abstract": abstract,
-                "authors": author,
-                "url": f"https://pubmed.ncbi.nlm.nih.gov/{uid}/",
-                "source": "PubMed",
-                "year": year,
-            })
-        return papers
+        return _parse_pubmed_xml(ids, fetch_r.text, default_source="PubMed")
     except Exception as e:
         print(f"[PubMed] {e}")
+        return []
+
+
+def fetch_pubmed_journals(n: int = 12) -> list[dict]:
+    """Fetch recent papers from top journals using a journal whitelist filter."""
+    base = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils"
+    term = f"({JOURNAL_CONTENT_QUERY}) AND ({JOURNAL_FILTER})"
+    try:
+        ids = requests.get(
+            f"{base}/esearch.fcgi",
+            params={"db": "pubmed", "term": term, "retmax": n,
+                    "sort": "pub+date", "retmode": "json", "reldate": 180},
+            timeout=12,
+        ).json()["esearchresult"]["idlist"]
+        if not ids:
+            print("[Journals] No results")
+            return []
+        fetch_r = requests.get(
+            f"{base}/efetch.fcgi",
+            params={"db": "pubmed", "id": ",".join(ids), "retmode": "xml", "rettype": "abstract"},
+            timeout=15,
+        )
+        papers = _parse_pubmed_xml(ids, fetch_r.text, default_source="PubMed")
+        print(f"[Journals] {len(papers)} papers from: {set(p['source'] for p in papers)}")
+        return papers
+    except Exception as e:
+        print(f"[Journals] {e}")
         return []
 
 
@@ -212,6 +273,25 @@ def deduplicate(papers: list[dict], history_keys: set[str]) -> list[dict]:
             seen.add(key)
             unique.append(p)
     return unique
+
+
+def balance_pool(papers: list[dict], cap: int) -> list[dict]:
+    """Interleave by domain; within each domain, journal papers first."""
+    buckets: dict[str, list] = {"UQ": [], "AI4Health": [], "AI4Omics": [], "other": []}
+    for p in papers:
+        buckets[p.get("domain", "other")].append(p)
+
+    def journal_first(lst):
+        return (
+            sorted([p for p in lst if p["source"] not in ("arXiv",)], key=lambda p: p.get("year") or 0, reverse=True) +
+            [p for p in lst if p["source"] == "arXiv"]
+        )
+
+    balanced = []
+    per_domain = max(8, cap // 4)
+    for domain in ["UQ", "AI4Health", "AI4Omics", "other"]:
+        balanced.extend(journal_first(buckets[domain])[:per_domain])
+    return balanced[:cap]
 
 
 # ── GLM Selection ────────────────────────────────────────────────────────────
@@ -233,7 +313,7 @@ def select_papers(recent: list[dict], classics: list[dict], recent_history: list
     def fmt(papers, label):
         return "\n\n".join(
             f"[{label}{i+1}] {p['title']} ({p.get('year','?')})\n"
-            f"Authors: {p['authors']} | Source: {p['source']}"
+            f"Authors: {p['authors']} | Source: {p['source']} | Domain: {p.get('domain','?')}"
             + (f" | Citations: {p['citations']}" if p.get('citations') else "") + "\n"
             f"Abstract: {p['abstract']}\n"
             f"URL: {p['url']}"
@@ -245,10 +325,20 @@ def select_papers(recent: list[dict], classics: list[dict], recent_history: list
         titles = "\n".join(f"- {t}" for t in recent_history[-14:])
         history_note = f"\nPapers recommended in the last 7 days (avoid thematic repetition):\n{titles}\n"
 
+    diversity_rule = """
+Domain diversity rule: You MUST select at least 1 paper from EACH of the three domains:
+  - UQ (Uncertainty Quantification / Conformal Prediction)
+  - AI4Health (ICU, EHR, clinical ML)
+  - AI4Omics (single-cell, spatial transcriptomics, omics)
+Journal preference rule: When quality is comparable, STRONGLY prefer papers from named journals \
+(Nature, Nature Methods, Nature Biotechnology, Cell, Genome Biology, Science, NEJM, Lancet, JAMA, \
+Bioinformatics, etc.) over arXiv preprints for the RECENT slots.
+"""
+
     has_classics = len(classics) > 0
     if has_classics:
         task = f"""Select exactly 5 papers total — 3 from the RECENT pool and 2 from the CLASSIC pool.
-
+{diversity_rule}
 Marking rules:
 - must_read_tag "⭐ 近期精读" → the single most impactful RECENT paper (≤1 year old)
 - must_read_tag "⭐ 经典精读" → the single most foundational CLASSIC paper (≥3 years old, high citation)
@@ -257,8 +347,8 @@ Marking rules:
 Return ONLY valid JSON, no markdown fences:
 {{
   "papers": [
-    {{"pool": "recent", "index": <1-based in RECENT>, "must_read_tag": "⭐ 近期精读" or "", "why": "<2-3句中文推荐理由>"}},
-    {{"pool": "classic", "index": <1-based in CLASSIC>, "must_read_tag": "⭐ 经典精读" or "", "why": "<2-3句中文推荐理由>"}}
+    {{"pool": "recent", "index": <1-based in RECENT>, "domain": "<UQ|AI4Health|AI4Omics|other>", "must_read_tag": "⭐ 近期精读" or "", "why": "<2-3句中文推荐理由>"}},
+    {{"pool": "classic", "index": <1-based in CLASSIC>, "domain": "<UQ|AI4Health|AI4Omics|other>", "must_read_tag": "⭐ 经典精读" or "", "why": "<2-3句中文推荐理由>"}}
   ]
 }}
 
@@ -269,7 +359,7 @@ CLASSIC papers ({len(classics)} candidates):
 {fmt(classics, 'C')}"""
     else:
         task = f"""Select exactly 5 papers from the RECENT pool.
-
+{diversity_rule}
 Marking rules:
 - must_read_tag "⭐ 近期精读" → the single most impactful paper
 - All other papers: must_read_tag ""
@@ -277,7 +367,7 @@ Marking rules:
 Return ONLY valid JSON, no markdown fences:
 {{
   "papers": [
-    {{"pool": "recent", "index": <1-based>, "must_read_tag": "⭐ 近期精读" or "", "why": "<2-3句中文推荐理由>"}}
+    {{"pool": "recent", "index": <1-based>, "domain": "<UQ|AI4Health|AI4Omics|other>", "must_read_tag": "⭐ 近期精读" or "", "why": "<2-3句中文推荐理由>"}}
   ]
 }}
 
@@ -325,10 +415,10 @@ RECENT papers ({len(recent)} candidates):
     for item in result["papers"]:
         pool = item.get("pool", "recent")
         idx = item["index"] - 1
-        source = recent if pool == "recent" else classics
-        if idx < 0 or idx >= len(source):
+        source_pool = recent if pool == "recent" else classics
+        if idx < 0 or idx >= len(source_pool):
             continue
-        p = source[idx].copy()
+        p = source_pool[idx].copy()
         p["must_read_tag"] = item.get("must_read_tag", "")
         p["must_read"] = bool(p["must_read_tag"])
         p["why"] = item.get("why", "")
@@ -415,22 +505,23 @@ def main():
         recent_pool.extend(fetch_arxiv(q))
         time.sleep(1)
 
-    print("Fetching Semantic Scholar (recent)...")
-    for q in SS_QUERIES:
-        recent_pool.extend(fetch_semantic_scholar(q, min_year=RECENT_YEAR_CUTOFF))
-        time.sleep(2)
-
-    print("Fetching PubMed (recent)...")
+    print("Fetching PubMed (topic queries)...")
     for q in PUBMED_QUERIES:
         recent_pool.extend(fetch_pubmed(q))
         time.sleep(0.5)
 
+    print("Fetching PubMed top journals...")
+    recent_pool.extend(fetch_pubmed_journals(n=12))
+    time.sleep(0.5)
+
+    # Tag domains before dedup/balancing
+    for p in recent_pool:
+        p["domain"] = tag_domain(p)
+
     recent_pool = deduplicate(recent_pool, history_keys)
     print(f"Recent candidates after dedup: {len(recent_pool)}")
-    # Prioritize: keep up to MAX_RECENT, prefer arXiv first (most recent)
-    arxiv_papers  = [p for p in recent_pool if p["source"] == "arXiv"]
-    other_papers  = [p for p in recent_pool if p["source"] != "arXiv"]
-    recent_pool   = (arxiv_papers + other_papers)[:MAX_RECENT]
+    recent_pool = balance_pool(recent_pool, MAX_RECENT)
+    print(f"Recent pool after balancing: {len(recent_pool)} | domains: { {d: sum(1 for p in recent_pool if p.get('domain')==d) for d in ['UQ','AI4Health','AI4Omics','other']} }")
 
     # ── Classic pool ──
     classic_pool = []
@@ -439,10 +530,12 @@ def main():
         classic_pool.extend(
             fetch_semantic_scholar(q, n=8, max_year=CLASSIC_YEAR_CUTOFF, sort="citations")
         )
-        time.sleep(2)
+        time.sleep(3)
+
+    for p in classic_pool:
+        p["domain"] = tag_domain(p)
 
     classic_pool = deduplicate(classic_pool, history_keys)
-    # Sort classics by citation count descending
     classic_pool.sort(key=lambda p: p.get("citations", 0), reverse=True)
     classic_pool = classic_pool[:MAX_CLASSIC]
     print(f"Classic candidates after dedup: {len(classic_pool)}")
