@@ -75,3 +75,8 @@
 | 2026-04-14 | A sequence knowledge-guided deep learning method for single-cell multi-omics translation. | https://pubmed.ncbi.nlm.nih.gov/41975483/ | Genome biology |  |
 | 2026-04-14 | GRNFormer: accurate gene regulatory network inference using graph transformer. | https://pubmed.ncbi.nlm.nih.gov/41883144/ | Bioinformatics (Oxford, England) |  |
 | 2026-04-14 | STGNET: extending panel coverage in imaging-based spatial transcriptomics using deep generative adversarial networks. | https://pubmed.ncbi.nlm.nih.gov/41875024/ | Briefings in bioinformatics |  |
+| 2026-04-15 | AutoSurrogate: An LLM-Driven Multi-Agent Framework for Autonomous Construction of Deep Learning Surrogate Models in Subsurface Flow | https://arxiv.org/abs/2604.11945v1 | arXiv | ⭐ 近期精读 |
+| 2026-04-15 | GDSim: accurate simulation for single-cell transcriptomes based on the guided diffusion model. | https://pubmed.ncbi.nlm.nih.gov/41978379/ | Briefings in bioinformatics |  |
+| 2026-04-15 | Hi-Compass: a depth-aware deep learning framework for predicting cell-type-specific 3D genome organization from single-cell to spatial resolution. | https://pubmed.ncbi.nlm.nih.gov/41980945/ | Nature communications |  |
+| 2026-04-15 | scDEBGCL: a deep embedding approach based on bipartite graph contrastive learning for single-cell RNA-seq data. | https://pubmed.ncbi.nlm.nih.gov/41981652/ | BMC biology |  |
+| 2026-04-15 | FairMed-XGB: A Bayesian-Optimised Multi-Metric Framework with Explainability for Demographic Equity in Critical Healthcare Data | https://arxiv.org/abs/2603.14947v1 | arXiv |  |
