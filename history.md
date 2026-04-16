@@ -80,3 +80,8 @@
 | 2026-04-15 | Hi-Compass: a depth-aware deep learning framework for predicting cell-type-specific 3D genome organization from single-cell to spatial resolution. | https://pubmed.ncbi.nlm.nih.gov/41980945/ | Nature communications |  |
 | 2026-04-15 | scDEBGCL: a deep embedding approach based on bipartite graph contrastive learning for single-cell RNA-seq data. | https://pubmed.ncbi.nlm.nih.gov/41981652/ | BMC biology |  |
 | 2026-04-15 | FairMed-XGB: A Bayesian-Optimised Multi-Metric Framework with Explainability for Demographic Equity in Critical Healthcare Data | https://arxiv.org/abs/2603.14947v1 | arXiv |  |
+| 2026-04-16 | Adaptive Conformal Prediction for Improving Factuality of Generations by Large Language Models | https://arxiv.org/abs/2604.13991v1 | arXiv | ⭐ 近期精读 |
+| 2026-04-16 | Augmenting Clinical Decision-Making with an Interactive and Interpretable AI Copilot: A Real-World User Study with Clinicians in Nephrology and Obstetrics | https://arxiv.org/abs/2602.00726v1 | arXiv |  |
+| 2026-04-16 | Deep learning inference of cell type-specific gene expression from breast tumor histopathology. | https://pubmed.ncbi.nlm.nih.gov/41986599/ | NPJ precision oncology |  |
+| 2026-04-16 | DuaST: an integrated deep learning framework for spatial transcriptomics with cross-branch interaction. | https://pubmed.ncbi.nlm.nih.gov/41985058/ | Briefings in bioinformatics |  |
+| 2026-04-16 | Integrating Radiomics and Computational Pathology to Predict Early Recurrence of Pancreatic Ductal Adenocarcinoma and Uncover Its Biological Basis in Tumor Microenvironment. | https://pubmed.ncbi.nlm.nih.gov/41969272/ | Advanced science (Weinheim, Baden-Wurttemberg, Germany) |  |
