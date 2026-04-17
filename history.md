@@ -85,3 +85,8 @@
 | 2026-04-16 | Deep learning inference of cell type-specific gene expression from breast tumor histopathology. | https://pubmed.ncbi.nlm.nih.gov/41986599/ | NPJ precision oncology |  |
 | 2026-04-16 | DuaST: an integrated deep learning framework for spatial transcriptomics with cross-branch interaction. | https://pubmed.ncbi.nlm.nih.gov/41985058/ | Briefings in bioinformatics |  |
 | 2026-04-16 | Integrating Radiomics and Computational Pathology to Predict Early Recurrence of Pancreatic Ductal Adenocarcinoma and Uncover Its Biological Basis in Tumor Microenvironment. | https://pubmed.ncbi.nlm.nih.gov/41969272/ | Advanced science (Weinheim, Baden-Wurttemberg, Germany) |  |
+| 2026-04-17 | Differentially Private Conformal Prediction | https://arxiv.org/abs/2604.14621v1 | arXiv | ⭐ 近期精读 |
+| 2026-04-17 | Diagnosing LLM Judge Reliability: Conformal Prediction Sets and Transitivity Violations | https://arxiv.org/abs/2604.15302v1 | arXiv |  |
+| 2026-04-17 | Cerebra: A Multidisciplinary AI Board for Multimodal Dementia Characterization and Risk Assessment | https://arxiv.org/abs/2603.21597v2 | arXiv |  |
+| 2026-04-17 | STDrug enables spatially informed personalized drug repurposing from spatial transcriptomics. | https://pubmed.ncbi.nlm.nih.gov/41993522/ | bioRxiv : the preprint server for biology |  |
+| 2026-04-17 | SpaPheno: linking spatial transcriptomics to clinical phenotypes with interpretable machine learning. | https://pubmed.ncbi.nlm.nih.gov/41975540/ | Genome medicine |  |
