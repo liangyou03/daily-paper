@@ -90,3 +90,8 @@
 | 2026-04-17 | Cerebra: A Multidisciplinary AI Board for Multimodal Dementia Characterization and Risk Assessment | https://arxiv.org/abs/2603.21597v2 | arXiv |  |
 | 2026-04-17 | STDrug enables spatially informed personalized drug repurposing from spatial transcriptomics. | https://pubmed.ncbi.nlm.nih.gov/41993522/ | bioRxiv : the preprint server for biology |  |
 | 2026-04-17 | SpaPheno: linking spatial transcriptomics to clinical phenotypes with interpretable machine learning. | https://pubmed.ncbi.nlm.nih.gov/41975540/ | Genome medicine |  |
+| 2026-04-18 | Quantifying and Understanding Uncertainty in Large Reasoning Models | https://arxiv.org/abs/2604.13395v1 | arXiv | ⭐ 近期精读 |
+| 2026-04-18 | Bias-Corrected Adaptive Conformal Inference for Multi-Horizon Time Series Forecasting | https://arxiv.org/abs/2604.13253v1 | arXiv |  |
+| 2026-04-18 | Human-Guided Agentic AI for Multimodal Clinical Prediction: Lessons from the AgentDS Healthcare Benchmark | https://arxiv.org/abs/2602.19502v1 | arXiv |  |
+| 2026-04-18 | scGPD: single-cell informed gene panel design for targeted spatial transcriptomics. | https://pubmed.ncbi.nlm.nih.gov/41996577/ | Briefings in bioinformatics |  |
+| 2026-04-18 | A single-cell and spatial atlas of early human olfactory development. | https://pubmed.ncbi.nlm.nih.gov/41997969/ | Nature communications |  |
