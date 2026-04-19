@@ -95,3 +95,8 @@
 | 2026-04-18 | Human-Guided Agentic AI for Multimodal Clinical Prediction: Lessons from the AgentDS Healthcare Benchmark | https://arxiv.org/abs/2602.19502v1 | arXiv |  |
 | 2026-04-18 | scGPD: single-cell informed gene panel design for targeted spatial transcriptomics. | https://pubmed.ncbi.nlm.nih.gov/41996577/ | Briefings in bioinformatics |  |
 | 2026-04-18 | A single-cell and spatial atlas of early human olfactory development. | https://pubmed.ncbi.nlm.nih.gov/41997969/ | Nature communications |  |
+| 2026-04-19 | On a Probability Inequality for Order Statistics with Applications to Bootstrap, Conformal Prediction, and more | https://arxiv.org/abs/2604.15229v1 | arXiv | ⭐ 近期精读 |
+| 2026-04-19 | Genetic landscape and functional exploration of kidney cancer predisposition in cross-ancestral populations. | https://pubmed.ncbi.nlm.nih.gov/42000752/ | Nature communications |  |
+| 2026-04-19 | Reconstructing cell-cell interaction network in single-cell spatial transcriptomics via directed heterogeneous graph autoencoder. | https://pubmed.ncbi.nlm.nih.gov/41999209/ | Bioinformatics (Oxford, England) |  |
+| 2026-04-19 | Integrating optogenetic fMRI and spatial transcriptomics to reveal circuit-specific gene signatures in fronto- and hippo-thalamic networks. | https://pubmed.ncbi.nlm.nih.gov/42000729/ | Nature communications |  |
+| 2026-04-19 | Advancing cardiovascular disease diagnosis with an interpretable and responsible AI framework. | https://pubmed.ncbi.nlm.nih.gov/41922385/ | Scientific reports |  |
