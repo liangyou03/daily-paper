@@ -100,3 +100,8 @@
 | 2026-04-19 | Reconstructing cell-cell interaction network in single-cell spatial transcriptomics via directed heterogeneous graph autoencoder. | https://pubmed.ncbi.nlm.nih.gov/41999209/ | Bioinformatics (Oxford, England) |  |
 | 2026-04-19 | Integrating optogenetic fMRI and spatial transcriptomics to reveal circuit-specific gene signatures in fronto- and hippo-thalamic networks. | https://pubmed.ncbi.nlm.nih.gov/42000729/ | Nature communications |  |
 | 2026-04-19 | Advancing cardiovascular disease diagnosis with an interpretable and responsible AI framework. | https://pubmed.ncbi.nlm.nih.gov/41922385/ | Scientific reports |  |
+| 2026-04-20 | Beyond Surface Statistics: Robust Conformal Prediction for LLMs via Internal Representations | https://arxiv.org/abs/2604.16217v1 | arXiv | ⭐ 近期精读 |
+| 2026-04-20 | Consensus computational immunogenicity modelling of botulinum neurotoxin serotypes: Cross-platform validation, uncertainty quantification, and relative risk assessment. | https://pubmed.ncbi.nlm.nih.gov/41935544/ | Toxicon : official journal of the International Society on Toxinology |  |
+| 2026-04-20 | CLIMB: Controllable Longitudinal Brain Image Generation using Mamba-based Latent Diffusion Model and Gaussian-aligned Autoencoder | https://arxiv.org/abs/2604.15611v1 | arXiv |  |
+| 2026-04-20 | A Method for Imputing scRNA-seq Data Based on Mobile Graph Convolutional Generative Adversarial Networks. | https://pubmed.ncbi.nlm.nih.gov/41998476/ | Biochemical genetics |  |
+| 2026-04-20 | Artificial Intelligence in single-cell and spatial transcriptomics data analyses. | https://pubmed.ncbi.nlm.nih.gov/41986013/ | Progress in molecular biology and translational science |  |
