@@ -105,3 +105,8 @@
 | 2026-04-20 | CLIMB: Controllable Longitudinal Brain Image Generation using Mamba-based Latent Diffusion Model and Gaussian-aligned Autoencoder | https://arxiv.org/abs/2604.15611v1 | arXiv |  |
 | 2026-04-20 | A Method for Imputing scRNA-seq Data Based on Mobile Graph Convolutional Generative Adversarial Networks. | https://pubmed.ncbi.nlm.nih.gov/41998476/ | Biochemical genetics |  |
 | 2026-04-20 | Artificial Intelligence in single-cell and spatial transcriptomics data analyses. | https://pubmed.ncbi.nlm.nih.gov/41986013/ | Progress in molecular biology and translational science |  |
+| 2026-04-21 | Conformal Robust Set Estimation | https://arxiv.org/abs/2604.18441v1 | arXiv | ⭐ 近期精读 |
+| 2026-04-21 | Crohn's disease: research progress in decoding pathogenic multi-network and precision management of artificial intelligence radiomics. | https://pubmed.ncbi.nlm.nih.gov/41909686/ | Frontiers in immunology |  |
+| 2026-04-21 | DestinyNet: A deep-learning framework for cell-fate analysis from lineage-tracing single-cell RNA sequencing data. | https://pubmed.ncbi.nlm.nih.gov/42005385/ | Patterns (New York, N.Y.) |  |
+| 2026-04-21 | Accelerating Leigh syndrome drug discovery through deep learning screening in brain organoids. | https://pubmed.ncbi.nlm.nih.gov/42009687/ | Nature communications |  |
+| 2026-04-21 | Safe Control using Learned Safety Filters and Adaptive Conformal Inference | https://arxiv.org/abs/2604.18482v1 | arXiv |  |
