@@ -110,3 +110,8 @@
 | 2026-04-21 | DestinyNet: A deep-learning framework for cell-fate analysis from lineage-tracing single-cell RNA sequencing data. | https://pubmed.ncbi.nlm.nih.gov/42005385/ | Patterns (New York, N.Y.) |  |
 | 2026-04-21 | Accelerating Leigh syndrome drug discovery through deep learning screening in brain organoids. | https://pubmed.ncbi.nlm.nih.gov/42009687/ | Nature communications |  |
 | 2026-04-21 | Safe Control using Learned Safety Filters and Adaptive Conformal Inference | https://arxiv.org/abs/2604.18482v1 | arXiv |  |
+| 2026-04-22 | Online Conformal Prediction with Adversarial Semi-bandit Feedback via Regret Minimization | https://arxiv.org/abs/2604.17984v1 | arXiv | ⭐ 近期精读 |
+| 2026-04-22 | Auricular vagus nerve stimulation drives analgesia via an auricle-brain axis in a mouse model of neuropathic pain. | https://pubmed.ncbi.nlm.nih.gov/42014724/ | Nature communications |  |
+| 2026-04-22 | Spatial multi-omics integration by cross-modal graph contrastive learning. | https://pubmed.ncbi.nlm.nih.gov/42001472/ | Briefings in bioinformatics |  |
+| 2026-04-22 | SpaNiche: spatial niche analysis to explore colocalization patterns and cellular interactions in spatial transcriptomics data. | https://pubmed.ncbi.nlm.nih.gov/42015285/ | Genome biology |  |
+| 2026-04-22 | Full-DIA enables complete single-cell proteomics from diaPASEF using deep learning. | https://pubmed.ncbi.nlm.nih.gov/42015180/ | Genome biology |  |
