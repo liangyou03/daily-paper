@@ -115,3 +115,8 @@
 | 2026-04-22 | Spatial multi-omics integration by cross-modal graph contrastive learning. | https://pubmed.ncbi.nlm.nih.gov/42001472/ | Briefings in bioinformatics |  |
 | 2026-04-22 | SpaNiche: spatial niche analysis to explore colocalization patterns and cellular interactions in spatial transcriptomics data. | https://pubmed.ncbi.nlm.nih.gov/42015285/ | Genome biology |  |
 | 2026-04-22 | Full-DIA enables complete single-cell proteomics from diaPASEF using deep learning. | https://pubmed.ncbi.nlm.nih.gov/42015180/ | Genome biology |  |
+| 2026-04-23 | Temporal Reproducibility of a Genetic Algorithm-Derived Health Risk Score: Standardized Out-of-Fold Validation Framework (2021-2023). | https://pubmed.ncbi.nlm.nih.gov/42013439/ | JMIR bioinformatics and biotechnology | ⭐ 近期精读 |
+| 2026-04-23 | AICellType: a large language model-based platform for accurate cell type annotation. | https://pubmed.ncbi.nlm.nih.gov/42001469/ | Briefings in bioinformatics |  |
+| 2026-04-23 | Reference-free discovery with barcoded single-cell sequencing. | https://pubmed.ncbi.nlm.nih.gov/42020848/ | Nature biotechnology |  |
+| 2026-04-23 | Machine learning predictions surpass individual mRNAs as a proxy of single-cell protein expression. | https://pubmed.ncbi.nlm.nih.gov/42021407/ | Genome biology |  |
+| 2026-04-23 | Enhancing liver fibrosis measurement: Deep learning and uncertainty analysis across multi-center cohorts. | https://pubmed.ncbi.nlm.nih.gov/42023068/ | Journal of pathology informatics |  |
