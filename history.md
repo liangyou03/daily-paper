@@ -120,3 +120,8 @@
 | 2026-04-23 | Reference-free discovery with barcoded single-cell sequencing. | https://pubmed.ncbi.nlm.nih.gov/42020848/ | Nature biotechnology |  |
 | 2026-04-23 | Machine learning predictions surpass individual mRNAs as a proxy of single-cell protein expression. | https://pubmed.ncbi.nlm.nih.gov/42021407/ | Genome biology |  |
 | 2026-04-23 | Enhancing liver fibrosis measurement: Deep learning and uncertainty analysis across multi-center cohorts. | https://pubmed.ncbi.nlm.nih.gov/42023068/ | Journal of pathology informatics |  |
+| 2026-04-24 | Uncertainty-Aware Evidential Multi-Modal Fusion Network for Large-Scale Multi-Center Major Depressive Disorder Classification. | https://pubmed.ncbi.nlm.nih.gov/42024926/ | IEEE transactions on bio-medical engineering | ⭐ 近期精读 |
+| 2026-04-24 | A Kernel Nonconformity Score for Multivariate Conformal Prediction | https://arxiv.org/abs/2604.21595v1 | arXiv |  |
+| 2026-04-24 | Type I interferon drives T cell responses to amyloid beta in the central nervous system. | https://pubmed.ncbi.nlm.nih.gov/42026067/ | Nature communications |  |
+| 2026-04-24 | Geometry-aware graph attention networks to explain single-cell chromatin states and gene expression with SEAGALL. | https://pubmed.ncbi.nlm.nih.gov/42026624/ | Genome biology |  |
+| 2026-04-24 | Multiomics immune profiling of a patient-relevant orthotopic lung cancer model using SEPARATE-Seq. | https://pubmed.ncbi.nlm.nih.gov/42026061/ | Nature communications |  |
