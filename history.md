@@ -125,3 +125,8 @@
 | 2026-04-24 | Type I interferon drives T cell responses to amyloid beta in the central nervous system. | https://pubmed.ncbi.nlm.nih.gov/42026067/ | Nature communications |  |
 | 2026-04-24 | Geometry-aware graph attention networks to explain single-cell chromatin states and gene expression with SEAGALL. | https://pubmed.ncbi.nlm.nih.gov/42026624/ | Genome biology |  |
 | 2026-04-24 | Multiomics immune profiling of a patient-relevant orthotopic lung cancer model using SEPARATE-Seq. | https://pubmed.ncbi.nlm.nih.gov/42026061/ | Nature communications |  |
+| 2026-04-25 | Adaptive Conformal Anomaly Detection with Time Series Foundation Models for Signal Monitoring | https://arxiv.org/abs/2604.20122v1 | arXiv | ⭐ 近期精读 |
+| 2026-04-25 | Convolutional neural networks quantify antibiotic resistance in Mycobacterium tuberculosis with diagnostic grade accuracy and predict treatment response. | https://pubmed.ncbi.nlm.nih.gov/42031767/ | Nature communications |  |
+| 2026-04-25 | Direct RNA sequencing and signal alignment reveal RNA structure ensembles in a eukaryotic cell. | https://pubmed.ncbi.nlm.nih.gov/42032065/ | Nature methods |  |
+| 2026-04-25 | Differentiable Conformal Training for LLM Reasoning Factuality | https://arxiv.org/abs/2604.20098v1 | arXiv |  |
+| 2026-04-25 | Systematically decoding pathological morphologies and molecular profiles with unified multimodal embedding. | https://pubmed.ncbi.nlm.nih.gov/42032067/ | Nature methods |  |
