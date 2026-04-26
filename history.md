@@ -130,3 +130,8 @@
 | 2026-04-25 | Direct RNA sequencing and signal alignment reveal RNA structure ensembles in a eukaryotic cell. | https://pubmed.ncbi.nlm.nih.gov/42032065/ | Nature methods |  |
 | 2026-04-25 | Differentiable Conformal Training for LLM Reasoning Factuality | https://arxiv.org/abs/2604.20098v1 | arXiv |  |
 | 2026-04-25 | Systematically decoding pathological morphologies and molecular profiles with unified multimodal embedding. | https://pubmed.ncbi.nlm.nih.gov/42032067/ | Nature methods |  |
+| 2026-04-26 | ReconVLA: An Uncertainty-Guided and Failure-Aware Vision-Language-Action Framework for Robotic Control | https://arxiv.org/abs/2604.16677v1 | arXiv | ⭐ 近期精读 |
+| 2026-04-26 | CHRep: Cross-modal Histology Representation and Post-hoc Calibration for Spatial Gene Expression Prediction | https://arxiv.org/abs/2604.21573v1 | arXiv |  |
+| 2026-04-26 | Trustworthy Blockchain-based Federated Learning for Electronic Health Records: Securing Participant Identity with Decentralized Identifiers and Verifiable Credentials | https://arxiv.org/abs/2602.02629v1 | arXiv |  |
+| 2026-04-26 | Identification of synovial lymphatic system in the temporomandibular joint and their roles in arthritis and pain. | https://pubmed.ncbi.nlm.nih.gov/42034638/ | Nature communications |  |
+| 2026-04-26 | Coupled cross-sectional and longitudinal non-negative matrix factorization reveals dominant brain aging trajectories in 48,949 individuals. | https://pubmed.ncbi.nlm.nih.gov/42034902/ | Nature communications |  |
