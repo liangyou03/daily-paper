@@ -135,3 +135,8 @@
 | 2026-04-26 | Trustworthy Blockchain-based Federated Learning for Electronic Health Records: Securing Participant Identity with Decentralized Identifiers and Verifiable Credentials | https://arxiv.org/abs/2602.02629v1 | arXiv |  |
 | 2026-04-26 | Identification of synovial lymphatic system in the temporomandibular joint and their roles in arthritis and pain. | https://pubmed.ncbi.nlm.nih.gov/42034638/ | Nature communications |  |
 | 2026-04-26 | Coupled cross-sectional and longitudinal non-negative matrix factorization reveals dominant brain aging trajectories in 48,949 individuals. | https://pubmed.ncbi.nlm.nih.gov/42034902/ | Nature communications |  |
+| 2026-04-27 | Conformalized Super Learner | https://arxiv.org/abs/2604.22391v1 | arXiv | ⭐ 近期精读 |
+| 2026-04-27 | FunDiff: diffusion models over function spaces for physics-informed generative modeling. | https://pubmed.ncbi.nlm.nih.gov/42036410/ | Nature communications |  |
+| 2026-04-27 | Region- and cell type-specific changes in gene expression in the cerebellum after classical fear conditioning. | https://pubmed.ncbi.nlm.nih.gov/42032255/ | Communications biology |  |
+| 2026-04-27 | GR2ST: Spatial Transcriptomics Prediction based on Graph-Enhanced Multimodal Contrastive Learning. | https://pubmed.ncbi.nlm.nih.gov/42036805/ | Bioinformatics (Oxford, England) |  |
+| 2026-04-27 | Highly&#xa0;efficient&#xa0;chromatin&#xa0;conformation&#xa0;capture&#xa0;with&#xa0;post-enrichment&#xa0;in&#xa0;single&#xa0;cells&#xa0;by&#xa0;HiChew. | https://pubmed.ncbi.nlm.nih.gov/42036683/ | Genome biology |  |
