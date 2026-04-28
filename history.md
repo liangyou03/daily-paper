@@ -140,3 +140,8 @@
 | 2026-04-27 | Region- and cell type-specific changes in gene expression in the cerebellum after classical fear conditioning. | https://pubmed.ncbi.nlm.nih.gov/42032255/ | Communications biology |  |
 | 2026-04-27 | GR2ST: Spatial Transcriptomics Prediction based on Graph-Enhanced Multimodal Contrastive Learning. | https://pubmed.ncbi.nlm.nih.gov/42036805/ | Bioinformatics (Oxford, England) |  |
 | 2026-04-27 | Highly&#xa0;efficient&#xa0;chromatin&#xa0;conformation&#xa0;capture&#xa0;with&#xa0;post-enrichment&#xa0;in&#xa0;single&#xa0;cells&#xa0;by&#xa0;HiChew. | https://pubmed.ncbi.nlm.nih.gov/42036683/ | Genome biology |  |
+| 2026-04-28 | RouteNLP: Closed-Loop LLM Routing with Conformal Cascading and Distillation Co-Optimization | https://arxiv.org/abs/2604.23577v1 | arXiv | ⭐ 近期精读 |
+| 2026-04-28 | Chronax: A Jax Library for Univariate Statistical Forecasting and Conformal Inference | https://arxiv.org/abs/2604.16719v1 | arXiv |  |
+| 2026-04-28 | Telomere-to-Telomere Assembly Using HERRO-Corrected Simplex Nanopore Reads. | https://pubmed.ncbi.nlm.nih.gov/42045451/ | Nature |  |
+| 2026-04-28 | An Interpretable Omics-to-Image Transformer Framework for Cancer Prognosis Prediction. | https://pubmed.ncbi.nlm.nih.gov/42040254/ | Computational and structural biotechnology journal |  |
+| 2026-04-28 | Duplex-Indel: a snakemake pipeline for somatic indel calling in Tn5 transposase-based duplex sequencing data. | https://pubmed.ncbi.nlm.nih.gov/42046229/ | Bioinformatics (Oxford, England) |  |
