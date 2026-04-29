@@ -145,3 +145,8 @@
 | 2026-04-28 | Telomere-to-Telomere Assembly Using HERRO-Corrected Simplex Nanopore Reads. | https://pubmed.ncbi.nlm.nih.gov/42045451/ | Nature |  |
 | 2026-04-28 | An Interpretable Omics-to-Image Transformer Framework for Cancer Prognosis Prediction. | https://pubmed.ncbi.nlm.nih.gov/42040254/ | Computational and structural biotechnology journal |  |
 | 2026-04-28 | Duplex-Indel: a snakemake pipeline for somatic indel calling in Tn5 transposase-based duplex sequencing data. | https://pubmed.ncbi.nlm.nih.gov/42046229/ | Bioinformatics (Oxford, England) |  |
+| 2026-04-29 | Tail allocation for conformal prediction intervals | https://arxiv.org/abs/2604.25202v1 | arXiv | ⭐ 近期精读 |
+| 2026-04-29 | Boosting immunogenic tumour cell death via nanotherapeutic targeting of the Stanniocalcin 1 phagocytosis checkpoint for enhanced cancer immunotherapy. | https://pubmed.ncbi.nlm.nih.gov/42049751/ | Nature communications |  |
+| 2026-04-29 | Spatial transcriptomics atlas of inflammatory bowel disease to guide implementation in research consortiums and clinical trials. | https://pubmed.ncbi.nlm.nih.gov/42049732/ | Nature communications |  |
+| 2026-04-29 | scMultiPreDICT: A single-cell predictive framework with transcriptomic and epigenetic signatures. | https://pubmed.ncbi.nlm.nih.gov/41993521/ | bioRxiv : the preprint server for biology |  |
+| 2026-04-29 | AI framework for multidisease detection via retinal imaging. | https://pubmed.ncbi.nlm.nih.gov/42050182/ | Nature medicine |  |
