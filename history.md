@@ -150,3 +150,8 @@
 | 2026-04-29 | Spatial transcriptomics atlas of inflammatory bowel disease to guide implementation in research consortiums and clinical trials. | https://pubmed.ncbi.nlm.nih.gov/42049732/ | Nature communications |  |
 | 2026-04-29 | scMultiPreDICT: A single-cell predictive framework with transcriptomic and epigenetic signatures. | https://pubmed.ncbi.nlm.nih.gov/41993521/ | bioRxiv : the preprint server for biology |  |
 | 2026-04-29 | AI framework for multidisease detection via retinal imaging. | https://pubmed.ncbi.nlm.nih.gov/42050182/ | Nature medicine |  |
+| 2026-04-30 | Conflict Forecasting via Conformal Prediction for Markov Processes | https://arxiv.org/abs/2604.25139v1 | arXiv | ⭐ 近期精读 |
+| 2026-04-30 | Improving access to essential medicines via decision-aware machine learning. | https://pubmed.ncbi.nlm.nih.gov/42056524/ | Nature |  |
+| 2026-04-30 | Spatial atlas of diabetic kidney disease reveals a B cell-rich subgroup. | https://pubmed.ncbi.nlm.nih.gov/42056516/ | Nature |  |
+| 2026-04-30 | Cytoplasmic competition between separate parental pronuclei in zygotes. | https://pubmed.ncbi.nlm.nih.gov/42056509/ | Nature |  |
+| 2026-04-30 | Systems Biology Identifies TARS2 as a Cardiomyocyte Regulator of Mitochondrial Oxidative Stress in Dilated Cardiomyopathy. | https://pubmed.ncbi.nlm.nih.gov/42048853/ | JACC. Basic to translational science |  |
