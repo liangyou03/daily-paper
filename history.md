@@ -155,3 +155,8 @@
 | 2026-04-30 | Spatial atlas of diabetic kidney disease reveals a B cell-rich subgroup. | https://pubmed.ncbi.nlm.nih.gov/42056516/ | Nature |  |
 | 2026-04-30 | Cytoplasmic competition between separate parental pronuclei in zygotes. | https://pubmed.ncbi.nlm.nih.gov/42056509/ | Nature |  |
 | 2026-04-30 | Systems Biology Identifies TARS2 as a Cardiomyocyte Regulator of Mitochondrial Oxidative Stress in Dilated Cardiomyopathy. | https://pubmed.ncbi.nlm.nih.gov/42048853/ | JACC. Basic to translational science |  |
+| 2026-05-01 | ConformaDecompose: Explaining Uncertainty via Calibration Localization | https://arxiv.org/abs/2604.27149v1 | arXiv | ⭐ 近期精读 |
+| 2026-05-01 | Geometry-Calibrated Conformal Abstention for Language Models | https://arxiv.org/abs/2604.27914v1 | arXiv |  |
+| 2026-05-01 | A Muribaculaceae-enriched microbiota exacerbates TLR4-dependent Acinetobacter baumannii-induced hyperinflammatory sepsis. | https://pubmed.ncbi.nlm.nih.gov/42062271/ | Nature communications |  |
+| 2026-05-01 | Resolving sensitivity, specificity and signal contamination in Xenium spatial transcriptomics. | https://pubmed.ncbi.nlm.nih.gov/42062553/ | Nature methods |  |
+| 2026-05-01 | Tracing the rise of biomedical foundation models. | https://pubmed.ncbi.nlm.nih.gov/42062613/ | Nature biotechnology |  |
