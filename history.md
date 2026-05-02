@@ -160,3 +160,8 @@
 | 2026-05-01 | A Muribaculaceae-enriched microbiota exacerbates TLR4-dependent Acinetobacter baumannii-induced hyperinflammatory sepsis. | https://pubmed.ncbi.nlm.nih.gov/42062271/ | Nature communications |  |
 | 2026-05-01 | Resolving sensitivity, specificity and signal contamination in Xenium spatial transcriptomics. | https://pubmed.ncbi.nlm.nih.gov/42062553/ | Nature methods |  |
 | 2026-05-01 | Tracing the rise of biomedical foundation models. | https://pubmed.ncbi.nlm.nih.gov/42062613/ | Nature biotechnology |  |
+| 2026-05-02 | VLM Judges Can Rank but Cannot Score: Task-Dependent Uncertainty in Multimodal Evaluation | https://arxiv.org/abs/2604.25235v2 | arXiv | ⭐ 近期精读 |
+| 2026-05-02 | Mapping the Tumor Microenvironment with Integrative Single-Cell RNA Sequencing and Spatial Proteomics: Uncovering Mechanisms of Disease and Therapeutic Resistance. | https://pubmed.ncbi.nlm.nih.gov/42062682/ | Methods in molecular biology (Clifton, N.J.) |  |
+| 2026-05-02 | CaHoT-GRN: context-aware high-order topology learning for robust single-cell gene regulatory network inference. | https://pubmed.ncbi.nlm.nih.gov/42059479/ | Briefings in bioinformatics |  |
+| 2026-05-02 | Essence: A benchmarking-validated transformer framework for early diagnosis of Parkinson's disease using cerebrospinal fluid protein biomarkers. | https://pubmed.ncbi.nlm.nih.gov/42055361/ | International journal of biological macromolecules |  |
+| 2026-05-02 | Leveraging Spatial Transcriptomics as Alternative to Manual Annotations for Deep Learning-Based Nuclei Analysis | https://arxiv.org/abs/2604.23481v1 | arXiv |  |
