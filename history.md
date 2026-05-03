@@ -165,3 +165,8 @@
 | 2026-05-02 | CaHoT-GRN: context-aware high-order topology learning for robust single-cell gene regulatory network inference. | https://pubmed.ncbi.nlm.nih.gov/42059479/ | Briefings in bioinformatics |  |
 | 2026-05-02 | Essence: A benchmarking-validated transformer framework for early diagnosis of Parkinson's disease using cerebrospinal fluid protein biomarkers. | https://pubmed.ncbi.nlm.nih.gov/42055361/ | International journal of biological macromolecules |  |
 | 2026-05-02 | Leveraging Spatial Transcriptomics as Alternative to Manual Annotations for Deep Learning-Based Nuclei Analysis | https://arxiv.org/abs/2604.23481v1 | arXiv |  |
+| 2026-05-03 | Laplace Approximation for Bayesian Tensor Network Kernel Machines | https://arxiv.org/abs/2604.26673v1 | arXiv | ⭐ 近期精读 |
+| 2026-05-03 | Understanding and leveraging uncertainties in autosegmentation for radiotherapy. | https://pubmed.ncbi.nlm.nih.gov/42064006/ | BJR artificial intelligence |  |
+| 2026-05-03 | SCMBench: benchmarking domain-specific and foundation models for single-cell multi-omics data integration. | https://pubmed.ncbi.nlm.nih.gov/42069651/ | Nature communications |  |
+| 2026-05-03 | TxPert: using multiple knowledge graphs for prediction of transcriptomic perturbation effects. | https://pubmed.ncbi.nlm.nih.gov/42067667/ | Nature biotechnology |  |
+| 2026-05-03 | EvoRMD: integrating biological context and evolutionary RNA language models for interpretable prediction of RNA modifications. | https://pubmed.ncbi.nlm.nih.gov/42070027/ | Genome biology |  |
