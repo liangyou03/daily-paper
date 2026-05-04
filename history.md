@@ -170,3 +170,8 @@
 | 2026-05-03 | SCMBench: benchmarking domain-specific and foundation models for single-cell multi-omics data integration. | https://pubmed.ncbi.nlm.nih.gov/42069651/ | Nature communications |  |
 | 2026-05-03 | TxPert: using multiple knowledge graphs for prediction of transcriptomic perturbation effects. | https://pubmed.ncbi.nlm.nih.gov/42067667/ | Nature biotechnology |  |
 | 2026-05-03 | EvoRMD: integrating biological context and evolutionary RNA language models for interpretable prediction of RNA modifications. | https://pubmed.ncbi.nlm.nih.gov/42070027/ | Genome biology |  |
+| 2026-05-04 | Optimal Spatio-Temporal Decoupling for Bayesian Conformal Prediction | https://arxiv.org/abs/2605.00432v1 | arXiv | ⭐ 近期精读 |
+| 2026-05-04 | A Unified Information Bottleneck Framework for Multimodal Biomedical Machine Learning. | https://pubmed.ncbi.nlm.nih.gov/42072570/ | Entropy (Basel, Switzerland) |  |
+| 2026-05-04 | Integrating and mapping single-cell transcriptomics across the entire gene expression space. | https://pubmed.ncbi.nlm.nih.gov/42059480/ | Briefings in bioinformatics |  |
+| 2026-05-04 | scpFormer: A Foundation Model for Unified Representation and Integration of the Single-Cell Proteomics | https://arxiv.org/abs/2604.20003v1 | arXiv |  |
+| 2026-05-04 | JASPER: Joint Bayesian Analysis of Spatial Expression via Regression | https://arxiv.org/abs/2604.18742v1 | arXiv |  |
