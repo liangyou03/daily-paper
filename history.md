@@ -175,3 +175,8 @@
 | 2026-05-04 | Integrating and mapping single-cell transcriptomics across the entire gene expression space. | https://pubmed.ncbi.nlm.nih.gov/42059480/ | Briefings in bioinformatics |  |
 | 2026-05-04 | scpFormer: A Foundation Model for Unified Representation and Integration of the Single-Cell Proteomics | https://arxiv.org/abs/2604.20003v1 | arXiv |  |
 | 2026-05-04 | JASPER: Joint Bayesian Analysis of Spatial Expression via Regression | https://arxiv.org/abs/2604.18742v1 | arXiv |  |
+| 2026-05-06 | MLN2SVG: domain-aware spatially variable gene detection using contrastive variational autoencoder and multi-level neighbor search. | https://pubmed.ncbi.nlm.nih.gov/42080589/ | Briefings in bioinformatics |  |
+| 2026-05-06 | CRAK-Velo: chromatin accessibility kinetics integration improves RNA velocity estimation. | https://pubmed.ncbi.nlm.nih.gov/42087173/ | Genome biology | ⭐ 近期精读 |
+| 2026-05-06 | Micro S plit  : semantic unmixing of fluorescent microscopy data. | https://pubmed.ncbi.nlm.nih.gov/42086917/ | Nature methods |  |
+| 2026-05-06 | Responses to the AI grant flood must prioritize fairness as part of excellence. | https://pubmed.ncbi.nlm.nih.gov/42086755/ | Nature |  |
+| 2026-05-06 | AI agents in research: when productivity comes at the cost of apprenticeship. | https://pubmed.ncbi.nlm.nih.gov/42086751/ | Nature |  |
