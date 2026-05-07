@@ -180,3 +180,8 @@
 | 2026-05-06 | Micro S plit  : semantic unmixing of fluorescent microscopy data. | https://pubmed.ncbi.nlm.nih.gov/42086917/ | Nature methods |  |
 | 2026-05-06 | Responses to the AI grant flood must prioritize fairness as part of excellence. | https://pubmed.ncbi.nlm.nih.gov/42086755/ | Nature |  |
 | 2026-05-06 | AI agents in research: when productivity comes at the cost of apprenticeship. | https://pubmed.ncbi.nlm.nih.gov/42086751/ | Nature |  |
+| 2026-05-07 | Conformalized Quantum DeepONet Ensembles for Scalable Operator Learning with Distribution-Free Uncertainty | https://arxiv.org/abs/2605.00330v1 | arXiv | ⭐ 近期精读 |
+| 2026-05-07 | Classification-Powered Conformal Inference for Zero-inflated Outcomes | https://arxiv.org/abs/2605.04219v1 | arXiv |  |
+| 2026-05-07 | Turep: Detecting cross-cancer tumor-reactive T cells in single-cell and spatial transcriptomics data. | https://pubmed.ncbi.nlm.nih.gov/42079298/ | bioRxiv : the preprint server for biology |  |
+| 2026-05-07 | A single-cell atlas revealing cellular heterogeneity across healthy and diseased human thymus. | https://pubmed.ncbi.nlm.nih.gov/42091897/ | Nature communications |  |
+| 2026-05-07 | RAMoEA-QA: Hierarchical Specialization for Robust Respiratory Audio Question Answering | https://arxiv.org/abs/2603.06542v2 | arXiv |  |
