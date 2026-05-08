@@ -185,3 +185,8 @@
 | 2026-05-07 | Turep: Detecting cross-cancer tumor-reactive T cells in single-cell and spatial transcriptomics data. | https://pubmed.ncbi.nlm.nih.gov/42079298/ | bioRxiv : the preprint server for biology |  |
 | 2026-05-07 | A single-cell atlas revealing cellular heterogeneity across healthy and diseased human thymus. | https://pubmed.ncbi.nlm.nih.gov/42091897/ | Nature communications |  |
 | 2026-05-07 | RAMoEA-QA: Hierarchical Specialization for Robust Respiratory Audio Question Answering | https://arxiv.org/abs/2603.06542v2 | arXiv |  |
+| 2026-05-08 | History-Aware Conformal Prediction Sets for Censored Time-to-Event Outcomes | https://arxiv.org/abs/2605.06581v1 | arXiv | ⭐ 近期精读 |
+| 2026-05-08 | A DeepSeek-powered AI system for automated chest radiograph interpretation in clinical practice. | https://pubmed.ncbi.nlm.nih.gov/42098114/ | Nature communications |  |
+| 2026-05-08 | CAPTAIN: a multimodal foundation model pretrained on co-assayed single-cell RNA and protein. | https://pubmed.ncbi.nlm.nih.gov/42098152/ | Nature communications |  |
+| 2026-05-08 | 10&#x2009;&#xd7;&#x2009;Genomics Flex Gene Expression is a powerful tool for single-cell transcriptomics of xenografts models. | https://pubmed.ncbi.nlm.nih.gov/42098734/ | Genome biology |  |
+| 2026-05-08 | Quantification of disease-associated RNA tandem repeats by nanopore sensing. | https://pubmed.ncbi.nlm.nih.gov/42098162/ | Nature communications |  |
