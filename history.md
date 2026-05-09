@@ -190,3 +190,8 @@
 | 2026-05-08 | CAPTAIN: a multimodal foundation model pretrained on co-assayed single-cell RNA and protein. | https://pubmed.ncbi.nlm.nih.gov/42098152/ | Nature communications |  |
 | 2026-05-08 | 10&#x2009;&#xd7;&#x2009;Genomics Flex Gene Expression is a powerful tool for single-cell transcriptomics of xenografts models. | https://pubmed.ncbi.nlm.nih.gov/42098734/ | Genome biology |  |
 | 2026-05-08 | Quantification of disease-associated RNA tandem repeats by nanopore sensing. | https://pubmed.ncbi.nlm.nih.gov/42098162/ | Nature communications |  |
+| 2026-05-09 | When Does Trimming Help Conformal Prediction? A Retained-Law Diagnostic under Calibration Contamination | https://arxiv.org/abs/2605.06204v1 | arXiv | ⭐ 近期精读 |
+| 2026-05-09 | Online Localized Conformal Prediction | https://arxiv.org/abs/2605.05497v1 | arXiv |  |
+| 2026-05-09 | Drug Response Profile-Based Machine Learning Enables Strategic Cell Line and Compound Selection for Drug Development. | https://pubmed.ncbi.nlm.nih.gov/42103986/ | Bioinformatics (Oxford, England) |  |
+| 2026-05-09 | CD38&#x207a; endothelial remodeling marks spatially patterned vasculopathy in rapidly advancing periodontitis and peri-implantitis. | https://pubmed.ncbi.nlm.nih.gov/42103720/ | Nature communications |  |
+| 2026-05-09 | Tumors hijack immune-privileging regulons via distinct cell types to confer T cell desertion and immunotherapy resistance across various cancers. | https://pubmed.ncbi.nlm.nih.gov/42103714/ | Nature communications |  |
