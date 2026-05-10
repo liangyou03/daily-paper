@@ -195,3 +195,8 @@
 | 2026-05-09 | Drug Response Profile-Based Machine Learning Enables Strategic Cell Line and Compound Selection for Drug Development. | https://pubmed.ncbi.nlm.nih.gov/42103986/ | Bioinformatics (Oxford, England) |  |
 | 2026-05-09 | CD38&#x207a; endothelial remodeling marks spatially patterned vasculopathy in rapidly advancing periodontitis and peri-implantitis. | https://pubmed.ncbi.nlm.nih.gov/42103720/ | Nature communications |  |
 | 2026-05-09 | Tumors hijack immune-privileging regulons via distinct cell types to confer T cell desertion and immunotherapy resistance across various cancers. | https://pubmed.ncbi.nlm.nih.gov/42103714/ | Nature communications |  |
+| 2026-05-10 | Inductive Venn-Abers and related regressors | https://arxiv.org/abs/2605.06646v1 | arXiv | ⭐ 近期精读 |
+| 2026-05-10 | Multimodal Learning on Low-Quality Data with Conformal Predictive Self-Calibration | https://arxiv.org/abs/2605.03820v1 | arXiv |  |
+| 2026-05-10 | Single-cell Curriculum Learning-based Deep Graph Embedding Clustering | https://arxiv.org/abs/2408.10511v3 | arXiv |  |
+| 2026-05-10 | Spatial Multiomics Reveal Insights Into ADC Efficacy. | https://pubmed.ncbi.nlm.nih.gov/42083302/ | European journal of immunology |  |
+| 2026-05-10 | White-Box Diffusion Transformer for single-cell RNA-seq generation | https://arxiv.org/abs/2411.06785v2 | arXiv |  |
