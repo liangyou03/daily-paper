@@ -200,3 +200,8 @@
 | 2026-05-10 | Single-cell Curriculum Learning-based Deep Graph Embedding Clustering | https://arxiv.org/abs/2408.10511v3 | arXiv |  |
 | 2026-05-10 | Spatial Multiomics Reveal Insights Into ADC Efficacy. | https://pubmed.ncbi.nlm.nih.gov/42083302/ | European journal of immunology |  |
 | 2026-05-10 | White-Box Diffusion Transformer for single-cell RNA-seq generation | https://arxiv.org/abs/2411.06785v2 | arXiv |  |
+| 2026-05-11 | GRAPHLCP: Structure-Aware Localized Conformal Prediction on Graphs | https://arxiv.org/abs/2605.08074v1 | arXiv | ⭐ 近期精读 |
+| 2026-05-11 | Uncertainty&#x2011;aware sepsis survival prediction using conformal XGBoost on minimal clinical features under Sepsis&#x2011;3 criteria. | https://pubmed.ncbi.nlm.nih.gov/42107321/ | Computer methods and programs in biomedicine |  |
+| 2026-05-11 | AI-predicted spatial transcriptomics unlocks breast cancer biomarkers from pathology. | https://pubmed.ncbi.nlm.nih.gov/42105763/ | Cell |  |
+| 2026-05-11 | Probabilistic Object Detection with Conformal Prediction | https://arxiv.org/abs/2605.07549v1 | arXiv |  |
+| 2026-05-11 | PEARL: Integrative multi-omics classification and omics feature discovery via deep graph learning. | https://pubmed.ncbi.nlm.nih.gov/42108553/ | Bioinformatics (Oxford, England) |  |
