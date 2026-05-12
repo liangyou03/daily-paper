@@ -205,3 +205,8 @@
 | 2026-05-11 | AI-predicted spatial transcriptomics unlocks breast cancer biomarkers from pathology. | https://pubmed.ncbi.nlm.nih.gov/42105763/ | Cell |  |
 | 2026-05-11 | Probabilistic Object Detection with Conformal Prediction | https://arxiv.org/abs/2605.07549v1 | arXiv |  |
 | 2026-05-11 | PEARL: Integrative multi-omics classification and omics feature discovery via deep graph learning. | https://pubmed.ncbi.nlm.nih.gov/42108553/ | Bioinformatics (Oxford, England) |  |
+| 2026-05-12 | RareCP: Regime-Aware Retrieval for Efficient Conformal Prediction | https://arxiv.org/abs/2605.08857v1 | arXiv | ⭐ 近期精读 |
+| 2026-05-12 | Federated Language Models Under Bandwidth Budgets: Distillation Rates and Conformal Coverage | https://arxiv.org/abs/2605.09986v1 | arXiv |  |
+| 2026-05-12 | Spatial characterization of skin lesions in discoid and systemic lupus erythematosus. | https://pubmed.ncbi.nlm.nih.gov/42115607/ | Nature communications |  |
+| 2026-05-12 | Biased multi-view contrastive learning with attentive masking for spatial transcriptomic analysis. | https://pubmed.ncbi.nlm.nih.gov/42114119/ | Briefings in bioinformatics |  |
+| 2026-05-12 | Multi-Fidelity Quantile Regression | https://arxiv.org/abs/2605.10406v1 | arXiv |  |
