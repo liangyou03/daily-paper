@@ -210,3 +210,8 @@
 | 2026-05-12 | Spatial characterization of skin lesions in discoid and systemic lupus erythematosus. | https://pubmed.ncbi.nlm.nih.gov/42115607/ | Nature communications |  |
 | 2026-05-12 | Biased multi-view contrastive learning with attentive masking for spatial transcriptomic analysis. | https://pubmed.ncbi.nlm.nih.gov/42114119/ | Briefings in bioinformatics |  |
 | 2026-05-12 | Multi-Fidelity Quantile Regression | https://arxiv.org/abs/2605.10406v1 | arXiv |  |
+| 2026-05-13 | Multi-Variable Conformal Prediction: Optimizing Prediction Sets without Data Splitting | https://arxiv.org/abs/2605.12341v1 | arXiv | ⭐ 近期精读 |
+| 2026-05-13 | An evaluation of uncertainty quantification methods and measures for deep learning outcome prediction models in head and neck cancer radiotherapy. | https://pubmed.ncbi.nlm.nih.gov/42099895/ | Physics and imaging in radiation oncology |  |
+| 2026-05-13 | scArchon: a scalable benchmarking framework for assessing single-cell perturbation models. | https://pubmed.ncbi.nlm.nih.gov/42121287/ | Genome biology |  |
+| 2026-05-13 | CT Radiomics-based Machine Learning to Identify Intratumoral Fibrosis and Underlying Angiogenesis in Hepatocellular Carcinoma. | https://pubmed.ncbi.nlm.nih.gov/42117996/ | Radiology |  |
+| 2026-05-13 | AI-assisted placenta pathology in clinical use: barriers and opportunities. | https://pubmed.ncbi.nlm.nih.gov/42103526/ | Placenta |  |
