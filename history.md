@@ -215,3 +215,8 @@
 | 2026-05-13 | scArchon: a scalable benchmarking framework for assessing single-cell perturbation models. | https://pubmed.ncbi.nlm.nih.gov/42121287/ | Genome biology |  |
 | 2026-05-13 | CT Radiomics-based Machine Learning to Identify Intratumoral Fibrosis and Underlying Angiogenesis in Hepatocellular Carcinoma. | https://pubmed.ncbi.nlm.nih.gov/42117996/ | Radiology |  |
 | 2026-05-13 | AI-assisted placenta pathology in clinical use: barriers and opportunities. | https://pubmed.ncbi.nlm.nih.gov/42103526/ | Placenta |  |
+| 2026-05-14 | TumorTwin: a Python framework for patient-specific digital twins in oncology. | https://pubmed.ncbi.nlm.nih.gov/42116079/ | BMC medical informatics and decision making | ⭐ 近期精读 |
+| 2026-05-14 | Integrated multi-omics and single-cell analyses identify metabolic heterogeneity and therapeutic vulnerabilities in medullary thyroid cancer. | https://pubmed.ncbi.nlm.nih.gov/42098434/ | British journal of cancer |  |
+| 2026-05-14 | Ecotypes of triple-negative breast cancer in response to chemotherapy. | https://pubmed.ncbi.nlm.nih.gov/42129561/ | Nature |  |
+| 2026-05-14 | Single-cell and deep learning identify hypoxia-responsive lncRNAs predicting outcomes in colorectal cancer. | https://pubmed.ncbi.nlm.nih.gov/42129304/ | NPJ precision oncology |  |
+| 2026-05-14 | PlantCellChat: an R-based toolkit for predicting plant cell-cell communication from single-cell and spatial transcriptomics. | https://pubmed.ncbi.nlm.nih.gov/42119054/ | The Plant journal : for cell and molecular biology |  |
