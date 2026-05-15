@@ -220,3 +220,8 @@
 | 2026-05-14 | Ecotypes of triple-negative breast cancer in response to chemotherapy. | https://pubmed.ncbi.nlm.nih.gov/42129561/ | Nature |  |
 | 2026-05-14 | Single-cell and deep learning identify hypoxia-responsive lncRNAs predicting outcomes in colorectal cancer. | https://pubmed.ncbi.nlm.nih.gov/42129304/ | NPJ precision oncology |  |
 | 2026-05-14 | PlantCellChat: an R-based toolkit for predicting plant cell-cell communication from single-cell and spatial transcriptomics. | https://pubmed.ncbi.nlm.nih.gov/42119054/ | The Plant journal : for cell and molecular biology |  |
+| 2026-05-15 | Unraveling lncRNA diversity at a single cell resolution and in a spatial context across different cancer types. | https://pubmed.ncbi.nlm.nih.gov/42135486/ | Nature methods | ⭐ 近期精读 |
+| 2026-05-15 | Robust integration of single-cell datasets with imbalanced modality composition. | https://pubmed.ncbi.nlm.nih.gov/42135297/ | Nature communications |  |
+| 2026-05-15 | Active Multiple-Prediction-Powered Inference | https://arxiv.org/abs/2605.08429v1 | arXiv |  |
+| 2026-05-15 | Handling and Interpreting Missing Modalities in Patient Clinical Trajectories via Autoregressive Sequence Modeling | https://arxiv.org/abs/2604.18753v2 | arXiv |  |
+| 2026-05-15 | Omics-scale polymer computational database transferable to real-world artificial intelligence applications | https://arxiv.org/abs/2511.11626v1 | arXiv |  |
