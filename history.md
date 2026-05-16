@@ -225,3 +225,8 @@
 | 2026-05-15 | Active Multiple-Prediction-Powered Inference | https://arxiv.org/abs/2605.08429v1 | arXiv |  |
 | 2026-05-15 | Handling and Interpreting Missing Modalities in Patient Clinical Trajectories via Autoregressive Sequence Modeling | https://arxiv.org/abs/2604.18753v2 | arXiv |  |
 | 2026-05-15 | Omics-scale polymer computational database transferable to real-world artificial intelligence applications | https://arxiv.org/abs/2511.11626v1 | arXiv |  |
+| 2026-05-16 | Adaptive Conformal Prediction for Reliable and Explainable Medical Image Classification | https://arxiv.org/abs/2605.12917v1 | arXiv | ⭐ 近期精读 |
+| 2026-05-16 | EMReady2: improvement of cryo-EM and cryo-ET maps by local quality-aware deep learning with Mamba. | https://pubmed.ncbi.nlm.nih.gov/42140917/ | Nature communications |  |
+| 2026-05-16 | Dissecting epigenetic heterogeneity in single-cell DNA methylomes with a unified framework. | https://pubmed.ncbi.nlm.nih.gov/42140984/ | Nature communications |  |
+| 2026-05-16 | On the Burden of Achieving Fairness in Conformal Prediction | https://arxiv.org/abs/2605.14260v1 | arXiv |  |
+| 2026-05-16 | PromoterAtlas: decoding regulatory sequences across Gammaproteobacteria using a transformer model. | https://pubmed.ncbi.nlm.nih.gov/42140912/ | Nature communications |  |
