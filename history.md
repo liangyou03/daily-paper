@@ -230,3 +230,8 @@
 | 2026-05-16 | Dissecting epigenetic heterogeneity in single-cell DNA methylomes with a unified framework. | https://pubmed.ncbi.nlm.nih.gov/42140984/ | Nature communications |  |
 | 2026-05-16 | On the Burden of Achieving Fairness in Conformal Prediction | https://arxiv.org/abs/2605.14260v1 | arXiv |  |
 | 2026-05-16 | PromoterAtlas: decoding regulatory sequences across Gammaproteobacteria using a transformer model. | https://pubmed.ncbi.nlm.nih.gov/42140912/ | Nature communications |  |
+| 2026-05-17 | Improving confidence in MRI-based auto-segmentation via uncertainty assessment. | https://pubmed.ncbi.nlm.nih.gov/42109077/ | Acta oncologica (Stockholm, Sweden) | ⭐ 近期精读 |
+| 2026-05-17 | The temporal architecture of the seminiferous epithelial cycle revealed by spatial transcriptomics. | https://pubmed.ncbi.nlm.nih.gov/42143021/ | Cell |  |
+| 2026-05-17 | Computational approaches for drug-drug interaction prediction: a systematic review of data sources, modeling strategies, and evaluation frameworks. | https://pubmed.ncbi.nlm.nih.gov/42137320/ | Frontiers in pharmacology |  |
+| 2026-05-17 | Toward multimodal integration of colorectal cancer and chronic kidney disease: transcriptomic modeling as a framework for the SIRIO study "Spatial radiomics and transcriptomics to the discovery of the cross-link between colon cancer and chronic kidney disease". | https://pubmed.ncbi.nlm.nih.gov/42132448/ | Radiology and oncology |  |
+| 2026-05-17 | Aberration-aware 3D localization microscopy via self-supervised neural-physics learning. | https://pubmed.ncbi.nlm.nih.gov/42143028/ | Nature communications |  |
