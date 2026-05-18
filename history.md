@@ -235,3 +235,8 @@
 | 2026-05-17 | Computational approaches for drug-drug interaction prediction: a systematic review of data sources, modeling strategies, and evaluation frameworks. | https://pubmed.ncbi.nlm.nih.gov/42137320/ | Frontiers in pharmacology |  |
 | 2026-05-17 | Toward multimodal integration of colorectal cancer and chronic kidney disease: transcriptomic modeling as a framework for the SIRIO study "Spatial radiomics and transcriptomics to the discovery of the cross-link between colon cancer and chronic kidney disease". | https://pubmed.ncbi.nlm.nih.gov/42132448/ | Radiology and oncology |  |
 | 2026-05-17 | Aberration-aware 3D localization microscopy via self-supervised neural-physics learning. | https://pubmed.ncbi.nlm.nih.gov/42143028/ | Nature communications |  |
+| 2026-05-18 | Skew-adaptive conformal prediction | https://arxiv.org/abs/2605.16145v1 | arXiv | ⭐ 近期精读 |
+| 2026-05-18 | Pause and Reflect: Conformal Aggregation for Chain-of-Thought Reasoning | https://arxiv.org/abs/2605.14098v1 | arXiv |  |
+| 2026-05-18 | A high dimensionality approach reveals immunopathogenic responses driving severe pediatric acute respiratory distress syndrome. | https://pubmed.ncbi.nlm.nih.gov/42140972/ | Nature communications |  |
+| 2026-05-18 | Integrating spatial and single-cell transcriptomics via machine learning to characterize efferocytosis in hepatocellular carcinoma prognosis and immunotherapy. | https://pubmed.ncbi.nlm.nih.gov/42140032/ | Translational oncology |  |
+| 2026-05-18 | Toward safe deployment of deep learning in MRI: A physics-driven uncertainty framework for automated quality control and risk Tiering in virtual fat suppression. | https://pubmed.ncbi.nlm.nih.gov/42103174/ | Magnetic resonance imaging |  |
