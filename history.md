@@ -240,3 +240,8 @@
 | 2026-05-18 | A high dimensionality approach reveals immunopathogenic responses driving severe pediatric acute respiratory distress syndrome. | https://pubmed.ncbi.nlm.nih.gov/42140972/ | Nature communications |  |
 | 2026-05-18 | Integrating spatial and single-cell transcriptomics via machine learning to characterize efferocytosis in hepatocellular carcinoma prognosis and immunotherapy. | https://pubmed.ncbi.nlm.nih.gov/42140032/ | Translational oncology |  |
 | 2026-05-18 | Toward safe deployment of deep learning in MRI: A physics-driven uncertainty framework for automated quality control and risk Tiering in virtual fat suppression. | https://pubmed.ncbi.nlm.nih.gov/42103174/ | Magnetic resonance imaging |  |
+| 2026-05-19 | Enhancing clinical reliability in pressure injury prediction: A conformal prediction approach with machine learning models. | https://pubmed.ncbi.nlm.nih.gov/42152876/ | Digital health | ⭐ 近期精读 |
+| 2026-05-19 | Decoupled Conformal Optimisation: Efficient Prediction Sets via Independent Tuning and Calibration | https://arxiv.org/abs/2605.18354v1 | arXiv |  |
+| 2026-05-19 | Uncertainty Reliability Under Domain Shift: An Investigation for Data-Driven Blood Pressure Estimation in Photoplethysmography | https://arxiv.org/abs/2605.18008v1 | arXiv |  |
+| 2026-05-19 | SpaGene: A Deep Adversarial Framework for Spatial Gene Imputation. | https://pubmed.ncbi.nlm.nih.gov/42146899/ | Computational and structural biotechnology journal |  |
+| 2026-05-19 | Flow Matching for Count Data | https://arxiv.org/abs/2605.07746v1 | arXiv |  |
