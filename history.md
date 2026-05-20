@@ -245,3 +245,8 @@
 | 2026-05-19 | Uncertainty Reliability Under Domain Shift: An Investigation for Data-Driven Blood Pressure Estimation in Photoplethysmography | https://arxiv.org/abs/2605.18008v1 | arXiv |  |
 | 2026-05-19 | SpaGene: A Deep Adversarial Framework for Spatial Gene Imputation. | https://pubmed.ncbi.nlm.nih.gov/42146899/ | Computational and structural biotechnology journal |  |
 | 2026-05-19 | Flow Matching for Count Data | https://arxiv.org/abs/2605.07746v1 | arXiv |  |
+| 2026-05-20 | HELIX: a scalable model for predicting context-dependent regulation of RNA splicing and isoform usage. | https://pubmed.ncbi.nlm.nih.gov/42156927/ | Nature computational science |  |
+| 2026-05-20 | Inferring stochastic dynamics by biophysical Neural ODE using single-cell transcriptomics. | https://pubmed.ncbi.nlm.nih.gov/42156756/ | Nature communications |  |
+| 2026-05-20 | Interpretable MRI-based Multiparametric Radiomics for Preoperative Prediction of CMS4 Colorectal Cancer. | https://pubmed.ncbi.nlm.nih.gov/42153825/ | Radiology | ⭐ 近期精读 |
+| 2026-05-20 | Multi-omics insights into immune tolerance at the maternal-fetal interface in recurrent pregnancy loss: mechanisms, integration challenges, and translational perspectives. | https://pubmed.ncbi.nlm.nih.gov/42136650/ | Frontiers in immunology |  |
+| 2026-05-20 | Next-Generation Artificial Intelligence Strategies for Mechanistic Cancer Target Discovery and Drug Development: A State-of-the-Art Review. | https://pubmed.ncbi.nlm.nih.gov/42123604/ | International journal of molecular sciences |  |
