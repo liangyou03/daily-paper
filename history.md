@@ -250,3 +250,8 @@
 | 2026-05-20 | Interpretable MRI-based Multiparametric Radiomics for Preoperative Prediction of CMS4 Colorectal Cancer. | https://pubmed.ncbi.nlm.nih.gov/42153825/ | Radiology | ⭐ 近期精读 |
 | 2026-05-20 | Multi-omics insights into immune tolerance at the maternal-fetal interface in recurrent pregnancy loss: mechanisms, integration challenges, and translational perspectives. | https://pubmed.ncbi.nlm.nih.gov/42136650/ | Frontiers in immunology |  |
 | 2026-05-20 | Next-Generation Artificial Intelligence Strategies for Mechanistic Cancer Target Discovery and Drug Development: A State-of-the-Art Review. | https://pubmed.ncbi.nlm.nih.gov/42123604/ | International journal of molecular sciences |  |
+| 2026-05-21 | A Deployment Audit of Release-Side Risk in Conformal Triage under Prevalence Shift | https://arxiv.org/abs/2605.20956v1 | arXiv | ⭐ 近期精读 |
+| 2026-05-21 | CASCADE Conformal Prediction: Uncertainty-Adaptive Prediction Intervals for Two-Stage Clinical Decision Support | https://arxiv.org/abs/2605.20468v1 | arXiv |  |
+| 2026-05-21 | AI 'scientists' promise to accelerate research - how do they work? | https://pubmed.ncbi.nlm.nih.gov/42162338/ | Nature |  |
+| 2026-05-21 | Contrastive graph regularized non-negative matrix factorization for domain identification of spatial transcriptomics. | https://pubmed.ncbi.nlm.nih.gov/42159088/ | Journal of the Royal Society, Interface |  |
+| 2026-05-21 | CancerOmicsStudio (CoS): A web server for integrative and interpretable analysis of multi-omics cancer data. | https://pubmed.ncbi.nlm.nih.gov/42162949/ | Bioinformatics (Oxford, England) |  |
