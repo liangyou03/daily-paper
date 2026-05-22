@@ -255,3 +255,8 @@
 | 2026-05-21 | AI 'scientists' promise to accelerate research - how do they work? | https://pubmed.ncbi.nlm.nih.gov/42162338/ | Nature |  |
 | 2026-05-21 | Contrastive graph regularized non-negative matrix factorization for domain identification of spatial transcriptomics. | https://pubmed.ncbi.nlm.nih.gov/42159088/ | Journal of the Royal Society, Interface |  |
 | 2026-05-21 | CancerOmicsStudio (CoS): A web server for integrative and interpretable analysis of multi-omics cancer data. | https://pubmed.ncbi.nlm.nih.gov/42162949/ | Bioinformatics (Oxford, England) |  |
+| 2026-05-22 | Selecting Informative Conformal Prediction Sets with an Optimized FCR-Controlled Approach | https://arxiv.org/abs/2605.22004v1 | arXiv | ⭐ 近期精读 |
+| 2026-05-22 | Eigen-guided transformer: A data-driven approach for chronic kidney disease forecasting. | https://pubmed.ncbi.nlm.nih.gov/42166450/ | PloS one |  |
+| 2026-05-22 | DGAT: a dual-graph attention network for inferring spatial protein landscapes from transcriptomics. | https://pubmed.ncbi.nlm.nih.gov/42168176/ | Nature communications |  |
+| 2026-05-22 | Online Conformal Prediction with Corrupted Feedback | https://arxiv.org/abs/2605.20515v1 | arXiv |  |
+| 2026-05-22 | Pan-cancer analysis of single-cell profiles with polygenic signals reveals genetic influences on tumor immunity across cancers. | https://pubmed.ncbi.nlm.nih.gov/42168330/ | Communications biology |  |
