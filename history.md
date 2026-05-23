@@ -260,3 +260,8 @@
 | 2026-05-22 | DGAT: a dual-graph attention network for inferring spatial protein landscapes from transcriptomics. | https://pubmed.ncbi.nlm.nih.gov/42168176/ | Nature communications |  |
 | 2026-05-22 | Online Conformal Prediction with Corrupted Feedback | https://arxiv.org/abs/2605.20515v1 | arXiv |  |
 | 2026-05-22 | Pan-cancer analysis of single-cell profiles with polygenic signals reveals genetic influences on tumor immunity across cancers. | https://pubmed.ncbi.nlm.nih.gov/42168330/ | Communications biology |  |
+| 2026-05-23 | Distribution-Free Uncertainty Quantification for Continuous AI Agent Evaluation | https://arxiv.org/abs/2605.19779v1 | arXiv | ⭐ 近期精读 |
+| 2026-05-23 | Conformal Prediction via Transported Beta Laws | https://arxiv.org/abs/2605.19024v1 | arXiv |  |
+| 2026-05-23 | Spatial transcriptomics reveals influence of microenvironment on intrinsic fates in melanoma therapy resistance. | https://pubmed.ncbi.nlm.nih.gov/42174697/ | Genome biology |  |
+| 2026-05-23 | N-Orbit: towards a universal model and metric for comparing tissue microenvironments. | https://pubmed.ncbi.nlm.nih.gov/42173891/ | Nature communications |  |
+| 2026-05-23 | A comparative analysis in a clinical cohort: multiple imputation by chained equations and a novel super learner-based imputation approach. | https://pubmed.ncbi.nlm.nih.gov/42121053/ | BMC medical research methodology |  |
