@@ -265,3 +265,8 @@
 | 2026-05-23 | Spatial transcriptomics reveals influence of microenvironment on intrinsic fates in melanoma therapy resistance. | https://pubmed.ncbi.nlm.nih.gov/42174697/ | Genome biology |  |
 | 2026-05-23 | N-Orbit: towards a universal model and metric for comparing tissue microenvironments. | https://pubmed.ncbi.nlm.nih.gov/42173891/ | Nature communications |  |
 | 2026-05-23 | A comparative analysis in a clinical cohort: multiple imputation by chained equations and a novel super learner-based imputation approach. | https://pubmed.ncbi.nlm.nih.gov/42121053/ | BMC medical research methodology |  |
+| 2026-05-24 | Conformal Selective Acting: Anytime-Valid Risk Control for RLVR-Trained LLMs | https://arxiv.org/abs/2605.20270v1 | arXiv | ⭐ 近期精读 |
+| 2026-05-24 | SAGA: A Sequence-Adaptive Generative Architecture for Multi-Horizon Probabilistic Forecasting with Adaptive Temporal Conformal Prediction | https://arxiv.org/abs/2605.19014v1 | arXiv |  |
+| 2026-05-24 | Calibration, Uncertainty Communication, and Deployment Readiness in CKD Risk Prediction: A Framework Evaluation Study | https://arxiv.org/abs/2605.21566v1 | arXiv |  |
+| 2026-05-24 | Pro-regenerative fingerprints identified in a sub-population of adult mouse cardiomyocytes by integrative single-cell proteomics. | https://pubmed.ncbi.nlm.nih.gov/42174693/ | Genome biology |  |
+| 2026-05-24 | Mapping neuro-vascular unit communications reveals distinct angiogenic programs across developing mouse brain regions. | https://pubmed.ncbi.nlm.nih.gov/42173924/ | Nature communications |  |
