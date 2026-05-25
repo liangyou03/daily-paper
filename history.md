@@ -270,3 +270,8 @@
 | 2026-05-24 | Calibration, Uncertainty Communication, and Deployment Readiness in CKD Risk Prediction: A Framework Evaluation Study | https://arxiv.org/abs/2605.21566v1 | arXiv |  |
 | 2026-05-24 | Pro-regenerative fingerprints identified in a sub-population of adult mouse cardiomyocytes by integrative single-cell proteomics. | https://pubmed.ncbi.nlm.nih.gov/42174693/ | Genome biology |  |
 | 2026-05-24 | Mapping neuro-vascular unit communications reveals distinct angiogenic programs across developing mouse brain regions. | https://pubmed.ncbi.nlm.nih.gov/42173924/ | Nature communications |  |
+| 2026-05-25 | Empirical Bayes Conformal Prediction for Vision and Language Models | https://arxiv.org/abs/2605.23189v1 | arXiv | ⭐ 近期精读 |
+| 2026-05-25 | Representation learning for multi-modal spatially resolved transcriptomics data. | https://pubmed.ncbi.nlm.nih.gov/42179160/ | Bioinformatics (Oxford, England) |  |
+| 2026-05-25 | A masked generative graph representation learning framework empowering precise spatial domain identification. | https://pubmed.ncbi.nlm.nih.gov/42178226/ | Bioinformatics (Oxford, England) |  |
+| 2026-05-25 | AgentCo-op: Retrieval-Based Synthesis of Interoperable Multi-Agent Workflows | https://arxiv.org/abs/2605.20425v1 | arXiv |  |
+| 2026-05-25 | ProtoPathway: Biologically Structured Prototype-Pathway Fusion for Multimodal Cancer Survival Prediction | https://arxiv.org/abs/2605.21454v1 | arXiv |  |
