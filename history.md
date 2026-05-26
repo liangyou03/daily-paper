@@ -275,3 +275,8 @@
 | 2026-05-25 | A masked generative graph representation learning framework empowering precise spatial domain identification. | https://pubmed.ncbi.nlm.nih.gov/42178226/ | Bioinformatics (Oxford, England) |  |
 | 2026-05-25 | AgentCo-op: Retrieval-Based Synthesis of Interoperable Multi-Agent Workflows | https://arxiv.org/abs/2605.20425v1 | arXiv |  |
 | 2026-05-25 | ProtoPathway: Biologically Structured Prototype-Pathway Fusion for Multimodal Cancer Survival Prediction | https://arxiv.org/abs/2605.21454v1 | arXiv |  |
+| 2026-05-26 | Reliable Uncertainty Under Class Imbalance and Distribution Shift: Class-Conditional Conformal Prediction of Multiple Sclerosis. | https://pubmed.ncbi.nlm.nih.gov/42180360/ | medRxiv : the preprint server for health sciences | ⭐ 近期精读 |
+| 2026-05-26 | Decoding sequence determinants of gene expression in diverse cellular and disease states. | https://pubmed.ncbi.nlm.nih.gov/42185539/ | Nature methods |  |
+| 2026-05-26 | Toward simultaneous pseudo-space reconstruction and cell-type deconvolution of single-cell spatial transcriptome using SpaDicer. | https://pubmed.ncbi.nlm.nih.gov/42184831/ | Cell reports methods |  |
+| 2026-05-26 | Machine learning model-guided selective use of temporary diverting ileostomy in rectal cancer surgery: a randomized controlled trial. | https://pubmed.ncbi.nlm.nih.gov/42185305/ | Nature communications |  |
+| 2026-05-26 | Explainable machine learning-guided integrated multiomics analysis reveals macrophage-driven immune suppression in breast cancer. | https://pubmed.ncbi.nlm.nih.gov/42185288/ | Nature communications |  |
