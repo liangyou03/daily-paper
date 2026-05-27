@@ -280,3 +280,8 @@
 | 2026-05-26 | Toward simultaneous pseudo-space reconstruction and cell-type deconvolution of single-cell spatial transcriptome using SpaDicer. | https://pubmed.ncbi.nlm.nih.gov/42184831/ | Cell reports methods |  |
 | 2026-05-26 | Machine learning model-guided selective use of temporary diverting ileostomy in rectal cancer surgery: a randomized controlled trial. | https://pubmed.ncbi.nlm.nih.gov/42185305/ | Nature communications |  |
 | 2026-05-26 | Explainable machine learning-guided integrated multiomics analysis reveals macrophage-driven immune suppression in breast cancer. | https://pubmed.ncbi.nlm.nih.gov/42185288/ | Nature communications |  |
+| 2026-05-27 | Conformalised imprecise inference for robust extrapolation under limited data | https://arxiv.org/abs/2605.25882v1 | arXiv | ⭐ 近期精读 |
+| 2026-05-27 | Uncertainty in Physics and AI: Taxonomy, Quantification, and Validation | https://arxiv.org/abs/2605.10378v1 | arXiv |  |
+| 2026-05-27 | Ligand-Receptor Interaction Combined with Histopathology Improves Glioma Prognostic Model. | https://pubmed.ncbi.nlm.nih.gov/42193434/ | Biomedicines |  |
+| 2026-05-27 | Identifying batch-integrated domains from spatial transcriptomics via graph autoencoder with contrastive learning based on cross-modality and data augmentation. | https://pubmed.ncbi.nlm.nih.gov/42184117/ | Briefings in bioinformatics |  |
+| 2026-05-27 | Unveiling gene modules at Atlas scale through hierarchical clustering of single-cell data. | https://pubmed.ncbi.nlm.nih.gov/42192105/ | Nature communications |  |
