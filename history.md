@@ -285,3 +285,8 @@
 | 2026-05-27 | Ligand-Receptor Interaction Combined with Histopathology Improves Glioma Prognostic Model. | https://pubmed.ncbi.nlm.nih.gov/42193434/ | Biomedicines |  |
 | 2026-05-27 | Identifying batch-integrated domains from spatial transcriptomics via graph autoencoder with contrastive learning based on cross-modality and data augmentation. | https://pubmed.ncbi.nlm.nih.gov/42184117/ | Briefings in bioinformatics |  |
 | 2026-05-27 | Unveiling gene modules at Atlas scale through hierarchical clustering of single-cell data. | https://pubmed.ncbi.nlm.nih.gov/42192105/ | Nature communications |  |
+| 2026-05-28 | Conformalized Large-Scale Selective Inference with Informative and Trustworthy Prediction Sets | https://arxiv.org/abs/2605.27012v1 | arXiv | ⭐ 近期精读 |
+| 2026-05-28 | Distribution-Aware Conformal Prediction: A Framework for generating efficient prediction intervals for time series | https://arxiv.org/abs/2605.26569v1 | arXiv |  |
+| 2026-05-28 | Trajectory-Based Difficulty Scoring for Reliable Learning on Tabular Data | https://arxiv.org/abs/2605.24680v1 | arXiv |  |
+| 2026-05-28 | PVAED: prior-guided variational autoencoders with diffusion denoising for interpretable single-cell representation learning. | https://pubmed.ncbi.nlm.nih.gov/42202286/ | Briefings in bioinformatics |  |
+| 2026-05-28 | Identifying potential ligand-receptor interactions by integrating LSTM network and the attention mechanism for cell-cell communication prediction. | https://pubmed.ncbi.nlm.nih.gov/42185831/ | Journal of translational medicine |  |
