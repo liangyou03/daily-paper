@@ -298,3 +298,6 @@
 | 2026-07-26 | Integrating morphology and gene expression of neural cells in unpaired single-cell data using GeoAdvAE. | https://pubmed.ncbi.nlm.nih.gov/42427640/ | bioRxiv : the preprint server for biology | ⭐ 今日精读 |
 | 2026-07-26 | Multimodal imaging of gene expression, morphology, and activity of the same neuron. | https://pubmed.ncbi.nlm.nih.gov/42314668/ | Cell |  |
 | 2026-07-26 | Effect of Caffeine on Cell Death, Oxidative Stress, and Microglial Morphology in a Ferret Organotypic Brain Slice Model of Hypoxia-Ischemia. | https://pubmed.ncbi.nlm.nih.gov/42496326/ | NeuroSci |  |
+| 2026-07-26 | Epigenetic and 3D genome reprogramming during the aging of the human hippocampus. | https://pubmed.ncbi.nlm.nih.gov/42490474/ | Science (New York, N.Y.) | TODAY'S PICK |
+| 2026-07-26 | MultiST: A Cross-Attention-Based Multimodal Model for Spatial Transcriptomic | https://arxiv.org/abs/2601.13331v1 | arXiv |  |
+| 2026-07-26 | Heterogenous microglial reactivity contrasts with stable vascular transcriptional programs in mouse models of Alzheimer's, CADASIL, and Traumatic Brain Injury. | https://pubmed.ncbi.nlm.nih.gov/42463666/ | Nature communications |  |
