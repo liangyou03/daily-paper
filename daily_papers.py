@@ -340,7 +340,7 @@ def select_papers(recent: list[dict], classics: list[dict], recent_history: list
 
     diversity_rule = """
 Relevance rule: Every selected paper must directly help the dissertation described above. Exclude generic clinical-prediction papers that do not inform this project.
-Coverage rule: Across the five papers, cover at least three of these domains and include at least one morphology paper and one multimodal-integration paper:
+Coverage rule: The two papers should complement each other and, when strong candidates exist, cover different domains from this list:
   - MicrogliaMorphology (microglial biology, morphology, activation, aging, Alzheimer's disease)
   - SpatialOmics (spatial transcriptomics, Visium, single-cell molecular states)
   - MultimodalAI (morphology–expression alignment, Patch-seq, CCA, OT, contrastive/adversarial learning, image or graph encoders)
@@ -352,18 +352,17 @@ Bioinformatics, etc.) over arXiv preprints for the RECENT slots.
 
     has_classics = len(classics) > 0
     if has_classics:
-        task = f"""Select exactly 5 papers total — 3 from the RECENT pool and 2 from the CLASSIC pool.
+        task = f"""Select exactly 2 papers total — 1 from the RECENT pool and 1 from the CLASSIC pool.
 {diversity_rule}
 Marking rules:
-- must_read_tag "⭐ 近期精读" → the single most impactful RECENT paper (≤1 year old)
-- must_read_tag "⭐ 经典精读" → the single most foundational CLASSIC paper (≥3 years old, high citation)
-- All other papers: must_read_tag ""
+- Assign "⭐ 今日精读" to the single paper that should be read first.
+- Assign must_read_tag "" to the other paper.
 
 Return ONLY valid JSON, no markdown fences:
 {{
   "papers": [
-    {{"pool": "recent", "index": <1-based in RECENT>, "domain": "<MicrogliaMorphology|SpatialOmics|MultimodalAI|Benchmark|other>", "must_read_tag": "⭐ 近期精读" or "", "why": "<2-3句中文推荐理由，明确说明它对 dissertation 的具体用途>"}},
-    {{"pool": "classic", "index": <1-based in CLASSIC>, "domain": "<MicrogliaMorphology|SpatialOmics|MultimodalAI|Benchmark|other>", "must_read_tag": "⭐ 经典精读" or "", "why": "<2-3句中文推荐理由，明确说明它对 dissertation 的具体用途>"}}
+    {{"pool": "recent", "index": <1-based in RECENT>, "domain": "<MicrogliaMorphology|SpatialOmics|MultimodalAI|Benchmark|other>", "must_read_tag": "⭐ 今日精读" or "", "why": "<2-3句中文推荐理由，明确说明它对 dissertation 的具体用途>"}},
+    {{"pool": "classic", "index": <1-based in CLASSIC>, "domain": "<MicrogliaMorphology|SpatialOmics|MultimodalAI|Benchmark|other>", "must_read_tag": "⭐ 今日精读" or "", "why": "<2-3句中文推荐理由，明确说明它对 dissertation 的具体用途>"}}
   ]
 }}
 
@@ -373,16 +372,17 @@ RECENT papers ({len(recent)} candidates):
 CLASSIC papers ({len(classics)} candidates):
 {fmt(classics, 'C')}"""
     else:
-        task = f"""Select exactly 5 papers from the RECENT pool.
+        task = f"""Select exactly 2 papers from the RECENT pool.
 {diversity_rule}
 Marking rules:
-- must_read_tag "⭐ 近期精读" → the single most impactful paper
-- All other papers: must_read_tag ""
+- Assign "⭐ 今日精读" to the single paper that should be read first.
+- Assign must_read_tag "" to the other paper.
 
 Return ONLY valid JSON, no markdown fences:
 {{
   "papers": [
-    {{"pool": "recent", "index": <1-based>, "domain": "<MicrogliaMorphology|SpatialOmics|MultimodalAI|Benchmark|other>", "must_read_tag": "⭐ 近期精读" or "", "why": "<2-3句中文推荐理由，明确说明它对 dissertation 的具体用途>"}}
+    {{"pool": "recent", "index": <1-based>, "domain": "<MicrogliaMorphology|SpatialOmics|MultimodalAI|Benchmark|other>", "must_read_tag": "⭐ 今日精读" or "", "why": "<2-3句中文推荐理由，明确说明它对 dissertation 的具体用途>"}},
+    {{"pool": "recent", "index": <different 1-based index>, "domain": "<MicrogliaMorphology|SpatialOmics|MultimodalAI|Benchmark|other>", "must_read_tag": "⭐ 今日精读" or "", "why": "<2-3句中文推荐理由，明确说明它对 dissertation 的具体用途>"}}
   ]
 }}
 
@@ -429,7 +429,7 @@ RECENT papers ({len(recent)} candidates):
         raise RuntimeError("DeepSeek failed to return valid JSON")
 
     selected = []
-    for item in result["papers"]:
+    for item in result["papers"][:2]:
         pool = item.get("pool", "recent")
         idx = item["index"] - 1
         source_pool = recent if pool == "recent" else classics

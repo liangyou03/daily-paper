@@ -84,6 +84,13 @@ class DissertationDigestConfigTests(unittest.TestCase):
 
         self.assertEqual(captured.get("extra_body"), {"thinking": {"type": "disabled"}})
 
+    def test_selection_prompt_requests_two_papers(self):
+        source = (ROOT / "daily_papers.py").read_text()
+        self.assertIn("Select exactly 2 papers total", source)
+        self.assertIn("1 from the RECENT pool and 1 from the CLASSIC pool", source)
+        self.assertIn("Select exactly 2 papers from the RECENT pool", source)
+        self.assertNotIn("Select exactly 5 papers", source)
+
 
 if __name__ == "__main__":
     unittest.main()
