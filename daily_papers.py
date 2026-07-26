@@ -421,11 +421,13 @@ Journal preference rule: When quality is comparable, STRONGLY prefer papers from
 Bioinformatics, etc.) over arXiv preprints for the RECENT slots.
 Reading-brief rule: Follow the first-pass goals in Keshav's three-pass reading method. Help the reader quickly identify the problem, approach, evidence, contribution, and whether the paper deserves a deeper read. Base every statement only on the supplied metadata and abstract; explicitly say when a detail is unavailable rather than inventing it.
 For every selected paper, write polished, friendly, and substantial English for a technically strong reader who is still learning the biology:
-  - one_liner: one sentence stating the paper's question, approach, and headline result.
+  - one_liner_en: one polished English sentence stating the paper's question, approach, and headline result.
+  - one_liner_zh: one natural Chinese sentence conveying the same meaning for quick comprehension.
   - what: 3–5 sentences covering the research question, data/experimental setting, method, and main result.
   - innovation: 2–4 sentences explaining the concrete novelty relative to prior practice; distinguish a new biological finding from a new computational method.
   - learn: 2–4 sentences tailored to this dissertation, naming concepts/methods/figures to study and one question to keep in mind while reading.
-Also return a shared glossary of 5–8 terms that the reader may not know but needs in order to understand today's papers. Prioritize biological terms, assay/platform terminology, image-analysis concepts, and multimodal-learning terms that are central rather than merely technical jargon. Each entry must include the English term, a standard Chinese translation, one plain-English sentence, and one plain-Chinese sentence. The Chinese should explain the idea intuitively, not just translate the English sentence.
+Also return a shared glossary of exactly 5 terms that the reader may not know but most needs in order to understand today's papers. Prioritize biological terms, assay/platform terminology, image-analysis concepts, and multimodal-learning terms that are central rather than merely technical jargon. Each entry must include the English term, a standard Chinese translation, one plain-English sentence, and one plain-Chinese sentence. The Chinese should explain the idea intuitively, not just translate the English sentence.
+Finally, return an exhaustive biomedical_dictionary for today's three papers. Include every difficult domain-specific biological or medical term supported by the supplied titles/abstracts: anatomical structures and brain regions, cell types and cell states, genes, proteins, molecular complexes, pathological structures, diseases and animal models, biological processes, biomarkers, and specialized biological assays. Exclude generic statistics, machine-learning vocabulary, and ordinary words. For each item provide the English term, standard Chinese translation, and one short friendly English definition. Aim for completeness (typically 10–30 entries), do not invent terms absent from the supplied material, and deduplicate spelling variants.
 """
 
     has_classics = len(classics) > 0
@@ -441,10 +443,13 @@ Return ONLY valid JSON, no markdown fences:
   "glossary": [
     {{"term_en": "<English term>", "term_zh": "<中文术语>", "explanation_en": "<one friendly English sentence>", "explanation_zh": "<一句通俗中文解释>"}}
   ],
+  "biomedical_dictionary": [
+    {{"term_en": "<biomedical term>", "term_zh": "<标准中文译名>", "definition": "<short friendly English definition>"}}
+  ],
   "papers": [
-    {{"pool": "recent", "index": <1-based in RECENT>, "domain": "<domain>", "must_read_tag": "TODAY'S PICK" or "", "one_liner": "<English>", "what": "<English>", "innovation": "<English>", "learn": "<English>"}},
-    {{"pool": "recent", "index": <different 1-based index>, "domain": "<domain>", "must_read_tag": "TODAY'S PICK" or "", "one_liner": "<English>", "what": "<English>", "innovation": "<English>", "learn": "<English>"}},
-    {{"pool": "classic", "index": <1-based in CLASSIC>, "domain": "<domain>", "must_read_tag": "TODAY'S PICK" or "", "one_liner": "<English>", "what": "<English>", "innovation": "<English>", "learn": "<English>"}}
+    {{"pool": "recent", "index": <1-based in RECENT>, "domain": "<domain>", "must_read_tag": "TODAY'S PICK" or "", "one_liner_en": "<English>", "one_liner_zh": "<中文>", "what": "<English>", "innovation": "<English>", "learn": "<English>"}},
+    {{"pool": "recent", "index": <different 1-based index>, "domain": "<domain>", "must_read_tag": "TODAY'S PICK" or "", "one_liner_en": "<English>", "one_liner_zh": "<中文>", "what": "<English>", "innovation": "<English>", "learn": "<English>"}},
+    {{"pool": "classic", "index": <1-based in CLASSIC>, "domain": "<domain>", "must_read_tag": "TODAY'S PICK" or "", "one_liner_en": "<English>", "one_liner_zh": "<中文>", "what": "<English>", "innovation": "<English>", "learn": "<English>"}}
   ]
 }}
 
@@ -465,10 +470,13 @@ Return ONLY valid JSON, no markdown fences:
   "glossary": [
     {{"term_en": "<English term>", "term_zh": "<中文术语>", "explanation_en": "<one friendly English sentence>", "explanation_zh": "<一句通俗中文解释>"}}
   ],
+  "biomedical_dictionary": [
+    {{"term_en": "<biomedical term>", "term_zh": "<标准中文译名>", "definition": "<short friendly English definition>"}}
+  ],
   "papers": [
-    {{"pool": "recent", "index": <1-based>, "domain": "<domain>", "must_read_tag": "TODAY'S PICK" or "", "one_liner": "<English>", "what": "<English>", "innovation": "<English>", "learn": "<English>"}},
-    {{"pool": "recent", "index": <different 1-based index>, "domain": "<domain>", "must_read_tag": "TODAY'S PICK" or "", "one_liner": "<English>", "what": "<English>", "innovation": "<English>", "learn": "<English>"}},
-    {{"pool": "recent", "index": <another different 1-based index>, "domain": "<domain>", "must_read_tag": "TODAY'S PICK" or "", "one_liner": "<English>", "what": "<English>", "innovation": "<English>", "learn": "<English>"}}
+    {{"pool": "recent", "index": <1-based>, "domain": "<domain>", "must_read_tag": "TODAY'S PICK" or "", "one_liner_en": "<English>", "one_liner_zh": "<中文>", "what": "<English>", "innovation": "<English>", "learn": "<English>"}},
+    {{"pool": "recent", "index": <different 1-based index>, "domain": "<domain>", "must_read_tag": "TODAY'S PICK" or "", "one_liner_en": "<English>", "one_liner_zh": "<中文>", "what": "<English>", "innovation": "<English>", "learn": "<English>"}},
+    {{"pool": "recent", "index": <another different 1-based index>, "domain": "<domain>", "must_read_tag": "TODAY'S PICK" or "", "one_liner_en": "<English>", "one_liner_zh": "<中文>", "what": "<English>", "innovation": "<English>", "learn": "<English>"}}
   ]
 }}
 
@@ -491,7 +499,7 @@ RECENT papers ({len(recent)} candidates):
     for model in models:
         for attempt in range(2):
             resp = client.chat.completions.create(
-                model=model, max_tokens=3500, messages=messages,
+                model=model, max_tokens=5000, messages=messages,
                 response_format={"type": "json_object"},
                 extra_body={"thinking": {"type": "disabled"}},
             )
@@ -525,13 +533,15 @@ RECENT papers ({len(recent)} candidates):
         p = source_pool[idx].copy()
         p["must_read_tag"] = item.get("must_read_tag", "")
         p["must_read"] = bool(p["must_read_tag"])
-        p["one_liner"] = item.get("one_liner", "")
+        p["one_liner_en"] = item.get("one_liner_en", item.get("one_liner", ""))
+        p["one_liner_zh"] = item.get("one_liner_zh", "")
         p["what"] = item.get("what", item.get("why", ""))
         p["innovation"] = item.get("innovation", "The abstract does not provide enough detail to judge the specific novelty.")
         p["learn"] = item.get("learn", item.get("why", ""))
         selected.append(p)
     glossary = filter_new_glossary_terms(result.get("glossary", []), seen_glossary_terms)
-    return selected, glossary[:8]
+    dictionary = filter_new_glossary_terms(result.get("biomedical_dictionary", []), set())
+    return selected, glossary[:5], dictionary[:40]
 
 
 # ── Email ─────────────────────────────────────────────────────────────────────
@@ -543,7 +553,8 @@ def build_subject() -> str:
     return f"Dissertation Reading Brief | From Segmentation to Cell State · {date}"
 
 
-def build_html(papers: list[dict], glossary: list[dict] | None = None) -> str:
+def build_html(papers: list[dict], glossary: list[dict] | None = None,
+               biomedical_dictionary: list[dict] | None = None) -> str:
     today = datetime.now().strftime("%B %d, %Y")
     cards = ""
     domain_labels = {
@@ -568,7 +579,8 @@ def build_html(papers: list[dict], glossary: list[dict] | None = None) -> str:
         source = html.escape(f"{p['source']}{year_str}")
         url = html.escape(p["url"], quote=True)
         domain = html.escape(domain_labels.get(p.get("domain", "other"), p.get("domain", "RELATED WORK")))
-        one_liner = html.escape(p.get("one_liner", p.get("why", "")))
+        one_liner_en = html.escape(p.get("one_liner_en", p.get("one_liner", p.get("why", ""))))
+        one_liner_zh = html.escape(p.get("one_liner_zh", ""))
         what = html.escape(p.get("what", p.get("why", "摘要未提供。")))
         innovation = html.escape(p.get("innovation", "The abstract does not provide enough detail to judge the specific novelty."))
         learn = html.escape(p.get("learn", p.get("why", "Start with the abstract, figures, and conclusion.")))
@@ -584,7 +596,9 @@ def build_html(papers: list[dict], glossary: list[dict] | None = None) -> str:
           </h2>
           <p style="margin:0 0 16px;color:#756f68;font-size:11px;line-height:1.55;">{authors}<br>{source}</p>
           <div style="background:#f3e6df;border-left:4px solid #cc785c;padding:13px 15px;border-radius:0 8px 8px 0;margin-bottom:18px;color:#3d302b;font-size:13px;font-weight:600;line-height:1.75;">
-            <span style="display:block;color:#9a5b46;font-size:10px;font-weight:800;letter-spacing:.8px;margin-bottom:3px;">At a glance</span>{one_liner}
+            <span style="display:block;color:#9a5b46;font-size:10px;font-weight:800;letter-spacing:.8px;margin-bottom:3px;">At a glance · 一句话看懂</span>
+            <span style="display:block;margin-bottom:5px;">{one_liner_en}</span>
+            <span style="display:block;color:#6f5a50;font-weight:500;">{one_liner_zh}</span>
           </div>
           <div style="margin-bottom:14px;">
             <div style="color:#9a5b46;font-size:12px;font-weight:800;margin-bottom:5px;">01 · What this paper did</div>
@@ -621,6 +635,30 @@ def build_html(papers: list[dict], glossary: list[dict] | None = None) -> str:
     {glossary_rows}
   </div>""" if glossary_rows else ""
 
+    dictionary_rows = ""
+    dictionary_seen = set()
+    for term in biomedical_dictionary or []:
+        key = normalize_glossary_term(term.get("term_en", ""))
+        if not key or key in dictionary_seen:
+            continue
+        dictionary_seen.add(key)
+        term_en = html.escape(term.get("term_en", ""))
+        term_zh = html.escape(term.get("term_zh", ""))
+        definition = html.escape(term.get("definition", ""))
+        dictionary_rows += f"""
+        <div style="padding:10px 0;border-bottom:1px solid #e8e1d8;">
+          <div style="color:#2d2a26;font-size:13px;font-weight:700;line-height:1.5;">{term_en} <span style="color:#b5654b;font-weight:600;">· {term_zh}</span></div>
+          <div style="color:#756f68;font-size:11px;line-height:1.6;margin-top:2px;">{definition}</div>
+        </div>"""
+
+    dictionary_section = f"""
+  <div style="background:#fffdfa;border:1px solid #ded8cf;border-radius:14px;padding:22px 24px;margin-top:20px;box-shadow:0 5px 18px rgba(58,48,42,.045);">
+    <div style="color:#cc785c;font-size:10px;font-weight:800;letter-spacing:1.2px;margin-bottom:6px;">BIOMEDICAL DICTIONARY</div>
+    <h2 style="margin:0 0 6px;font-family:Georgia,'Times New Roman',serif;color:#2d2a26;font-size:19px;font-weight:500;">Domain-specific terms from today's papers</h2>
+    <p style="margin:0 0 6px;color:#756f68;font-size:12px;line-height:1.65;">A compact reference for the anatomical regions, cell states, genes, proteins, disease models, pathological structures, and specialized biological concepts mentioned today.</p>
+    {dictionary_rows}
+  </div>""" if dictionary_rows else ""
+
     must_count = sum(1 for p in papers if p.get("must_read"))
     return f"""<html><body style="margin:0;padding:24px 12px;background:#f7f4ed;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC',sans-serif;">
 <div style="max-width:650px;margin:0 auto;">
@@ -630,6 +668,7 @@ def build_html(papers: list[dict], glossary: list[dict] | None = None) -> str:
   </div>
   {glossary_section}
   {cards}
+  {dictionary_section}
   <p style="text-align:center;color:#8b8279;font-size:11px;line-height:1.7;margin:22px 0;">
     Designed as a first-pass reading brief using Keshav's three-pass method · Powered by DeepSeek<br>
     <a href="{REPO_URL}/blob/main/history.md" style="color:#b5654b;text-decoration:none;">Browse previous recommendations →</a>
@@ -638,7 +677,7 @@ def build_html(papers: list[dict], glossary: list[dict] | None = None) -> str:
 </body></html>"""
 
 
-def send_email(papers: list[dict], glossary: list[dict]):
+def send_email(papers: list[dict], glossary: list[dict], biomedical_dictionary: list[dict]):
     gmail_user = os.environ["GMAIL_USER"]
     gmail_pass = os.environ["GMAIL_APP_PASSWORD"]
     to_email   = os.environ.get("TO_EMAIL", gmail_user)
@@ -648,7 +687,7 @@ def send_email(papers: list[dict], glossary: list[dict]):
     msg["Subject"] = build_subject()
     msg["From"]    = gmail_user
     msg["To"]      = to_email
-    msg.attach(MIMEText(build_html(papers, glossary), "html"))
+    msg.attach(MIMEText(build_html(papers, glossary, biomedical_dictionary), "html"))
 
     with smtplib.SMTP_SSL("smtp.gmail.com", 465) as s:
         s.login(gmail_user, gmail_pass)
@@ -709,12 +748,12 @@ def main():
     print(f"Classic candidates after dedup: {len(classic_pool)}")
 
     print("Asking DeepSeek to select...")
-    selected, glossary = select_papers(
+    selected, glossary, biomedical_dictionary = select_papers(
         recent_pool, classic_pool, recent_history, seen_glossary_terms
     )
 
     print("Sending email...")
-    send_email(selected, glossary)
+    send_email(selected, glossary, biomedical_dictionary)
 
     print("Saving history...")
     save_history(selected)

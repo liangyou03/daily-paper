@@ -57,7 +57,8 @@ class DissertationDigestConfigTests(unittest.TestCase):
             "domain": "MultimodalAI",
             "must_read": True,
             "must_read_tag": "TODAY'S PICK",
-            "one_liner": "A friendly one-sentence summary.",
+            "one_liner_en": "A friendly one-sentence summary.",
+            "one_liner_zh": "一句友好的中文摘要。",
             "what": "The question, data, method, and main result.",
             "innovation": "The concrete advance over prior work.",
             "learn": "What to study and reproduce for the dissertation.",
@@ -68,16 +69,26 @@ class DissertationDigestConfigTests(unittest.TestCase):
             "explanation_en": "How extensively a microglial cell branches.",
             "explanation_zh": "一句话说，就是小胶质细胞分支有多丰富。",
         }]
-        html = daily_papers.build_html(papers, glossary)
+        biomedical_dictionary = [{
+            "term_en": "Hippocampus",
+            "term_zh": "海马体",
+            "definition": "A brain region central to memory formation.",
+        }]
+        html = daily_papers.build_html(papers, glossary, biomedical_dictionary)
         self.assertIn("DeepSeek", html)
         self.assertNotIn("Microglia × Multimodal AI", html)
         self.assertIn("TERMS TO KNOW BEFORE YOU READ", html)
         self.assertIn("Ramification", html)
         self.assertIn("分支化", html)
         self.assertIn("At a glance", html)
+        self.assertIn("A friendly one-sentence summary.", html)
+        self.assertIn("一句友好的中文摘要。", html)
         self.assertIn("What this paper did", html)
         self.assertIn("What is genuinely new", html)
         self.assertIn("What you should learn", html)
+        self.assertIn("BIOMEDICAL DICTIONARY", html)
+        self.assertIn("Hippocampus", html)
+        self.assertIn("海马体", html)
         self.assertIn("#cc785c", html)
         self.assertIn("#f7f4ed", html)
         self.assertIn("Georgia", html)
