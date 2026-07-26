@@ -45,9 +45,26 @@ class DissertationDigestConfigTests(unittest.TestCase):
         self.assertNotIn("GLM_API_KEY", workflow)
 
     def test_email_branding_matches_dissertation_digest(self):
-        html = daily_papers.build_html([])
+        html = daily_papers.build_html([{
+            "title": "A microglia paper",
+            "url": "https://example.com",
+            "source": "Nature Methods",
+            "year": 2026,
+            "authors": "A. Author",
+            "domain": "MultimodalAI",
+            "must_read": True,
+            "must_read_tag": "⭐ 今日精读",
+            "one_liner": "一句话看懂这篇论文。",
+            "what": "研究问题、数据、方法与主要结果。",
+            "innovation": "相较既有工作的关键增量。",
+            "learn": "值得复现的方法和阅读重点。",
+        }])
         self.assertIn("DeepSeek", html)
         self.assertIn("Microglia", html)
+        self.assertIn("一句话看懂", html)
+        self.assertIn("论文做了什么", html)
+        self.assertIn("创新在哪里", html)
+        self.assertIn("你应该学什么", html)
         self.assertNotIn("UQ", html)
         self.assertNotIn("GLM", html)
 
@@ -84,12 +101,12 @@ class DissertationDigestConfigTests(unittest.TestCase):
 
         self.assertEqual(captured.get("extra_body"), {"thinking": {"type": "disabled"}})
 
-    def test_selection_prompt_requests_two_papers(self):
+    def test_selection_prompt_requests_three_papers(self):
         source = (ROOT / "daily_papers.py").read_text()
-        self.assertIn("Select exactly 2 papers total", source)
-        self.assertIn("1 from the RECENT pool and 1 from the CLASSIC pool", source)
-        self.assertIn("Select exactly 2 papers from the RECENT pool", source)
-        self.assertNotIn("Select exactly 5 papers", source)
+        self.assertIn("Select exactly 3 papers total", source)
+        self.assertIn("2 from the RECENT pool and 1 from the CLASSIC pool", source)
+        self.assertIn("Select exactly 3 papers from the RECENT pool", source)
+        self.assertNotIn("Select exactly 2 papers", source)
 
 
 if __name__ == "__main__":

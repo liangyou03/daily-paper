@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Daily paper digest for microglial morphology–molecular state research."""
 
-import os, json, time, smtplib, re, requests, feedparser
+import os, json, time, smtplib, re, html, requests, feedparser
 from datetime import datetime, timedelta
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -340,7 +340,7 @@ def select_papers(recent: list[dict], classics: list[dict], recent_history: list
 
     diversity_rule = """
 Relevance rule: Every selected paper must directly help the dissertation described above. Exclude generic clinical-prediction papers that do not inform this project.
-Coverage rule: The two papers should complement each other and, when strong candidates exist, cover different domains from this list:
+Coverage rule: The three papers should complement each other and, when strong candidates exist, cover at least two different domains from this list:
   - MicrogliaMorphology (microglial biology, morphology, activation, aging, Alzheimer's disease)
   - SpatialOmics (spatial transcriptomics, Visium, single-cell molecular states)
   - MultimodalAI (morphology–expression alignment, Patch-seq, CCA, OT, contrastive/adversarial learning, image or graph encoders)
@@ -348,11 +348,17 @@ Coverage rule: The two papers should complement each other and, when strong cand
 Journal preference rule: When quality is comparable, STRONGLY prefer papers from named journals \
 (Nature, Nature Methods, Nature Biotechnology, Cell, Genome Biology, Science, NEJM, Lancet, JAMA, \
 Bioinformatics, etc.) over arXiv preprints for the RECENT slots.
+Reading-brief rule: Follow the first-pass goals in Keshav's three-pass reading method. Help the reader quickly identify the problem, approach, evidence, contribution, and whether the paper deserves a deeper read. Base every statement only on the supplied metadata and abstract; explicitly say when a detail is unavailable rather than inventing it.
+For every selected paper, write substantial but scannable Chinese:
+  - one_liner: one sentence stating the paper's question, approach, and headline result.
+  - what: 3–5 sentences covering the research question, data/experimental setting, method, and main result.
+  - innovation: 2–4 sentences explaining the concrete novelty relative to prior practice; distinguish a new biological finding from a new computational method.
+  - learn: 2–4 sentences tailored to this dissertation, naming concepts/methods/figures to study and one question to keep in mind while reading.
 """
 
     has_classics = len(classics) > 0
     if has_classics:
-        task = f"""Select exactly 2 papers total — 1 from the RECENT pool and 1 from the CLASSIC pool.
+        task = f"""Select exactly 3 papers total — 2 from the RECENT pool and 1 from the CLASSIC pool.
 {diversity_rule}
 Marking rules:
 - Assign "⭐ 今日精读" to the single paper that should be read first.
@@ -361,8 +367,9 @@ Marking rules:
 Return ONLY valid JSON, no markdown fences:
 {{
   "papers": [
-    {{"pool": "recent", "index": <1-based in RECENT>, "domain": "<MicrogliaMorphology|SpatialOmics|MultimodalAI|Benchmark|other>", "must_read_tag": "⭐ 今日精读" or "", "why": "<2-3句中文推荐理由，明确说明它对 dissertation 的具体用途>"}},
-    {{"pool": "classic", "index": <1-based in CLASSIC>, "domain": "<MicrogliaMorphology|SpatialOmics|MultimodalAI|Benchmark|other>", "must_read_tag": "⭐ 今日精读" or "", "why": "<2-3句中文推荐理由，明确说明它对 dissertation 的具体用途>"}}
+    {{"pool": "recent", "index": <1-based in RECENT>, "domain": "<domain>", "must_read_tag": "⭐ 今日精读" or "", "one_liner": "<中文>", "what": "<中文>", "innovation": "<中文>", "learn": "<中文>"}},
+    {{"pool": "recent", "index": <different 1-based index>, "domain": "<domain>", "must_read_tag": "⭐ 今日精读" or "", "one_liner": "<中文>", "what": "<中文>", "innovation": "<中文>", "learn": "<中文>"}},
+    {{"pool": "classic", "index": <1-based in CLASSIC>, "domain": "<domain>", "must_read_tag": "⭐ 今日精读" or "", "one_liner": "<中文>", "what": "<中文>", "innovation": "<中文>", "learn": "<中文>"}}
   ]
 }}
 
@@ -372,7 +379,7 @@ RECENT papers ({len(recent)} candidates):
 CLASSIC papers ({len(classics)} candidates):
 {fmt(classics, 'C')}"""
     else:
-        task = f"""Select exactly 2 papers from the RECENT pool.
+        task = f"""Select exactly 3 papers from the RECENT pool.
 {diversity_rule}
 Marking rules:
 - Assign "⭐ 今日精读" to the single paper that should be read first.
@@ -381,8 +388,9 @@ Marking rules:
 Return ONLY valid JSON, no markdown fences:
 {{
   "papers": [
-    {{"pool": "recent", "index": <1-based>, "domain": "<MicrogliaMorphology|SpatialOmics|MultimodalAI|Benchmark|other>", "must_read_tag": "⭐ 今日精读" or "", "why": "<2-3句中文推荐理由，明确说明它对 dissertation 的具体用途>"}},
-    {{"pool": "recent", "index": <different 1-based index>, "domain": "<MicrogliaMorphology|SpatialOmics|MultimodalAI|Benchmark|other>", "must_read_tag": "⭐ 今日精读" or "", "why": "<2-3句中文推荐理由，明确说明它对 dissertation 的具体用途>"}}
+    {{"pool": "recent", "index": <1-based>, "domain": "<domain>", "must_read_tag": "⭐ 今日精读" or "", "one_liner": "<中文>", "what": "<中文>", "innovation": "<中文>", "learn": "<中文>"}},
+    {{"pool": "recent", "index": <different 1-based index>, "domain": "<domain>", "must_read_tag": "⭐ 今日精读" or "", "one_liner": "<中文>", "what": "<中文>", "innovation": "<中文>", "learn": "<中文>"}},
+    {{"pool": "recent", "index": <another different 1-based index>, "domain": "<domain>", "must_read_tag": "⭐ 今日精读" or "", "one_liner": "<中文>", "what": "<中文>", "innovation": "<中文>", "learn": "<中文>"}}
   ]
 }}
 
@@ -404,7 +412,7 @@ RECENT papers ({len(recent)} candidates):
     for model in models:
         for attempt in range(2):
             resp = client.chat.completions.create(
-                model=model, max_tokens=2000, messages=messages,
+                model=model, max_tokens=3500, messages=messages,
                 response_format={"type": "json_object"},
                 extra_body={"thinking": {"type": "disabled"}},
             )
@@ -429,7 +437,7 @@ RECENT papers ({len(recent)} candidates):
         raise RuntimeError("DeepSeek failed to return valid JSON")
 
     selected = []
-    for item in result["papers"][:2]:
+    for item in result["papers"][:3]:
         pool = item.get("pool", "recent")
         idx = item["index"] - 1
         source_pool = recent if pool == "recent" else classics
@@ -438,7 +446,10 @@ RECENT papers ({len(recent)} candidates):
         p = source_pool[idx].copy()
         p["must_read_tag"] = item.get("must_read_tag", "")
         p["must_read"] = bool(p["must_read_tag"])
-        p["why"] = item.get("why", "")
+        p["one_liner"] = item.get("one_liner", "")
+        p["what"] = item.get("what", item.get("why", ""))
+        p["innovation"] = item.get("innovation", "摘要未提供足够信息判断具体创新。")
+        p["learn"] = item.get("learn", item.get("why", ""))
         selected.append(p)
     return selected
 
@@ -450,41 +461,72 @@ REPO_URL = "https://github.com/liangyou03/daily-paper"
 def build_html(papers: list[dict]) -> str:
     today = datetime.now().strftime("%Y年%m月%d日")
     cards = ""
-    for p in papers:
+    domain_labels = {
+        "MicrogliaMorphology": "MICROGLIA · MORPHOLOGY",
+        "SpatialOmics": "SPATIAL OMICS",
+        "MultimodalAI": "MULTIMODAL AI",
+        "Benchmark": "BENCHMARK",
+        "other": "RELATED WORK",
+    }
+    for number, p in enumerate(papers, start=1):
         tag = p.get("must_read_tag", "")
         if tag:
-            badge = f'<span style="background:#c62828;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;letter-spacing:.5px;">{tag}</span> '
-            border = "border-left:4px solid #c62828;"
-            bg = "background:#fff8f8;"
+            badge = f'<span style="background:#f59e0b;color:#422006;padding:4px 9px;border-radius:999px;font-size:11px;font-weight:700;">{html.escape(tag)}</span>'
+            border = "border:1px solid #f6d58a;"
         else:
             badge = ""
-            border = "border-left:4px solid #e0e0e0;"
-            bg = "background:#fff;"
+            border = "border:1px solid #e2e8f0;"
 
         year_str = f" · {p['year']}" if p.get("year") else ""
+        title = html.escape(p["title"])
+        authors = html.escape(p.get("authors", ""))
+        source = html.escape(f"{p['source']}{year_str}")
+        url = html.escape(p["url"], quote=True)
+        domain = html.escape(domain_labels.get(p.get("domain", "other"), p.get("domain", "RELATED WORK")))
+        one_liner = html.escape(p.get("one_liner", p.get("why", "")))
+        what = html.escape(p.get("what", p.get("why", "摘要未提供。")))
+        innovation = html.escape(p.get("innovation", "摘要未提供足够信息判断具体创新。"))
+        learn = html.escape(p.get("learn", p.get("why", "建议先阅读摘要、图表和结论。")))
         cards += f"""
-        <div style="{bg}{border}border-radius:6px;padding:18px 20px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.08);">
-          <div style="margin-bottom:6px;">{badge}<span style="color:#888;font-size:11px;">{p['source']}{year_str}</span></div>
-          <h3 style="margin:0 0 5px;font-size:14px;line-height:1.5;">
-            <a href="{p['url']}" style="color:#1565c0;text-decoration:none;">{p['title']}</a>
-          </h3>
-          <p style="margin:0 0 10px;color:#777;font-size:11px;">{p['authors']}</p>
-          <div style="background:#f5f5f5;padding:10px 12px;border-radius:4px;font-size:12px;color:#444;line-height:1.6;">
-            💡 {p['why']}
+        <div style="background:#ffffff;{border}border-radius:14px;padding:24px;margin-bottom:18px;box-shadow:0 8px 24px rgba(15,23,42,.06);">
+          <div style="margin-bottom:12px;">
+            <span style="display:inline-block;background:#0f766e;color:#fff;width:25px;height:25px;line-height:25px;text-align:center;border-radius:7px;font-size:12px;font-weight:800;margin-right:7px;">{number}</span>
+            <span style="color:#0f766e;font-size:10px;font-weight:800;letter-spacing:1px;">{domain}</span>
+            <span style="float:right;">{badge}</span>
+          </div>
+          <h2 style="margin:0 0 7px;font-size:17px;line-height:1.45;">
+            <a href="{url}" style="color:#0f172a;text-decoration:none;">{title}</a>
+          </h2>
+          <p style="margin:0 0 15px;color:#64748b;font-size:11px;line-height:1.5;">{authors}<br>{source}</p>
+          <div style="background:#ecfdf5;border-left:4px solid #10b981;padding:12px 14px;border-radius:0 8px 8px 0;margin-bottom:16px;color:#064e3b;font-size:13px;font-weight:650;line-height:1.7;">
+            <span style="display:block;color:#047857;font-size:10px;font-weight:800;letter-spacing:.8px;margin-bottom:3px;">一句话看懂</span>{one_liner}
+          </div>
+          <div style="margin-bottom:14px;">
+            <div style="color:#0f766e;font-size:12px;font-weight:800;margin-bottom:5px;">01 · 论文做了什么</div>
+            <div style="color:#334155;font-size:13px;line-height:1.75;">{what}</div>
+          </div>
+          <div style="margin-bottom:14px;">
+            <div style="color:#7c3aed;font-size:12px;font-weight:800;margin-bottom:5px;">02 · 创新在哪里</div>
+            <div style="color:#334155;font-size:13px;line-height:1.75;">{innovation}</div>
+          </div>
+          <div style="background:#f8fafc;border-radius:9px;padding:12px 14px;">
+            <div style="color:#b45309;font-size:12px;font-weight:800;margin-bottom:5px;">03 · 你应该学什么</div>
+            <div style="color:#334155;font-size:13px;line-height:1.75;">{learn}</div>
           </div>
         </div>"""
 
     must_count = sum(1 for p in papers if p.get("must_read"))
-    return f"""<html><body style="margin:0;padding:20px;background:#f0f2f5;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
-<div style="max-width:580px;margin:0 auto;">
-  <div style="background:#1565c0;color:#fff;padding:18px 22px;border-radius:8px 8px 0 0;">
-    <h2 style="margin:0;font-size:17px;">📚 每日论文推荐 · {today}</h2>
-    <p style="margin:4px 0 0;font-size:12px;opacity:.8;">Microglia · Morphology × Molecular State · Multimodal AI | {len(papers)} 篇推荐 · {must_count} 篇精读 | Powered by DeepSeek</p>
+    return f"""<html><body style="margin:0;padding:24px 12px;background:#f1f5f9;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC',sans-serif;">
+<div style="max-width:650px;margin:0 auto;">
+  <div style="background:#0f172a;color:#fff;padding:27px 26px;border-radius:16px;margin-bottom:18px;box-shadow:0 10px 28px rgba(15,23,42,.18);">
+    <div style="color:#5eead4;font-size:10px;font-weight:800;letter-spacing:1.4px;margin-bottom:8px;">DISSERTATION READING BRIEF</div>
+    <h1 style="margin:0 0 8px;font-size:22px;line-height:1.3;">Microglia × Multimodal AI</h1>
+    <p style="margin:0;color:#cbd5e1;font-size:12px;line-height:1.6;">{today} · {len(papers)} 篇精选 · {must_count} 篇今日精读<br>Morphology · Molecular State · Spatial Omics · Benchmark</p>
   </div>
-  <div style="padding:14px 0;">{cards}</div>
-  <p style="text-align:center;color:#aaa;font-size:11px;margin-top:4px;">
-    每日自动推送 · 为你的研究方向定制 ·
-    <a href="{REPO_URL}/blob/main/history.md" style="color:#aaa;">往期推荐</a>
+  {cards}
+  <p style="text-align:center;color:#94a3b8;font-size:11px;line-height:1.7;margin:22px 0;">
+    按 Keshav three-pass method 设计的第一遍阅读摘要 · Powered by DeepSeek<br>
+    <a href="{REPO_URL}/blob/main/history.md" style="color:#0f766e;text-decoration:none;">查看往期推荐 →</a>
   </p>
 </div>
 </body></html>"""
