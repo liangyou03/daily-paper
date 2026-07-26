@@ -11,6 +11,10 @@ from openai import OpenAI
 # ── Search Config ────────────────────────────────────────────────────────────
 
 ARXIV_QUERIES = [
+    "DAPI nuclei cell segmentation multiplex immunofluorescence",
+    "Cellpose SAM Mesmer cell segmentation microscopy",
+    "image normalization domain shift fluorescence cell segmentation",
+    "spatial transcriptomics nucleus cell to spot assignment",
     "microglia morphology computational image analysis",
     "microglia gene expression spatial transcriptomics",
     "morphology gene expression multimodal integration",
@@ -27,6 +31,8 @@ ARXIV_CATS = (
 
 # Classic queries: foundational topics for high-citation older papers
 SS_CLASSIC_QUERIES = [
+    "Cellpose CellProfiler Mesmer cell segmentation microscopy",
+    "DAPI nuclei segmentation multiplex immunofluorescence",
     "microglia morphology activation ramification Alzheimer disease",
     "cell morphology gene expression integration",
     "Patch-seq morphology transcriptomics neural cells",
@@ -35,6 +41,9 @@ SS_CLASSIC_QUERIES = [
 ]
 
 PUBMED_QUERIES = [
+    "DAPI cell segmentation multiplex immunofluorescence",
+    "Cellpose Mesmer microscopy image normalization segmentation",
+    "spatial transcriptomics nucleus spot assignment segmentation",
     "microglia morphology gene expression",
     "microglia spatial transcriptomics Alzheimer disease",
     "cell morphology transcriptomics multimodal integration",
@@ -310,10 +319,11 @@ def balance_pool(papers: list[dict], cap: int) -> list[dict]:
 
 RESEARCHER_BIO = """PhD student in Biostatistics, University of Pittsburgh.
 Current research:
-1. Biological question: when microglial morphology and molecular state are coupled versus decoupled, especially in aging and Alzheimer's disease.
-2. Data: segmented microglia from multiplex immunofluorescence images, Visium with protein co-detection, spatial transcriptomics, and potentially unpaired morphology/transcriptomic datasets.
-3. AI methods: classical morphology features, CAJAL, image encoders, skeleton GNNs; CCA, optimal transport, contrastive learning, and adversarial representation alignment such as GeoAdvAE.
-4. Benchmark design: donor-held-out, region-held-out, and dataset-held-out evaluation, plus permutation, batch-only prediction, and staining-quality negative controls.
+1. Immediate foundation: reliable DAPI/nucleus segmentation and QC in multiplex immunofluorescence and Visium images, including normalization, Cellpose-SAM versus fine-tuned models, marker-guided cell-body expansion, and nucleus-to-spot assignment.
+2. Biological question: when microglial morphology and molecular state are coupled versus decoupled, especially in aging and Alzheimer's disease.
+3. Data: segmented microglia from multiplex immunofluorescence images, Visium with protein co-detection, spatial transcriptomics, and potentially unpaired morphology/transcriptomic datasets.
+4. Representation and integration: classical morphology features, CAJAL, image encoders, skeleton GNNs; CCA, optimal transport, contrastive learning, and adversarial representation alignment such as GeoAdvAE.
+5. Benchmark design: segmentation reproducibility and staining QC followed by donor-held-out, region-held-out, and dataset-held-out evaluation, plus permutation and batch-only negative controls.
 The dissertation should emphasize reusable AI-for-Science methodology while answering a concrete biological question."""
 
 
@@ -349,11 +359,12 @@ Journal preference rule: When quality is comparable, STRONGLY prefer papers from
 (Nature, Nature Methods, Nature Biotechnology, Cell, Genome Biology, Science, NEJM, Lancet, JAMA, \
 Bioinformatics, etc.) over arXiv preprints for the RECENT slots.
 Reading-brief rule: Follow the first-pass goals in Keshav's three-pass reading method. Help the reader quickly identify the problem, approach, evidence, contribution, and whether the paper deserves a deeper read. Base every statement only on the supplied metadata and abstract; explicitly say when a detail is unavailable rather than inventing it.
-For every selected paper, write substantial but scannable Chinese:
+For every selected paper, write polished, friendly, and substantial English for a technically strong reader who is still learning the biology:
   - one_liner: one sentence stating the paper's question, approach, and headline result.
   - what: 3–5 sentences covering the research question, data/experimental setting, method, and main result.
   - innovation: 2–4 sentences explaining the concrete novelty relative to prior practice; distinguish a new biological finding from a new computational method.
   - learn: 2–4 sentences tailored to this dissertation, naming concepts/methods/figures to study and one question to keep in mind while reading.
+Also return a shared glossary of 5–8 terms that the reader may not know but needs in order to understand today's papers. Prioritize biological terms, assay/platform terminology, image-analysis concepts, and multimodal-learning terms that are central rather than merely technical jargon. Each entry must include the English term, a standard Chinese translation, one plain-English sentence, and one plain-Chinese sentence. The Chinese should explain the idea intuitively, not just translate the English sentence.
 """
 
     has_classics = len(classics) > 0
@@ -361,15 +372,18 @@ For every selected paper, write substantial but scannable Chinese:
         task = f"""Select exactly 3 papers total — 2 from the RECENT pool and 1 from the CLASSIC pool.
 {diversity_rule}
 Marking rules:
-- Assign "⭐ 今日精读" to the single paper that should be read first.
+- Assign "TODAY'S PICK" to the single paper that should be read first.
 - Assign must_read_tag "" to the other paper.
 
 Return ONLY valid JSON, no markdown fences:
 {{
+  "glossary": [
+    {{"term_en": "<English term>", "term_zh": "<中文术语>", "explanation_en": "<one friendly English sentence>", "explanation_zh": "<一句通俗中文解释>"}}
+  ],
   "papers": [
-    {{"pool": "recent", "index": <1-based in RECENT>, "domain": "<domain>", "must_read_tag": "⭐ 今日精读" or "", "one_liner": "<中文>", "what": "<中文>", "innovation": "<中文>", "learn": "<中文>"}},
-    {{"pool": "recent", "index": <different 1-based index>, "domain": "<domain>", "must_read_tag": "⭐ 今日精读" or "", "one_liner": "<中文>", "what": "<中文>", "innovation": "<中文>", "learn": "<中文>"}},
-    {{"pool": "classic", "index": <1-based in CLASSIC>, "domain": "<domain>", "must_read_tag": "⭐ 今日精读" or "", "one_liner": "<中文>", "what": "<中文>", "innovation": "<中文>", "learn": "<中文>"}}
+    {{"pool": "recent", "index": <1-based in RECENT>, "domain": "<domain>", "must_read_tag": "TODAY'S PICK" or "", "one_liner": "<English>", "what": "<English>", "innovation": "<English>", "learn": "<English>"}},
+    {{"pool": "recent", "index": <different 1-based index>, "domain": "<domain>", "must_read_tag": "TODAY'S PICK" or "", "one_liner": "<English>", "what": "<English>", "innovation": "<English>", "learn": "<English>"}},
+    {{"pool": "classic", "index": <1-based in CLASSIC>, "domain": "<domain>", "must_read_tag": "TODAY'S PICK" or "", "one_liner": "<English>", "what": "<English>", "innovation": "<English>", "learn": "<English>"}}
   ]
 }}
 
@@ -382,15 +396,18 @@ CLASSIC papers ({len(classics)} candidates):
         task = f"""Select exactly 3 papers from the RECENT pool.
 {diversity_rule}
 Marking rules:
-- Assign "⭐ 今日精读" to the single paper that should be read first.
+- Assign "TODAY'S PICK" to the single paper that should be read first.
 - Assign must_read_tag "" to the other paper.
 
 Return ONLY valid JSON, no markdown fences:
 {{
+  "glossary": [
+    {{"term_en": "<English term>", "term_zh": "<中文术语>", "explanation_en": "<one friendly English sentence>", "explanation_zh": "<一句通俗中文解释>"}}
+  ],
   "papers": [
-    {{"pool": "recent", "index": <1-based>, "domain": "<domain>", "must_read_tag": "⭐ 今日精读" or "", "one_liner": "<中文>", "what": "<中文>", "innovation": "<中文>", "learn": "<中文>"}},
-    {{"pool": "recent", "index": <different 1-based index>, "domain": "<domain>", "must_read_tag": "⭐ 今日精读" or "", "one_liner": "<中文>", "what": "<中文>", "innovation": "<中文>", "learn": "<中文>"}},
-    {{"pool": "recent", "index": <another different 1-based index>, "domain": "<domain>", "must_read_tag": "⭐ 今日精读" or "", "one_liner": "<中文>", "what": "<中文>", "innovation": "<中文>", "learn": "<中文>"}}
+    {{"pool": "recent", "index": <1-based>, "domain": "<domain>", "must_read_tag": "TODAY'S PICK" or "", "one_liner": "<English>", "what": "<English>", "innovation": "<English>", "learn": "<English>"}},
+    {{"pool": "recent", "index": <different 1-based index>, "domain": "<domain>", "must_read_tag": "TODAY'S PICK" or "", "one_liner": "<English>", "what": "<English>", "innovation": "<English>", "learn": "<English>"}},
+    {{"pool": "recent", "index": <another different 1-based index>, "domain": "<domain>", "must_read_tag": "TODAY'S PICK" or "", "one_liner": "<English>", "what": "<English>", "innovation": "<English>", "learn": "<English>"}}
   ]
 }}
 
@@ -448,18 +465,23 @@ RECENT papers ({len(recent)} candidates):
         p["must_read"] = bool(p["must_read_tag"])
         p["one_liner"] = item.get("one_liner", "")
         p["what"] = item.get("what", item.get("why", ""))
-        p["innovation"] = item.get("innovation", "摘要未提供足够信息判断具体创新。")
+        p["innovation"] = item.get("innovation", "The abstract does not provide enough detail to judge the specific novelty.")
         p["learn"] = item.get("learn", item.get("why", ""))
         selected.append(p)
-    return selected
+    return selected, result.get("glossary", [])[:8]
 
 
 # ── Email ─────────────────────────────────────────────────────────────────────
 
 REPO_URL = "https://github.com/liangyou03/daily-paper"
 
-def build_html(papers: list[dict]) -> str:
-    today = datetime.now().strftime("%Y年%m月%d日")
+def build_subject() -> str:
+    date = datetime.now().strftime("%b %d")
+    return f"Dissertation Reading Brief | From Segmentation to Cell State · {date}"
+
+
+def build_html(papers: list[dict], glossary: list[dict] | None = None) -> str:
+    today = datetime.now().strftime("%B %d, %Y")
     cards = ""
     domain_labels = {
         "MicrogliaMorphology": "MICROGLIA · MORPHOLOGY",
@@ -485,8 +507,8 @@ def build_html(papers: list[dict]) -> str:
         domain = html.escape(domain_labels.get(p.get("domain", "other"), p.get("domain", "RELATED WORK")))
         one_liner = html.escape(p.get("one_liner", p.get("why", "")))
         what = html.escape(p.get("what", p.get("why", "摘要未提供。")))
-        innovation = html.escape(p.get("innovation", "摘要未提供足够信息判断具体创新。"))
-        learn = html.escape(p.get("learn", p.get("why", "建议先阅读摘要、图表和结论。")))
+        innovation = html.escape(p.get("innovation", "The abstract does not provide enough detail to judge the specific novelty."))
+        learn = html.escape(p.get("learn", p.get("why", "Start with the abstract, figures, and conclusion.")))
         cards += f"""
         <div style="background:#fffdfa;{border}border-radius:14px;padding:25px;margin-bottom:18px;box-shadow:0 5px 18px rgba(58,48,42,.055);">
           <div style="margin-bottom:12px;">
@@ -499,50 +521,71 @@ def build_html(papers: list[dict]) -> str:
           </h2>
           <p style="margin:0 0 16px;color:#756f68;font-size:11px;line-height:1.55;">{authors}<br>{source}</p>
           <div style="background:#f3e6df;border-left:4px solid #cc785c;padding:13px 15px;border-radius:0 8px 8px 0;margin-bottom:18px;color:#3d302b;font-size:13px;font-weight:600;line-height:1.75;">
-            <span style="display:block;color:#9a5b46;font-size:10px;font-weight:800;letter-spacing:.8px;margin-bottom:3px;">一句话看懂</span>{one_liner}
+            <span style="display:block;color:#9a5b46;font-size:10px;font-weight:800;letter-spacing:.8px;margin-bottom:3px;">At a glance</span>{one_liner}
           </div>
           <div style="margin-bottom:14px;">
-            <div style="color:#9a5b46;font-size:12px;font-weight:800;margin-bottom:5px;">01 · 论文做了什么</div>
+            <div style="color:#9a5b46;font-size:12px;font-weight:800;margin-bottom:5px;">01 · What this paper did</div>
             <div style="color:#3d3a36;font-size:13px;line-height:1.8;">{what}</div>
           </div>
           <div style="margin-bottom:14px;">
-            <div style="color:#806b5c;font-size:12px;font-weight:800;margin-bottom:5px;">02 · 创新在哪里</div>
+            <div style="color:#806b5c;font-size:12px;font-weight:800;margin-bottom:5px;">02 · What is genuinely new</div>
             <div style="color:#3d3a36;font-size:13px;line-height:1.8;">{innovation}</div>
           </div>
           <div style="background:#f2eee7;border-radius:9px;padding:13px 15px;">
-            <div style="color:#9a5b46;font-size:12px;font-weight:800;margin-bottom:5px;">03 · 你应该学什么</div>
+            <div style="color:#9a5b46;font-size:12px;font-weight:800;margin-bottom:5px;">03 · What you should learn</div>
             <div style="color:#3d3a36;font-size:13px;line-height:1.8;">{learn}</div>
           </div>
         </div>"""
+
+    glossary_rows = ""
+    for term in glossary or []:
+        term_en = html.escape(term.get("term_en", ""))
+        term_zh = html.escape(term.get("term_zh", ""))
+        explanation_en = html.escape(term.get("explanation_en", ""))
+        explanation_zh = html.escape(term.get("explanation_zh", ""))
+        glossary_rows += f"""
+        <div style="padding:13px 0;border-bottom:1px solid #e4ddd4;">
+          <div style="font-family:Georgia,'Times New Roman',serif;color:#2d2a26;font-size:15px;font-weight:600;margin-bottom:5px;">{term_en} <span style="color:#b5654b;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC',sans-serif;font-size:13px;font-weight:700;">· {term_zh}</span></div>
+          <div style="color:#4b4742;font-size:12px;line-height:1.65;margin-bottom:3px;">{explanation_en}</div>
+          <div style="color:#756f68;font-size:12px;line-height:1.65;">{explanation_zh}</div>
+        </div>"""
+
+    glossary_section = f"""
+  <div style="background:#fffdfa;border:1px solid #ded8cf;border-radius:14px;padding:22px 24px;margin-bottom:20px;box-shadow:0 5px 18px rgba(58,48,42,.045);">
+    <div style="color:#cc785c;font-size:10px;font-weight:800;letter-spacing:1.2px;margin-bottom:6px;">TERMS TO KNOW BEFORE YOU READ</div>
+    <h2 style="margin:0 0 6px;font-family:Georgia,'Times New Roman',serif;color:#2d2a26;font-size:19px;font-weight:500;">A quick bilingual primer · 双语术语预习</h2>
+    <p style="margin:0 0 5px;color:#756f68;font-size:12px;line-height:1.65;">These are the terms most likely to slow you down in today's papers. Read this section first; it should take about two minutes.<br>这些是今天阅读中最容易卡住的概念。先花两分钟看完，再进入论文正文。</p>
+    {glossary_rows}
+  </div>""" if glossary_rows else ""
 
     must_count = sum(1 for p in papers if p.get("must_read"))
     return f"""<html><body style="margin:0;padding:24px 12px;background:#f7f4ed;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC',sans-serif;">
 <div style="max-width:650px;margin:0 auto;">
   <div style="background:#2d2a26;color:#fffaf4;padding:29px 27px;border-radius:16px;margin-bottom:18px;box-shadow:0 8px 24px rgba(58,48,42,.16);">
-    <div style="color:#e7a58e;font-size:10px;font-weight:800;letter-spacing:1.4px;margin-bottom:9px;">DISSERTATION READING BRIEF</div>
-    <h1 style="margin:0 0 9px;font-family:Georgia,'Times New Roman',serif;font-size:24px;font-weight:500;line-height:1.3;">Microglia × Multimodal AI</h1>
-    <p style="margin:0;color:#d8d1c8;font-size:12px;line-height:1.65;">{today} · {len(papers)} 篇精选 · {must_count} 篇今日精读<br>Morphology · Molecular State · Spatial Omics · Benchmark</p>
+    <h1 style="margin:0 0 9px;font-family:Georgia,'Times New Roman',serif;color:#fffaf4;font-size:24px;font-weight:500;line-height:1.3;">Dissertation Reading Brief</h1>
+    <p style="margin:0;color:#d8d1c8;font-size:12px;line-height:1.65;">{today} · {len(papers)} carefully selected papers · {must_count} priority read</p>
   </div>
+  {glossary_section}
   {cards}
   <p style="text-align:center;color:#8b8279;font-size:11px;line-height:1.7;margin:22px 0;">
-    按 Keshav three-pass method 设计的第一遍阅读摘要 · Powered by DeepSeek<br>
-    <a href="{REPO_URL}/blob/main/history.md" style="color:#b5654b;text-decoration:none;">查看往期推荐 →</a>
+    Designed as a first-pass reading brief using Keshav's three-pass method · Powered by DeepSeek<br>
+    <a href="{REPO_URL}/blob/main/history.md" style="color:#b5654b;text-decoration:none;">Browse previous recommendations →</a>
   </p>
 </div>
 </body></html>"""
 
 
-def send_email(papers: list[dict]):
+def send_email(papers: list[dict], glossary: list[dict]):
     gmail_user = os.environ["GMAIL_USER"]
     gmail_pass = os.environ["GMAIL_APP_PASSWORD"]
     to_email   = os.environ.get("TO_EMAIL", gmail_user)
 
     must_count = sum(1 for p in papers if p.get("must_read"))
     msg = MIMEMultipart("alternative")
-    msg["Subject"] = f"📚 论文推荐 {datetime.now().strftime('%m/%d')} · {len(papers)} 篇 · {must_count} 篇精读"
+    msg["Subject"] = build_subject()
     msg["From"]    = gmail_user
     msg["To"]      = to_email
-    msg.attach(MIMEText(build_html(papers), "html"))
+    msg.attach(MIMEText(build_html(papers, glossary), "html"))
 
     with smtplib.SMTP_SSL("smtp.gmail.com", 465) as s:
         s.login(gmail_user, gmail_pass)
@@ -601,10 +644,10 @@ def main():
     print(f"Classic candidates after dedup: {len(classic_pool)}")
 
     print("Asking DeepSeek to select...")
-    selected = select_papers(recent_pool, classic_pool, recent_history)
+    selected, glossary = select_papers(recent_pool, classic_pool, recent_history)
 
     print("Sending email...")
-    send_email(selected)
+    send_email(selected, glossary)
 
     print("Saving history...")
     save_history(selected)

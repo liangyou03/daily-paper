@@ -23,6 +23,8 @@ class DissertationDigestConfigTests(unittest.TestCase):
         self.assertIn("microglia", search_text)
         self.assertIn("morphology", search_text)
         self.assertIn("spatial transcriptomics", search_text)
+        self.assertIn("cell segmentation", search_text)
+        self.assertIn("dapi", search_text)
         self.assertNotIn("uncertainty quantification", search_text)
         self.assertNotIn("conformal prediction", search_text)
 
@@ -45,7 +47,7 @@ class DissertationDigestConfigTests(unittest.TestCase):
         self.assertNotIn("GLM_API_KEY", workflow)
 
     def test_email_branding_matches_dissertation_digest(self):
-        html = daily_papers.build_html([{
+        papers = [{
             "title": "A microglia paper",
             "url": "https://example.com",
             "source": "Nature Methods",
@@ -53,23 +55,39 @@ class DissertationDigestConfigTests(unittest.TestCase):
             "authors": "A. Author",
             "domain": "MultimodalAI",
             "must_read": True,
-            "must_read_tag": "⭐ 今日精读",
-            "one_liner": "一句话看懂这篇论文。",
-            "what": "研究问题、数据、方法与主要结果。",
-            "innovation": "相较既有工作的关键增量。",
-            "learn": "值得复现的方法和阅读重点。",
-        }])
+            "must_read_tag": "TODAY'S PICK",
+            "one_liner": "A friendly one-sentence summary.",
+            "what": "The question, data, method, and main result.",
+            "innovation": "The concrete advance over prior work.",
+            "learn": "What to study and reproduce for the dissertation.",
+        }]
+        glossary = [{
+            "term_en": "Ramification",
+            "term_zh": "分支化",
+            "explanation_en": "How extensively a microglial cell branches.",
+            "explanation_zh": "一句话说，就是小胶质细胞分支有多丰富。",
+        }]
+        html = daily_papers.build_html(papers, glossary)
         self.assertIn("DeepSeek", html)
-        self.assertIn("Microglia", html)
-        self.assertIn("一句话看懂", html)
-        self.assertIn("论文做了什么", html)
-        self.assertIn("创新在哪里", html)
-        self.assertIn("你应该学什么", html)
+        self.assertNotIn("Microglia × Multimodal AI", html)
+        self.assertIn("TERMS TO KNOW BEFORE YOU READ", html)
+        self.assertIn("Ramification", html)
+        self.assertIn("分支化", html)
+        self.assertIn("At a glance", html)
+        self.assertIn("What this paper did", html)
+        self.assertIn("What is genuinely new", html)
+        self.assertIn("What you should learn", html)
         self.assertIn("#cc785c", html)
         self.assertIn("#f7f4ed", html)
         self.assertIn("Georgia", html)
         self.assertNotIn("UQ", html)
         self.assertNotIn("GLM", html)
+
+    def test_subject_describes_the_research_arc(self):
+        subject = daily_papers.build_subject()
+        self.assertIn("Dissertation Reading Brief", subject)
+        self.assertIn("Segmentation to Cell State", subject)
+        self.assertNotIn("篇", subject)
 
     def test_deepseek_selection_disables_thinking_for_json(self):
         captured = {}
