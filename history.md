@@ -290,3 +290,8 @@
 | 2026-05-28 | Trajectory-Based Difficulty Scoring for Reliable Learning on Tabular Data | https://arxiv.org/abs/2605.24680v1 | arXiv |  |
 | 2026-05-28 | PVAED: prior-guided variational autoencoders with diffusion denoising for interpretable single-cell representation learning. | https://pubmed.ncbi.nlm.nih.gov/42202286/ | Briefings in bioinformatics |  |
 | 2026-05-28 | Identifying potential ligand-receptor interactions by integrating LSTM network and the attention mechanism for cell-cell communication prediction. | https://pubmed.ncbi.nlm.nih.gov/42185831/ | Journal of translational medicine |  |
+| 2026-07-26 | Single-cell multiomics connects 3D genome and transcriptome alterations in Alzheimer's disease. | https://pubmed.ncbi.nlm.nih.gov/42490473/ | Science (New York, N.Y.) | ⭐ 近期精读 |
+| 2026-07-26 | Lymphoid-like Suppressive Microglia in Alzheimer's Disease: A New Neuroimmune Regulatory Axis? | https://pubmed.ncbi.nlm.nih.gov/42439628/ | Cells |  |
+| 2026-07-26 | Connecting single-cell transcriptomes to projectomes in the mouse visual cortex. | https://pubmed.ncbi.nlm.nih.gov/42386969/ | Nature |  |
+| 2026-07-26 | Thymus-derived myeloid programs track microglial tolerance states across human cohorts. | https://pubmed.ncbi.nlm.nih.gov/42413776/ | Neurochemistry international |  |
+| 2026-07-26 | Morphology-robust quantification of subcellular organization in complex cells. | https://pubmed.ncbi.nlm.nih.gov/42282782/ | bioRxiv : the preprint server for biology |  |
