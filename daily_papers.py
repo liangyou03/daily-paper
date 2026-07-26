@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Daily paper digest: UQ · AI4Health · AI4Omics"""
+"""Daily paper digest for microglial morphology–molecular state research."""
 
 import os, json, time, smtplib, re, requests, feedparser
 from datetime import datetime, timedelta
@@ -11,12 +11,14 @@ from openai import OpenAI
 # ── Search Config ────────────────────────────────────────────────────────────
 
 ARXIV_QUERIES = [
-    "uncertainty quantification machine learning",
-    "conformal prediction",
-    "AI healthcare clinical prediction",
-    "single cell RNA sequencing deep learning",
-    "spatial transcriptomics",
-    "omics foundation model",
+    "microglia morphology computational image analysis",
+    "microglia gene expression spatial transcriptomics",
+    "morphology gene expression multimodal integration",
+    "cell morphology representation learning microscopy",
+    "spatial omics multimodal deep learning",
+    "biomedical image encoder cell morphology",
+    "graph neural network cell morphology skeleton",
+    "unpaired single cell multimodal integration optimal transport contrastive learning",
 ]
 ARXIV_CATS = (
     "cat:cs.LG OR cat:stat.ML OR cat:stat.ME "
@@ -25,18 +27,22 @@ ARXIV_CATS = (
 
 # Classic queries: foundational topics for high-citation older papers
 SS_CLASSIC_QUERIES = [
-    "conformal prediction coverage guarantee",
-    "deep learning electronic health records mortality prediction",
-    "single cell RNA sequencing dimensionality reduction",
+    "microglia morphology activation ramification Alzheimer disease",
+    "cell morphology gene expression integration",
+    "Patch-seq morphology transcriptomics neural cells",
+    "spatial transcriptomics computational methods",
+    "multimodal single cell integration CCA optimal transport contrastive learning",
 ]
 
 PUBMED_QUERIES = [
-    "deep learning single cell RNA sequencing",
-    "uncertainty quantification clinical prediction model",
-    "spatial transcriptomics machine learning",
+    "microglia morphology gene expression",
+    "microglia spatial transcriptomics Alzheimer disease",
+    "cell morphology transcriptomics multimodal integration",
+    "microscopy image representation learning cell morphology",
+    "Patch-seq morphology transcriptomics",
 ]
 
-# Top journals relevant to UQ / AI4Health / AI4Omics
+# Top journals relevant to microglia, spatial omics, and computational imaging
 JOURNAL_FILTER = (
     '"Nature"[Journal] OR "Nature Methods"[Journal] OR "Nature Biotechnology"[Journal] OR '
     '"Nature Medicine"[Journal] OR "Nature Communications"[Journal] OR '
@@ -47,8 +53,9 @@ JOURNAL_FILTER = (
     '"Genome Research"[Journal] OR "Journal of Machine Learning Research"[Journal]'
 )
 JOURNAL_CONTENT_QUERY = (
-    "(deep learning OR machine learning OR uncertainty quantification OR "
-    "conformal prediction OR single cell OR spatial transcriptomics OR foundation model)"
+    "((microglia AND (morphology OR spatial transcriptomics OR gene expression)) OR "
+    "(cell morphology AND (transcriptomics OR representation learning)) OR "
+    "(multimodal AND (single cell OR spatial omics OR microscopy)))"
 )
 
 MAX_RECENT  = 40
@@ -94,15 +101,19 @@ def save_history(papers: list[dict]):
 
 def tag_domain(p: dict) -> str:
     text = (p.get("title", "") + " " + p.get("abstract", "")).lower()
-    if any(k in text for k in ["conformal", "uncertainty quantification", "coverage guarantee",
-                                "prediction interval", "calibration uncertainty", "credible interval"]):
-        return "UQ"
-    if any(k in text for k in ["icu", "ehr", "electronic health", "clinical prediction",
-                                "hospital mortality", "sepsis", "patient outcome", "intensive care"]):
-        return "AI4Health"
-    if any(k in text for k in ["single cell", "scrna", "spatial transcriptomics",
-                                "omics", "rna-seq", "sequencing", "genomics", "cell type"]):
-        return "AI4Omics"
+    if any(k in text for k in ["benchmark", "held-out", "held out", "cross-dataset",
+                                "external validation", "negative control"]):
+        return "Benchmark"
+    if any(k in text for k in ["microglia", "microglial", "ramification", "ameboid",
+                                "amoeboid", "process complexity"]):
+        return "MicrogliaMorphology"
+    if any(k in text for k in ["contrastive", "multimodal", "multi-modal", "optimal transport",
+                                "adversarial autoencoder", "image encoder", "graph neural network",
+                                "patch-seq", "morphology transcriptomics"]):
+        return "MultimodalAI"
+    if any(k in text for k in ["spatial transcriptomics", "spatial omics", "visium",
+                                "gene expression", "single cell", "scrna", "rna-seq"]):
+        return "SpatialOmics"
     return "other"
 
 
@@ -277,7 +288,8 @@ def deduplicate(papers: list[dict], history_keys: set[str]) -> list[dict]:
 
 def balance_pool(papers: list[dict], cap: int) -> list[dict]:
     """Interleave by domain; within each domain, journal papers first."""
-    buckets: dict[str, list] = {"UQ": [], "AI4Health": [], "AI4Omics": [], "other": []}
+    domains = ["MicrogliaMorphology", "SpatialOmics", "MultimodalAI", "Benchmark", "other"]
+    buckets: dict[str, list] = {domain: [] for domain in domains}
     for p in papers:
         buckets[p.get("domain", "other")].append(p)
 
@@ -288,26 +300,27 @@ def balance_pool(papers: list[dict], cap: int) -> list[dict]:
         )
 
     balanced = []
-    per_domain = max(8, cap // 4)
-    for domain in ["UQ", "AI4Health", "AI4Omics", "other"]:
+    per_domain = max(8, cap // len(domains))
+    for domain in domains:
         balanced.extend(journal_first(buckets[domain])[:per_domain])
     return balanced[:cap]
 
 
-# ── GLM Selection ────────────────────────────────────────────────────────────
+# ── DeepSeek Selection ───────────────────────────────────────────────────────
 
 RESEARCHER_BIO = """PhD student in Biostatistics, University of Pittsburgh.
 Current research:
-1. Uncertainty Quantification / Conformal Prediction — especially for simplex-valued predictions and clinical ICU data with missingness (Mondrian CP, coverage theory)
-2. ML for Healthcare — ICU outcome prediction, domain shift, GOSSIS/MIMIC datasets
-3. Computational Biology — spatial transcriptomics, single-cell omics, cell segmentation, IF imaging
-Target venues: NeurIPS, ICML, ICLR (Datasets & Benchmarks track included)."""
+1. Biological question: when microglial morphology and molecular state are coupled versus decoupled, especially in aging and Alzheimer's disease.
+2. Data: segmented microglia from multiplex immunofluorescence images, Visium with protein co-detection, spatial transcriptomics, and potentially unpaired morphology/transcriptomic datasets.
+3. AI methods: classical morphology features, CAJAL, image encoders, skeleton GNNs; CCA, optimal transport, contrastive learning, and adversarial representation alignment such as GeoAdvAE.
+4. Benchmark design: donor-held-out, region-held-out, and dataset-held-out evaluation, plus permutation, batch-only prediction, and staining-quality negative controls.
+The dissertation should emphasize reusable AI-for-Science methodology while answering a concrete biological question."""
 
 
 def select_papers(recent: list[dict], classics: list[dict], recent_history: list[str]) -> list[dict]:
     client = OpenAI(
-        api_key=os.environ["GLM_API_KEY"],
-        base_url="https://open.bigmodel.cn/api/paas/v4",
+        api_key=os.environ["DEEPSEEK_API_KEY"],
+        base_url="https://api.deepseek.com",
     )
 
     def fmt(papers, label):
@@ -326,10 +339,12 @@ def select_papers(recent: list[dict], classics: list[dict], recent_history: list
         history_note = f"\nPapers recommended in the last 7 days (avoid thematic repetition):\n{titles}\n"
 
     diversity_rule = """
-Domain diversity rule: You MUST select at least 1 paper from EACH of the three domains:
-  - UQ (Uncertainty Quantification / Conformal Prediction)
-  - AI4Health (ICU, EHR, clinical ML)
-  - AI4Omics (single-cell, spatial transcriptomics, omics)
+Relevance rule: Every selected paper must directly help the dissertation described above. Exclude generic clinical-prediction papers that do not inform this project.
+Coverage rule: Across the five papers, cover at least three of these domains and include at least one morphology paper and one multimodal-integration paper:
+  - MicrogliaMorphology (microglial biology, morphology, activation, aging, Alzheimer's disease)
+  - SpatialOmics (spatial transcriptomics, Visium, single-cell molecular states)
+  - MultimodalAI (morphology–expression alignment, Patch-seq, CCA, OT, contrastive/adversarial learning, image or graph encoders)
+  - Benchmark (cross-donor/region/dataset generalization, controls, reproducibility)
 Journal preference rule: When quality is comparable, STRONGLY prefer papers from named journals \
 (Nature, Nature Methods, Nature Biotechnology, Cell, Genome Biology, Science, NEJM, Lancet, JAMA, \
 Bioinformatics, etc.) over arXiv preprints for the RECENT slots.
@@ -347,8 +362,8 @@ Marking rules:
 Return ONLY valid JSON, no markdown fences:
 {{
   "papers": [
-    {{"pool": "recent", "index": <1-based in RECENT>, "domain": "<UQ|AI4Health|AI4Omics|other>", "must_read_tag": "⭐ 近期精读" or "", "why": "<2-3句中文推荐理由>"}},
-    {{"pool": "classic", "index": <1-based in CLASSIC>, "domain": "<UQ|AI4Health|AI4Omics|other>", "must_read_tag": "⭐ 经典精读" or "", "why": "<2-3句中文推荐理由>"}}
+    {{"pool": "recent", "index": <1-based in RECENT>, "domain": "<MicrogliaMorphology|SpatialOmics|MultimodalAI|Benchmark|other>", "must_read_tag": "⭐ 近期精读" or "", "why": "<2-3句中文推荐理由，明确说明它对 dissertation 的具体用途>"}},
+    {{"pool": "classic", "index": <1-based in CLASSIC>, "domain": "<MicrogliaMorphology|SpatialOmics|MultimodalAI|Benchmark|other>", "must_read_tag": "⭐ 经典精读" or "", "why": "<2-3句中文推荐理由，明确说明它对 dissertation 的具体用途>"}}
   ]
 }}
 
@@ -367,7 +382,7 @@ Marking rules:
 Return ONLY valid JSON, no markdown fences:
 {{
   "papers": [
-    {{"pool": "recent", "index": <1-based>, "domain": "<UQ|AI4Health|AI4Omics|other>", "must_read_tag": "⭐ 近期精读" or "", "why": "<2-3句中文推荐理由>"}}
+    {{"pool": "recent", "index": <1-based>, "domain": "<MicrogliaMorphology|SpatialOmics|MultimodalAI|Benchmark|other>", "must_read_tag": "⭐ 近期精读" or "", "why": "<2-3句中文推荐理由，明确说明它对 dissertation 的具体用途>"}}
   ]
 }}
 
@@ -379,7 +394,7 @@ RECENT papers ({len(recent)} candidates):
 {history_note}
 {task}"""
 
-    models = ["glm-5", "glm-4-plus"]
+    models = [os.environ.get("DEEPSEEK_MODEL", "deepseek-v4-pro")]
     messages = [
         {"role": "system", "content": "You are a research paper recommendation assistant. Always respond with valid JSON only."},
         {"role": "user", "content": prompt},
@@ -389,7 +404,8 @@ RECENT papers ({len(recent)} candidates):
     for model in models:
         for attempt in range(2):
             resp = client.chat.completions.create(
-                model=model, max_tokens=1500, messages=messages,
+                model=model, max_tokens=2000, messages=messages,
+                response_format={"type": "json_object"},
             )
             text = (resp.choices[0].message.content or "").strip()
             text = text.lstrip("```json").lstrip("```").rstrip("```").strip()
@@ -409,7 +425,7 @@ RECENT papers ({len(recent)} candidates):
             break
 
     if not result:
-        raise RuntimeError("All GLM models failed to return valid JSON")
+        raise RuntimeError("DeepSeek failed to return valid JSON")
 
     selected = []
     for item in result["papers"]:
@@ -462,7 +478,7 @@ def build_html(papers: list[dict]) -> str:
 <div style="max-width:580px;margin:0 auto;">
   <div style="background:#1565c0;color:#fff;padding:18px 22px;border-radius:8px 8px 0 0;">
     <h2 style="margin:0;font-size:17px;">📚 每日论文推荐 · {today}</h2>
-    <p style="margin:4px 0 0;font-size:12px;opacity:.8;">UQ · AI4Health · AI4Omics | {len(papers)} 篇推荐 · {must_count} 篇精读 | Powered by GLM</p>
+    <p style="margin:4px 0 0;font-size:12px;opacity:.8;">Microglia · Morphology × Molecular State · Multimodal AI | {len(papers)} 篇推荐 · {must_count} 篇精读 | Powered by DeepSeek</p>
   </div>
   <div style="padding:14px 0;">{cards}</div>
   <p style="text-align:center;color:#aaa;font-size:11px;margin-top:4px;">
@@ -521,7 +537,8 @@ def main():
     recent_pool = deduplicate(recent_pool, history_keys)
     print(f"Recent candidates after dedup: {len(recent_pool)}")
     recent_pool = balance_pool(recent_pool, MAX_RECENT)
-    print(f"Recent pool after balancing: {len(recent_pool)} | domains: { {d: sum(1 for p in recent_pool if p.get('domain')==d) for d in ['UQ','AI4Health','AI4Omics','other']} }")
+    domains = ["MicrogliaMorphology", "SpatialOmics", "MultimodalAI", "Benchmark", "other"]
+    print(f"Recent pool after balancing: {len(recent_pool)} | domains: { {d: sum(1 for p in recent_pool if p.get('domain')==d) for d in domains} }")
 
     # ── Classic pool ──
     classic_pool = []
@@ -540,7 +557,7 @@ def main():
     classic_pool = classic_pool[:MAX_CLASSIC]
     print(f"Classic candidates after dedup: {len(classic_pool)}")
 
-    print("Asking GLM to select...")
+    print("Asking DeepSeek to select...")
     selected = select_papers(recent_pool, classic_pool, recent_history)
 
     print("Sending email...")
