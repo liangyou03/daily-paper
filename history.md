@@ -295,3 +295,6 @@
 | 2026-07-26 | Connecting single-cell transcriptomes to projectomes in the mouse visual cortex. | https://pubmed.ncbi.nlm.nih.gov/42386969/ | Nature |  |
 | 2026-07-26 | Thymus-derived myeloid programs track microglial tolerance states across human cohorts. | https://pubmed.ncbi.nlm.nih.gov/42413776/ | Neurochemistry international |  |
 | 2026-07-26 | Morphology-robust quantification of subcellular organization in complex cells. | https://pubmed.ncbi.nlm.nih.gov/42282782/ | bioRxiv : the preprint server for biology |  |
+| 2026-07-26 | Integrating morphology and gene expression of neural cells in unpaired single-cell data using GeoAdvAE. | https://pubmed.ncbi.nlm.nih.gov/42427640/ | bioRxiv : the preprint server for biology | ⭐ 今日精读 |
+| 2026-07-26 | Multimodal imaging of gene expression, morphology, and activity of the same neuron. | https://pubmed.ncbi.nlm.nih.gov/42314668/ | Cell |  |
+| 2026-07-26 | Effect of Caffeine on Cell Death, Oxidative Stress, and Microglial Morphology in a Ferret Organotypic Brain Slice Model of Hypoxia-Ischemia. | https://pubmed.ncbi.nlm.nih.gov/42496326/ | NeuroSci |  |
