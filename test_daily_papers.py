@@ -1,6 +1,7 @@
 import sys
 import types
 import unittest
+from unittest.mock import patch
 from pathlib import Path
 
 sys.modules.setdefault("feedparser", types.SimpleNamespace(parse=lambda *_args, **_kwargs: None))
@@ -49,6 +50,39 @@ class DissertationDigestConfigTests(unittest.TestCase):
         self.assertIn("Microglia", html)
         self.assertNotIn("UQ", html)
         self.assertNotIn("GLM", html)
+
+    def test_deepseek_selection_disables_thinking_for_json(self):
+        captured = {}
+
+        class FakeCompletions:
+            def create(self, **kwargs):
+                captured.update(kwargs)
+                message = types.SimpleNamespace(
+                    content='{"papers":[{"pool":"recent","index":1,"domain":"SpatialOmics","must_read_tag":"","why":"relevant"}]}'
+                )
+                return types.SimpleNamespace(
+                    choices=[types.SimpleNamespace(message=message)]
+                )
+
+        fake_client = types.SimpleNamespace(
+            chat=types.SimpleNamespace(completions=FakeCompletions())
+        )
+        paper = {
+            "title": "Microglia in spatial transcriptomics",
+            "abstract": "Abstract",
+            "authors": "Author",
+            "source": "Journal",
+            "domain": "SpatialOmics",
+            "url": "https://example.com",
+            "year": 2026,
+        }
+
+        with patch.object(daily_papers, "OpenAI", return_value=fake_client), patch.dict(
+            daily_papers.os.environ, {"DEEPSEEK_API_KEY": "test-key"}
+        ):
+            daily_papers.select_papers([paper], [], [])
+
+        self.assertEqual(captured.get("extra_body"), {"thinking": {"type": "disabled"}})
 
 
 if __name__ == "__main__":

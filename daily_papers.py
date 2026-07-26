@@ -406,6 +406,7 @@ RECENT papers ({len(recent)} candidates):
             resp = client.chat.completions.create(
                 model=model, max_tokens=2000, messages=messages,
                 response_format={"type": "json_object"},
+                extra_body={"thinking": {"type": "disabled"}},
             )
             text = (resp.choices[0].message.content or "").strip()
             text = text.lstrip("```json").lstrip("```").rstrip("```").strip()
