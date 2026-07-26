@@ -471,11 +471,11 @@ def build_html(papers: list[dict]) -> str:
     for number, p in enumerate(papers, start=1):
         tag = p.get("must_read_tag", "")
         if tag:
-            badge = f'<span style="background:#f59e0b;color:#422006;padding:4px 9px;border-radius:999px;font-size:11px;font-weight:700;">{html.escape(tag)}</span>'
-            border = "border:1px solid #f6d58a;"
+            badge = f'<span style="background:#cc785c;color:#fffaf4;padding:4px 10px;border-radius:999px;font-size:11px;font-weight:700;">{html.escape(tag)}</span>'
+            border = "border:1px solid #d9b4a6;"
         else:
             badge = ""
-            border = "border:1px solid #e2e8f0;"
+            border = "border:1px solid #ded8cf;"
 
         year_str = f" · {p['year']}" if p.get("year") else ""
         title = html.escape(p["title"])
@@ -488,45 +488,45 @@ def build_html(papers: list[dict]) -> str:
         innovation = html.escape(p.get("innovation", "摘要未提供足够信息判断具体创新。"))
         learn = html.escape(p.get("learn", p.get("why", "建议先阅读摘要、图表和结论。")))
         cards += f"""
-        <div style="background:#ffffff;{border}border-radius:14px;padding:24px;margin-bottom:18px;box-shadow:0 8px 24px rgba(15,23,42,.06);">
+        <div style="background:#fffdfa;{border}border-radius:14px;padding:25px;margin-bottom:18px;box-shadow:0 5px 18px rgba(58,48,42,.055);">
           <div style="margin-bottom:12px;">
-            <span style="display:inline-block;background:#0f766e;color:#fff;width:25px;height:25px;line-height:25px;text-align:center;border-radius:7px;font-size:12px;font-weight:800;margin-right:7px;">{number}</span>
-            <span style="color:#0f766e;font-size:10px;font-weight:800;letter-spacing:1px;">{domain}</span>
+            <span style="display:inline-block;background:#cc785c;color:#fffaf4;width:25px;height:25px;line-height:25px;text-align:center;border-radius:50%;font-size:12px;font-weight:700;margin-right:7px;">{number}</span>
+            <span style="color:#9a5b46;font-size:10px;font-weight:800;letter-spacing:1px;">{domain}</span>
             <span style="float:right;">{badge}</span>
           </div>
-          <h2 style="margin:0 0 7px;font-size:17px;line-height:1.45;">
-            <a href="{url}" style="color:#0f172a;text-decoration:none;">{title}</a>
+          <h2 style="margin:0 0 7px;font-family:Georgia,'Times New Roman',serif;font-size:18px;font-weight:500;line-height:1.45;">
+            <a href="{url}" style="color:#2d2a26;text-decoration:none;">{title}</a>
           </h2>
-          <p style="margin:0 0 15px;color:#64748b;font-size:11px;line-height:1.5;">{authors}<br>{source}</p>
-          <div style="background:#ecfdf5;border-left:4px solid #10b981;padding:12px 14px;border-radius:0 8px 8px 0;margin-bottom:16px;color:#064e3b;font-size:13px;font-weight:650;line-height:1.7;">
-            <span style="display:block;color:#047857;font-size:10px;font-weight:800;letter-spacing:.8px;margin-bottom:3px;">一句话看懂</span>{one_liner}
+          <p style="margin:0 0 16px;color:#756f68;font-size:11px;line-height:1.55;">{authors}<br>{source}</p>
+          <div style="background:#f3e6df;border-left:4px solid #cc785c;padding:13px 15px;border-radius:0 8px 8px 0;margin-bottom:18px;color:#3d302b;font-size:13px;font-weight:600;line-height:1.75;">
+            <span style="display:block;color:#9a5b46;font-size:10px;font-weight:800;letter-spacing:.8px;margin-bottom:3px;">一句话看懂</span>{one_liner}
           </div>
           <div style="margin-bottom:14px;">
-            <div style="color:#0f766e;font-size:12px;font-weight:800;margin-bottom:5px;">01 · 论文做了什么</div>
-            <div style="color:#334155;font-size:13px;line-height:1.75;">{what}</div>
+            <div style="color:#9a5b46;font-size:12px;font-weight:800;margin-bottom:5px;">01 · 论文做了什么</div>
+            <div style="color:#3d3a36;font-size:13px;line-height:1.8;">{what}</div>
           </div>
           <div style="margin-bottom:14px;">
-            <div style="color:#7c3aed;font-size:12px;font-weight:800;margin-bottom:5px;">02 · 创新在哪里</div>
-            <div style="color:#334155;font-size:13px;line-height:1.75;">{innovation}</div>
+            <div style="color:#806b5c;font-size:12px;font-weight:800;margin-bottom:5px;">02 · 创新在哪里</div>
+            <div style="color:#3d3a36;font-size:13px;line-height:1.8;">{innovation}</div>
           </div>
-          <div style="background:#f8fafc;border-radius:9px;padding:12px 14px;">
-            <div style="color:#b45309;font-size:12px;font-weight:800;margin-bottom:5px;">03 · 你应该学什么</div>
-            <div style="color:#334155;font-size:13px;line-height:1.75;">{learn}</div>
+          <div style="background:#f2eee7;border-radius:9px;padding:13px 15px;">
+            <div style="color:#9a5b46;font-size:12px;font-weight:800;margin-bottom:5px;">03 · 你应该学什么</div>
+            <div style="color:#3d3a36;font-size:13px;line-height:1.8;">{learn}</div>
           </div>
         </div>"""
 
     must_count = sum(1 for p in papers if p.get("must_read"))
-    return f"""<html><body style="margin:0;padding:24px 12px;background:#f1f5f9;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC',sans-serif;">
+    return f"""<html><body style="margin:0;padding:24px 12px;background:#f7f4ed;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC',sans-serif;">
 <div style="max-width:650px;margin:0 auto;">
-  <div style="background:#0f172a;color:#fff;padding:27px 26px;border-radius:16px;margin-bottom:18px;box-shadow:0 10px 28px rgba(15,23,42,.18);">
-    <div style="color:#5eead4;font-size:10px;font-weight:800;letter-spacing:1.4px;margin-bottom:8px;">DISSERTATION READING BRIEF</div>
-    <h1 style="margin:0 0 8px;font-size:22px;line-height:1.3;">Microglia × Multimodal AI</h1>
-    <p style="margin:0;color:#cbd5e1;font-size:12px;line-height:1.6;">{today} · {len(papers)} 篇精选 · {must_count} 篇今日精读<br>Morphology · Molecular State · Spatial Omics · Benchmark</p>
+  <div style="background:#2d2a26;color:#fffaf4;padding:29px 27px;border-radius:16px;margin-bottom:18px;box-shadow:0 8px 24px rgba(58,48,42,.16);">
+    <div style="color:#e7a58e;font-size:10px;font-weight:800;letter-spacing:1.4px;margin-bottom:9px;">DISSERTATION READING BRIEF</div>
+    <h1 style="margin:0 0 9px;font-family:Georgia,'Times New Roman',serif;font-size:24px;font-weight:500;line-height:1.3;">Microglia × Multimodal AI</h1>
+    <p style="margin:0;color:#d8d1c8;font-size:12px;line-height:1.65;">{today} · {len(papers)} 篇精选 · {must_count} 篇今日精读<br>Morphology · Molecular State · Spatial Omics · Benchmark</p>
   </div>
   {cards}
-  <p style="text-align:center;color:#94a3b8;font-size:11px;line-height:1.7;margin:22px 0;">
+  <p style="text-align:center;color:#8b8279;font-size:11px;line-height:1.7;margin:22px 0;">
     按 Keshav three-pass method 设计的第一遍阅读摘要 · Powered by DeepSeek<br>
-    <a href="{REPO_URL}/blob/main/history.md" style="color:#0f766e;text-decoration:none;">查看往期推荐 →</a>
+    <a href="{REPO_URL}/blob/main/history.md" style="color:#b5654b;text-decoration:none;">查看往期推荐 →</a>
   </p>
 </div>
 </body></html>"""

@@ -65,6 +65,9 @@ class DissertationDigestConfigTests(unittest.TestCase):
         self.assertIn("论文做了什么", html)
         self.assertIn("创新在哪里", html)
         self.assertIn("你应该学什么", html)
+        self.assertIn("#cc785c", html)
+        self.assertIn("#f7f4ed", html)
+        self.assertIn("Georgia", html)
         self.assertNotIn("UQ", html)
         self.assertNotIn("GLM", html)
 
