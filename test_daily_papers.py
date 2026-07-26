@@ -1,6 +1,7 @@
 import sys
 import types
 import unittest
+import tempfile
 from unittest.mock import patch
 from pathlib import Path
 
@@ -88,6 +89,24 @@ class DissertationDigestConfigTests(unittest.TestCase):
         self.assertIn("Dissertation Reading Brief", subject)
         self.assertIn("Segmentation to Cell State", subject)
         self.assertNotIn("篇", subject)
+
+    def test_glossary_terms_are_never_repeated(self):
+        glossary = [
+            {"term_en": "  Spatial   transcriptomics ", "term_zh": "空间转录组"},
+            {"term_en": "Ramification", "term_zh": "分支化"},
+            {"term_en": "ramification", "term_zh": "重复项"},
+        ]
+        filtered = daily_papers.filter_new_glossary_terms(
+            glossary, {"spatial transcriptomics"}
+        )
+        self.assertEqual([term["term_en"] for term in filtered], ["Ramification"])
+
+    def test_glossary_history_round_trip(self):
+        terms = [{"term_en": "Ramification", "term_zh": "分支化"}]
+        with tempfile.TemporaryDirectory() as tmpdir:
+            path = Path(tmpdir) / "glossary_history.md"
+            daily_papers.save_glossary_history(terms, path)
+            self.assertEqual(daily_papers.load_glossary_history(path), {"ramification"})
 
     def test_deepseek_selection_disables_thinking_for_json(self):
         captured = {}

@@ -70,6 +70,7 @@ JOURNAL_CONTENT_QUERY = (
 MAX_RECENT  = 40
 MAX_CLASSIC = 15
 HISTORY_FILE = "history.md"
+GLOSSARY_HISTORY_FILE = "glossary_history.md"
 CLASSIC_YEAR_CUTOFF = datetime.now().year - 3
 RECENT_YEAR_CUTOFF  = datetime.now().year - 1
 
@@ -104,6 +105,56 @@ def save_history(papers: list[dict]):
             tag = p.get("must_read_tag", "⭐" if p.get("must_read") else "")
             title = p["title"].replace("|", "\\|")
             f.write(f"| {today} | {title} | {p['url']} | {p['source']} | {tag} |\n")
+
+
+def normalize_glossary_term(term: str) -> str:
+    """Normalize spelling and punctuation so cosmetic variants count as repeats."""
+    return " ".join(re.sub(r"[^\w]+", " ", term.casefold()).split())
+
+
+def load_glossary_history(path=GLOSSARY_HISTORY_FILE) -> set[str]:
+    path = os.fspath(path)
+    if not os.path.exists(path):
+        return set()
+    seen = set()
+    with open(path, "r", encoding="utf-8") as f:
+        for line in f:
+            match = re.match(r"^\|\s*\d{4}-\d{2}-\d{2}\s*\|\s*(.+?)\s*\|", line)
+            if match:
+                key = normalize_glossary_term(match.group(1))
+                if key:
+                    seen.add(key)
+    return seen
+
+
+def filter_new_glossary_terms(glossary: list[dict], seen_terms: set[str]) -> list[dict]:
+    """Remove terms used in earlier emails and duplicates within today's glossary."""
+    used = set(seen_terms)
+    filtered = []
+    for term in glossary:
+        key = normalize_glossary_term(term.get("term_en", ""))
+        if not key or key in used:
+            continue
+        used.add(key)
+        cleaned = term.copy()
+        cleaned["term_en"] = " ".join(term["term_en"].split())
+        filtered.append(cleaned)
+    return filtered
+
+
+def save_glossary_history(glossary: list[dict], path=GLOSSARY_HISTORY_FILE):
+    if not glossary:
+        return
+    path = os.fspath(path)
+    is_new = not os.path.exists(path) or os.path.getsize(path) == 0
+    today = datetime.now().strftime("%Y-%m-%d")
+    with open(path, "a", encoding="utf-8") as f:
+        if is_new:
+            f.write("# Glossary History\n\n| Date | English term | 中文术语 |\n|---|---|---|\n")
+        for term in glossary:
+            term_en = term.get("term_en", "").replace("|", "\\|")
+            term_zh = term.get("term_zh", "").replace("|", "\\|")
+            f.write(f"| {today} | {term_en} | {term_zh} |\n")
 
 
 # ── Domain Tagger ─────────────────────────────────────────────────────────────
@@ -327,7 +378,8 @@ Current research:
 The dissertation should emphasize reusable AI-for-Science methodology while answering a concrete biological question."""
 
 
-def select_papers(recent: list[dict], classics: list[dict], recent_history: list[str]) -> list[dict]:
+def select_papers(recent: list[dict], classics: list[dict], recent_history: list[str],
+                  seen_glossary_terms: set[str] | None = None) -> tuple[list[dict], list[dict]]:
     client = OpenAI(
         api_key=os.environ["DEEPSEEK_API_KEY"],
         base_url="https://api.deepseek.com",
@@ -347,6 +399,15 @@ def select_papers(recent: list[dict], classics: list[dict], recent_history: list
     if recent_history:
         titles = "\n".join(f"- {t}" for t in recent_history[-14:])
         history_note = f"\nPapers recommended in the last 7 days (avoid thematic repetition):\n{titles}\n"
+
+    seen_glossary_terms = seen_glossary_terms or set()
+    glossary_history_note = ""
+    if seen_glossary_terms:
+        used_terms = "\n".join(f"- {term}" for term in sorted(seen_glossary_terms))
+        glossary_history_note = f"""
+The following glossary terms have already appeared in earlier emails. NEVER use any of them again, including capitalization, spacing, punctuation, singular/plural, abbreviation, or trivial wording variants. Choose genuinely new concepts instead:
+{used_terms}
+"""
 
     diversity_rule = """
 Relevance rule: Every selected paper must directly help the dissertation described above. Exclude generic clinical-prediction papers that do not inform this project.
@@ -417,6 +478,7 @@ RECENT papers ({len(recent)} candidates):
     prompt = f"""You are a research paper recommendation assistant for this researcher:
 {RESEARCHER_BIO}
 {history_note}
+{glossary_history_note}
 {task}"""
 
     models = [os.environ.get("DEEPSEEK_MODEL", "deepseek-v4-pro")]
@@ -468,7 +530,8 @@ RECENT papers ({len(recent)} candidates):
         p["innovation"] = item.get("innovation", "The abstract does not provide enough detail to judge the specific novelty.")
         p["learn"] = item.get("learn", item.get("why", ""))
         selected.append(p)
-    return selected, result.get("glossary", [])[:8]
+    glossary = filter_new_glossary_terms(result.get("glossary", []), seen_glossary_terms)
+    return selected, glossary[:8]
 
 
 # ── Email ─────────────────────────────────────────────────────────────────────
@@ -597,7 +660,9 @@ def send_email(papers: list[dict], glossary: list[dict]):
 
 def main():
     history_keys, recent_history = load_history()
+    seen_glossary_terms = load_glossary_history()
     print(f"History: {len(history_keys)} papers seen, {len(recent_history)} in last 7 days")
+    print(f"Glossary history: {len(seen_glossary_terms)} terms seen")
 
     # ── Recent pool ──
     recent_pool = []
@@ -644,13 +709,16 @@ def main():
     print(f"Classic candidates after dedup: {len(classic_pool)}")
 
     print("Asking DeepSeek to select...")
-    selected, glossary = select_papers(recent_pool, classic_pool, recent_history)
+    selected, glossary = select_papers(
+        recent_pool, classic_pool, recent_history, seen_glossary_terms
+    )
 
     print("Sending email...")
     send_email(selected, glossary)
 
     print("Saving history...")
     save_history(selected)
+    save_glossary_history(glossary)
 
 
 if __name__ == "__main__":

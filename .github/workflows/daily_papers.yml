@@ -37,5 +37,5 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add history.md
+          git add history.md glossary_history.md
           git diff --cached --quiet || (git commit -m "📚 update history $(date +%Y-%m-%d)" && git push)
