@@ -301,3 +301,6 @@
 | 2026-07-26 | Epigenetic and 3D genome reprogramming during the aging of the human hippocampus. | https://pubmed.ncbi.nlm.nih.gov/42490474/ | Science (New York, N.Y.) | TODAY'S PICK |
 | 2026-07-26 | MultiST: A Cross-Attention-Based Multimodal Model for Spatial Transcriptomic | https://arxiv.org/abs/2601.13331v1 | arXiv |  |
 | 2026-07-26 | Heterogenous microglial reactivity contrasts with stable vascular transcriptional programs in mouse models of Alzheimer's, CADASIL, and Traumatic Brain Injury. | https://pubmed.ncbi.nlm.nih.gov/42463666/ | Nature communications |  |
+| 2026-07-27 | Border-Associated Macrophages in CNS Health and Disease: A Comprehensive Review of Ontogeny, Heterogeneity, and Functional Plasticity at Neural Interfaces. | https://pubmed.ncbi.nlm.nih.gov/42397694/ | ASN neuro |  |
+| 2026-07-27 | Human IL-34 Deficiency Primes Microglia Toward Alzheimer's Disease-Associated States. | https://pubmed.ncbi.nlm.nih.gov/42396292/ | medRxiv : the preprint server for health sciences |  |
+| 2026-07-27 | Morphoelectric Diversity and Specialization of Neuronal Cell Types in the Primate Striatum. | https://pubmed.ncbi.nlm.nih.gov/42124597/ | bioRxiv : the preprint server for biology | TODAY'S PICK |
