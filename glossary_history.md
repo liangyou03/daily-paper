@@ -8,3 +8,8 @@
 | 2026-07-27 | Somatic hypermutation (SHM) | 体细胞高频突变 |
 | 2026-07-27 | Complement system | 补体系统 |
 | 2026-07-27 | Pericytes | 周细胞 |
+| 2026-07-28 | Microglial pyroptosis | 小胶质细胞焦亡 |
+| 2026-07-28 | Histone H3K18 lactylation | 组蛋白H3K18乳酸化 |
+| 2026-07-28 | Lymphocyte activation gene 3 (Lag3) | 淋巴细胞活化基因3（Lag3） |
+| 2026-07-28 | Perioperative neurocognitive disorders (PND) | 围手术期神经认知障碍（PND） |
+| 2026-07-28 | Monomethyl fumarate (MMF) | 富马酸单甲酯（MMF） |
