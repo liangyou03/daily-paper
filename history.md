@@ -307,3 +307,6 @@
 | 2026-07-28 | Histone H3K18 Lactylation Contributes to Perioperative Neurocognitive Disorder Through Immune Checkpoint Lymphocyte Activation Gene 3 Mediated Microglial Pyroptosis. | https://pubmed.ncbi.nlm.nih.gov/42504682/ | CNS neuroscience &amp; therapeutics |  |
 | 2026-07-28 | Seipin modulates Alzheimer's disease pathogenesis by regulating ferroptosis through a glycine-mediated metabolic pathway. | https://pubmed.ncbi.nlm.nih.gov/42479245/ | Metabolic brain disease | TODAY'S PICK |
 | 2026-07-28 | Monomethyl Fumarate Modulates Iron Metabolism and Mitochondrial Function in Microglia with Implications for Multiple Sclerosis Progression. | https://pubmed.ncbi.nlm.nih.gov/42474538/ | Cellular and molecular neurobiology |  |
+| 2026-07-29 | Fus-depleted oligodendrocytes reduce neuronal damage and Alzheimer's disease progression in the AppNL-G-F mouse. | https://pubmed.ncbi.nlm.nih.gov/42403013/ | Brain : a journal of neurology | TODAY'S PICK |
+| 2026-07-29 | Spindle neurons in human cortex possess distinctive firing properties and transcriptomic signatures. | https://pubmed.ncbi.nlm.nih.gov/42120382/ | Nature communications |  |
+| 2026-07-29 | Comprehensive benchmarking of RNA velocity methods across single-cell datasets. | https://pubmed.ncbi.nlm.nih.gov/42509564/ | Genome biology |  |

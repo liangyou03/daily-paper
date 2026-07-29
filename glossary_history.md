@@ -13,3 +13,6 @@
 | 2026-07-28 | Lymphocyte activation gene 3 (Lag3) | 淋巴细胞活化基因3（Lag3） |
 | 2026-07-28 | Perioperative neurocognitive disorders (PND) | 围手术期神经认知障碍（PND） |
 | 2026-07-28 | Monomethyl fumarate (MMF) | 富马酸单甲酯（MMF） |
+| 2026-07-29 | single-cell multimodal profiling | 单细胞多模态分析 |
+| 2026-07-29 | spatial transcriptomics | 空间转录组学 |
+| 2026-07-29 | contrastive learning | 对比学习 |
