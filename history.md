@@ -310,3 +310,6 @@
 | 2026-07-29 | Fus-depleted oligodendrocytes reduce neuronal damage and Alzheimer's disease progression in the AppNL-G-F mouse. | https://pubmed.ncbi.nlm.nih.gov/42403013/ | Brain : a journal of neurology | TODAY'S PICK |
 | 2026-07-29 | Spindle neurons in human cortex possess distinctive firing properties and transcriptomic signatures. | https://pubmed.ncbi.nlm.nih.gov/42120382/ | Nature communications |  |
 | 2026-07-29 | Comprehensive benchmarking of RNA velocity methods across single-cell datasets. | https://pubmed.ncbi.nlm.nih.gov/42509564/ | Genome biology |  |
+| 2026-07-30 | Screening of cell-type-specific meta-programs for drug repurposing in Alzheimer's disease. | https://pubmed.ncbi.nlm.nih.gov/42506875/ | Briefings in bioinformatics | TODAY'S PICK |
+| 2026-07-30 | SOX9 knockdown alleviates A&#x3b2;1&#x2011;42&#x2011;induced neuroinflammation by regulating microglial polarization via inactivation of the ASK1/JNK signaling pathway. | https://pubmed.ncbi.nlm.nih.gov/42525141/ | Journal of molecular histology |  |
+| 2026-07-30 | ModelistsGCN: a multimodal graph convolutional network framework for single-cell spatial transcriptomic cell typing. | https://pubmed.ncbi.nlm.nih.gov/42328843/ | Briefings in bioinformatics |  |
