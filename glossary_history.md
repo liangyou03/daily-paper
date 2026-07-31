@@ -21,3 +21,8 @@
 | 2026-07-30 | SOX9 | SOX9 |
 | 2026-07-30 | graph convolutional network (GCN) | 图卷积网络 |
 | 2026-07-30 | MERFISH | MERFISH（多重抗误差荧光原位杂交） |
+| 2026-07-31 | germinal center | 生发中心 |
+| 2026-07-31 | expansion microscopy | 膨胀显微镜 |
+| 2026-07-31 | late endosomes and lysosomes | 晚期内体和溶酶体 |
+| 2026-07-31 | somatic hypermutation | 体细胞超突变 |
+| 2026-07-31 | 3D genome architecture | 三维基因组结构 |

@@ -313,3 +313,6 @@
 | 2026-07-30 | Screening of cell-type-specific meta-programs for drug repurposing in Alzheimer's disease. | https://pubmed.ncbi.nlm.nih.gov/42506875/ | Briefings in bioinformatics | TODAY'S PICK |
 | 2026-07-30 | SOX9 knockdown alleviates A&#x3b2;1&#x2011;42&#x2011;induced neuroinflammation by regulating microglial polarization via inactivation of the ASK1/JNK signaling pathway. | https://pubmed.ncbi.nlm.nih.gov/42525141/ | Journal of molecular histology |  |
 | 2026-07-30 | ModelistsGCN: a multimodal graph convolutional network framework for single-cell spatial transcriptomic cell typing. | https://pubmed.ncbi.nlm.nih.gov/42328843/ | Briefings in bioinformatics |  |
+| 2026-07-31 | A 3D genome atlas of human tonsil and the role of loop extrusion in B cell somatic hypermutation. | https://pubmed.ncbi.nlm.nih.gov/42490500/ | Science (New York, N.Y.) | TODAY'S PICK |
+| 2026-07-31 | Single-nucleus multimodal spatial transcriptomics reveals spatial colocalization of neoantigen-expressing tumor cells and cognate T cells. | https://pubmed.ncbi.nlm.nih.gov/42486969/ | Nature biotechnology |  |
+| 2026-07-31 | HiExM Enables Scalable Mapping of Organelle Morphology and Spatial Heterogeneity. | https://pubmed.ncbi.nlm.nih.gov/42523444/ | bioRxiv : the preprint server for biology |  |
