@@ -217,6 +217,26 @@ class DissertationDigestConfigTests(unittest.TestCase):
             daily_papers.score_dissertation_relevance(distant),
         )
 
+    def test_journal_qc_removes_mdpi_venues(self):
+        papers = [
+            {"title": "Paper A", "source": "Cells"},
+            {"title": "Paper B", "source": "Brain Sciences"},
+            {"title": "Paper C", "source": "Nature Methods"},
+        ]
+        filtered = daily_papers.filter_journal_quality(papers)
+        self.assertEqual([paper["source"] for paper in filtered], ["Nature Methods"])
+
+    def test_journal_qc_prefers_field_leading_venues(self):
+        self.assertGreater(
+            daily_papers.journal_quality_score({"source": "Nature Methods"}),
+            daily_papers.journal_quality_score({"source": "arXiv"}),
+        )
+
+    def test_selection_prompt_enforces_journal_qc(self):
+        source = (ROOT / "daily_papers.py").read_text()
+        self.assertIn("NEVER select papers from MDPI journals", source)
+        self.assertIn('"venue"', source)
+
 
 if __name__ == "__main__":
     unittest.main()

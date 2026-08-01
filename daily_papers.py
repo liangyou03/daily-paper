@@ -77,6 +77,36 @@ RECENT_YEAR_CUTOFF  = datetime.now().year - 1
 # Sources that are named journals (not preprint servers)
 JOURNAL_SOURCES = {"PubMed", "Semantic Scholar", "arXiv"}  # arXiv excluded below in sort
 
+# Venue QC: MDPI journals are excluded; field-leading venues receive a ranking boost.
+BLOCKED_JOURNALS = {
+    "algorithms", "applied sciences", "bioengineering", "biology", "biomedicines",
+    "brain sciences", "cancers", "cells", "data", "diagnostics", "entropy", "genes",
+    "healthcare", "international journal of molecular sciences", "journal of clinical medicine",
+    "international journal of environmental research and public health", "journal of imaging",
+    "journal of personalized medicine", "life", "medicina", "metabolites", "microorganisms",
+    "molecules", "neurology international", "nutrients", "pathogens", "pharmaceutics",
+    "sensors", "tomography", "vaccines", "viruses",
+}
+
+PREFERRED_JOURNALS = {
+    "nature", "science", "cell", "neuron", "proceedings of the national academy of sciences",
+    "pnas", "genome biology", "genome medicine", "genome research",
+    "nucleic acids research", "bioinformatics", "journal of machine learning research",
+    "medical image analysis", "ieee transactions on medical imaging",
+    "acta neuropathologica", "alzheimer's & dementia", "brain", "brain communications", "glia",
+    "journal of neuroscience", "molecular psychiatry", "elife", "plos biology",
+}
+
+PREFERRED_JOURNAL_PREFIXES = (
+    "nature ", "science ", "cell ", "acta neuropathologica ", "alzheimer's & dementia ",
+)
+
+LOW_PRIORITY_JOURNAL_PATTERNS = (
+    "frontiers in", "scientific reports", "plos one",
+)
+
+PREPRINT_SOURCES = {"arxiv", "biorxiv", "medrxiv", "semantic scholar", "pubmed"}
+
 
 # ── History ──────────────────────────────────────────────────────────────────
 
@@ -209,6 +239,38 @@ def score_dissertation_relevance(p: dict) -> int:
     return score
 
 
+def normalize_journal_name(source: str) -> str:
+    """Normalize venue names for exact blocklist checks and quality ranking."""
+    source = html.unescape(str(source or "")).casefold()
+    source = re.sub(r"\s*\([^)]*\)\s*$", "", source)
+    return " ".join(re.sub(r"[^\w&']+", " ", source).split())
+
+
+def journal_quality_score(p: dict) -> int:
+    """Return 0 for blocked venues, then rank preprints, regular, and preferred journals."""
+    venue = normalize_journal_name(p.get("source", ""))
+    if venue in BLOCKED_JOURNALS:
+        return 0
+    if venue in PREPRINT_SOURCES:
+        return 1
+    if any(pattern in venue for pattern in LOW_PRIORITY_JOURNAL_PATTERNS):
+        return 1
+    if venue in PREFERRED_JOURNALS or venue.startswith(PREFERRED_JOURNAL_PREFIXES):
+        return 4
+    return 2 if venue else 1
+
+
+def filter_journal_quality(papers: list[dict]) -> list[dict]:
+    """Hard-filter blocked journals before papers reach ranking or the LLM."""
+    kept = []
+    for paper in papers:
+        if journal_quality_score(paper) == 0:
+            print(f"[Venue QC] Excluded {paper.get('source', 'unknown')}: {paper.get('title', '')}")
+            continue
+        kept.append(paper)
+    return kept
+
+
 # ── Fetchers ─────────────────────────────────────────────────────────────────
 
 def fetch_arxiv(query: str, n: int = 15) -> list[dict]:
@@ -242,7 +304,7 @@ def fetch_semantic_scholar(query: str, n: int = 10, min_year: int = None, max_ye
                             sort: str = "relevance") -> list[dict]:
     params = {
         "query": query,
-        "fields": "title,abstract,authors,year,url,citationCount",
+        "fields": "title,abstract,authors,year,url,citationCount,venue",
         "limit": n,
     }
     if sort == "citations":
@@ -267,7 +329,8 @@ def fetch_semantic_scholar(query: str, n: int = 10, min_year: int = None, max_ye
                 "abstract": p["abstract"][:600],
                 "authors": ", ".join(a["name"] for a in p.get("authors", [])[:3]),
                 "url": p.get("url", ""),
-                "source": "Semantic Scholar",
+                "source": p.get("venue") or "Semantic Scholar",
+                "venue": p.get("venue", ""),
                 "year": year,
                 "citations": p.get("citationCount", 0),
             })
@@ -370,7 +433,7 @@ def fetch_pubmed_journals(n: int = 12) -> list[dict]:
 
 def deduplicate(papers: list[dict], history_keys: set[str]) -> list[dict]:
     seen, unique = set(), []
-    for p in papers:
+    for p in filter_journal_quality(papers):
         key = p["title"].lower()[:70]
         if key not in seen and key not in history_keys and p["title"]:
             seen.add(key)
@@ -390,7 +453,7 @@ def balance_pool(papers: list[dict], cap: int) -> list[dict]:
             lst,
             key=lambda p: (
                 score_dissertation_relevance(p),
-                p["source"] != "arXiv",
+                journal_quality_score(p),
                 p.get("year") or 0,
             ),
             reverse=True,
@@ -453,9 +516,7 @@ Coverage rule: The three papers should complement each other and, when strong ca
   - SpatialOmics (spatial transcriptomics, Visium, single-cell molecular states)
   - MultimodalAI (morphology–expression alignment, Patch-seq, CCA, OT, contrastive/adversarial learning, image or graph encoders)
   - Benchmark (cross-donor/region/dataset generalization, controls, reproducibility)
-Journal preference rule: When quality is comparable, STRONGLY prefer papers from named journals \
-(Nature, Nature Methods, Nature Biotechnology, Cell, Genome Biology, Science, NEJM, Lancet, JAMA, \
-Bioinformatics, etc.) over arXiv preprints for the RECENT slots.
+Journal quality rule: NEVER select papers from MDPI journals. Prefer field-leading, peer-reviewed venues relevant to this dissertation (for example Nature/Science/Cell family journals, Neuron, Genome Biology, Bioinformatics, Medical Image Analysis, Acta Neuropathologica, Brain, and Glia). Use arXiv or bioRxiv only when a methods paper is unusually important and no comparable peer-reviewed candidate is available. Do not trade away direct dissertation relevance merely for a prestigious journal name.
 Reading-brief rule: Follow the first-pass goals in Keshav's three-pass reading method. Help the reader quickly identify the problem, approach, evidence, contribution, and whether the paper deserves a deeper read. Base every statement only on the supplied metadata and abstract; explicitly say when a detail is unavailable rather than inventing it.
 For every selected paper, write polished, friendly bilingual text for a technically strong reader who is still learning the biology. Use 1–2 short sentences for each field below; keep the English direct and make the Chinese a natural explanation rather than a literal translation:
   - one_liner_en: one polished English sentence stating the paper's question, approach, and headline result.
@@ -861,7 +922,11 @@ def main():
 
     classic_pool = deduplicate(classic_pool, history_keys)
     classic_pool.sort(
-        key=lambda p: (score_dissertation_relevance(p), p.get("citations", 0)),
+        key=lambda p: (
+            score_dissertation_relevance(p),
+            journal_quality_score(p),
+            p.get("citations", 0),
+        ),
         reverse=True,
     )
     classic_pool = classic_pool[:MAX_CLASSIC]
