@@ -319,3 +319,6 @@
 | 2026-08-01 | Integrated In Vivo and In Vitro Analysis of Alpha-Synuclein Aggregation and Neuroinflammatory Amplification in a Composite Parkinson's Disease Model. | https://pubmed.ncbi.nlm.nih.gov/42525302/ | Neurochemical research | TODAY'S PICK |
 | 2026-08-01 | Multimodal characterization of variation in neuronal types in the mouse basal ganglia. | https://pubmed.ncbi.nlm.nih.gov/42395386/ | bioRxiv : the preprint server for biology |  |
 | 2026-08-01 | SpaMTP: integrative statistical analysis and visualization of spatial metabolomics and transcriptomics data. | https://pubmed.ncbi.nlm.nih.gov/42538468/ | Nature methods |  |
+| 2026-08-01 | Multi-Dimensional Transcriptomics Reveals the Prominent Role of Neuroinflammation in Alzheimer's Disease. | https://pubmed.ncbi.nlm.nih.gov/42278544/ | International journal of molecular sciences |  |
+| 2026-08-01 | Integrative transcriptomic analysis identifies meningeal-hippocampal immune communication in Alzheimer's disease. | https://pubmed.ncbi.nlm.nih.gov/42351167/ | Journal of translational medicine | TODAY'S PICK |
+| 2026-08-01 | Grad-CAMO: Learning Interpretable Single-Cell Morphological Profiles from 3D Cell Painting Images | https://arxiv.org/abs/2403.17615v1 | arXiv |  |
