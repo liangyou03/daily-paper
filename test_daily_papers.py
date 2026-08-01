@@ -237,6 +237,44 @@ class DissertationDigestConfigTests(unittest.TestCase):
         self.assertIn("NEVER select papers from MDPI journals", source)
         self.assertIn('"venue"', source)
 
+    def test_pubmed_parser_extracts_concise_article_metadata(self):
+        xml = """
+        <PubmedArticleSet><PubmedArticle><MedlineCitation>
+          <PMID>123</PMID><Article>
+            <Journal><JournalIssue><PubDate><Year>2026</Year></PubDate></JournalIssue>
+              <Title>Neuron</Title></Journal>
+            <ArticleTitle>A concise microglia study</ArticleTitle>
+            <Pagination><MedlinePgn>101-106</MedlinePgn></Pagination>
+            <Abstract><AbstractText>Short abstract.</AbstractText></Abstract>
+            <AuthorList><Author><LastName>Li</LastName><ForeName>Liang</ForeName></Author></AuthorList>
+            <PublicationTypeList><PublicationType>Brief Report</PublicationType></PublicationTypeList>
+          </Article>
+        </MedlineCitation></PubmedArticle></PubmedArticleSet>
+        """
+        paper = daily_papers._parse_pubmed_xml(["123"], xml)[0]
+        self.assertEqual(paper["pages"], "101-106")
+        self.assertEqual(paper["publication_types"], ["Brief Report"])
+
+    def test_short_formats_are_eligible_but_not_prioritized(self):
+        source = (ROOT / "daily_papers.py").read_text()
+        self.assertIn("are fully eligible", source)
+        self.assertIn("do not prefer them", source)
+        self.assertNotIn("article_conciseness_score", source)
+
+    def test_search_and_prompt_allow_relevant_computational_methods(self):
+        source = (ROOT / "daily_papers.py").read_text()
+        search_text = " ".join(daily_papers.ARXIV_QUERIES + daily_papers.PUBMED_QUERIES).lower()
+        self.assertIn("computational biology microglia", search_text)
+        self.assertIn("deep learning microglia", search_text)
+        self.assertIn("Brief Report", source)
+        self.assertIn("must remain directly relevant", source)
+
+    def test_top_journal_search_includes_computational_biology_venues(self):
+        journal_query = daily_papers.JOURNAL_FILTER.lower()
+        self.assertIn("plos computational biology", journal_query)
+        self.assertIn("medical image analysis", journal_query)
+        self.assertIn("patterns", journal_query)
+
 
 if __name__ == "__main__":
     unittest.main()

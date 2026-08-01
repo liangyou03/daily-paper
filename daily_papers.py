@@ -23,6 +23,8 @@ ARXIV_QUERIES = [
     "biomedical image encoder cell morphology",
     "graph neural network cell morphology skeleton",
     "unpaired single cell multimodal integration optimal transport contrastive learning",
+    "computational biology microglia morphology gene expression",
+    "deep learning microglia morphology spatial transcriptomics",
 ]
 ARXIV_CATS = (
     "cat:cs.LG OR cat:stat.ML OR cat:stat.ME "
@@ -49,6 +51,8 @@ PUBMED_QUERIES = [
     "cell morphology transcriptomics multimodal integration",
     "microscopy image representation learning cell morphology",
     "Patch-seq morphology transcriptomics",
+    "computational biology microglia morphology",
+    "deep learning microglia image analysis",
 ]
 
 # Top journals relevant to microglia, spatial omics, and computational imaging
@@ -59,7 +63,10 @@ JOURNAL_FILTER = (
     '"Science"[Journal] OR "Science Translational Medicine"[Journal] OR '
     '"The New England Journal of Medicine"[Journal] OR "Lancet"[Journal] OR '
     '"JAMA"[Journal] OR "Bioinformatics"[Journal] OR "Genome Biology"[Journal] OR '
-    '"Genome Research"[Journal] OR "Journal of Machine Learning Research"[Journal]'
+    '"Genome Research"[Journal] OR "Journal of Machine Learning Research"[Journal] OR '
+    '"PLOS Computational Biology"[Journal] OR "Medical Image Analysis"[Journal] OR '
+    '"Patterns"[Journal] OR "Briefings in Bioinformatics"[Journal] OR '
+    '"Nature Machine Intelligence"[Journal] OR "Nature Computational Science"[Journal]'
 )
 JOURNAL_CONTENT_QUERY = (
     "((microglia AND (morphology OR spatial transcriptomics OR gene expression)) OR "
@@ -95,6 +102,7 @@ PREFERRED_JOURNALS = {
     "medical image analysis", "ieee transactions on medical imaging",
     "acta neuropathologica", "alzheimer's & dementia", "brain", "brain communications", "glia",
     "journal of neuroscience", "molecular psychiatry", "elife", "plos biology",
+    "plos computational biology", "patterns", "briefings in bioinformatics",
 }
 
 PREFERRED_JOURNAL_PREFIXES = (
@@ -304,7 +312,7 @@ def fetch_semantic_scholar(query: str, n: int = 10, min_year: int = None, max_ye
                             sort: str = "relevance") -> list[dict]:
     params = {
         "query": query,
-        "fields": "title,abstract,authors,year,url,citationCount,venue",
+        "fields": "title,abstract,authors,year,url,citationCount,venue,publicationTypes",
         "limit": n,
     }
     if sort == "citations":
@@ -331,6 +339,7 @@ def fetch_semantic_scholar(query: str, n: int = 10, min_year: int = None, max_ye
                 "url": p.get("url", ""),
                 "source": p.get("venue") or "Semantic Scholar",
                 "venue": p.get("venue", ""),
+                "publication_types": p.get("publicationTypes") or [],
                 "year": year,
                 "citations": p.get("citationCount", 0),
             })
@@ -341,36 +350,43 @@ def fetch_semantic_scholar(query: str, n: int = 10, min_year: int = None, max_ye
 
 
 def _parse_pubmed_xml(ids: list[str], xml_text: str, default_source: str = "PubMed") -> list[dict]:
-    """Parse PubMed efetch XML into paper dicts. Extracts journal name when present."""
+    """Parse PubMed XML, including venue and concise-format metadata."""
+    blocks = re.findall(r"<PubmedArticle\b.*?</PubmedArticle>", xml_text, re.DOTALL)
+    blocks_by_id = {}
+    for block in blocks:
+        pmid_m = re.search(r"<PMID[^>]*>(.*?)</PMID>", block, re.DOTALL)
+        if pmid_m:
+            blocks_by_id[re.sub(r"<[^>]+>", "", pmid_m.group(1)).strip()] = block
+
     papers = []
     for uid in ids:
-        title_m = re.search(
-            rf"<PubmedArticle>.*?<PMID[^>]*>{uid}</PMID>.*?<ArticleTitle>(.*?)</ArticleTitle>",
-            xml_text, re.DOTALL
-        )
+        block = blocks_by_id.get(str(uid))
+        if not block:
+            continue
+        title_m = re.search(r"<ArticleTitle>(.*?)</ArticleTitle>", block, re.DOTALL)
         if not title_m:
             continue
-        abstract_m = re.search(
-            rf"<PubmedArticle>.*?<PMID[^>]*>{uid}</PMID>.*?<AbstractText[^>]*>(.*?)</AbstractText>",
-            xml_text, re.DOTALL
-        )
+        abstract_parts = re.findall(r"<AbstractText[^>]*>(.*?)</AbstractText>", block, re.DOTALL)
         author_m = re.search(
-            rf"<PubmedArticle>.*?<PMID[^>]*>{uid}</PMID>.*?<LastName>(.*?)</LastName>.*?<ForeName>(.*?)</ForeName>",
-            xml_text, re.DOTALL
+            r"<LastName>(.*?)</LastName>.*?<ForeName>(.*?)</ForeName>", block, re.DOTALL
         )
-        year_m = re.search(
-            rf"<PubmedArticle>.*?<PMID[^>]*>{uid}</PMID>.*?<PubDate>.*?<Year>(\d{{4}})</Year>",
-            xml_text, re.DOTALL
-        )
-        journal_m = re.search(
-            rf"<PubmedArticle>.*?<PMID[^>]*>{uid}</PMID>.*?<Journal>.*?<Title>(.*?)</Title>",
-            xml_text, re.DOTALL
-        )
-        title    = re.sub(r"<[^>]+>", "", title_m.group(1)).strip()
-        abstract = re.sub(r"<[^>]+>", "", abstract_m.group(1)).strip()[:600] if abstract_m else ""
-        author   = f"{author_m.group(1)} {author_m.group(2)}" if author_m else ""
-        year     = int(year_m.group(1)) if year_m else None
-        source   = journal_m.group(1).strip() if journal_m else default_source
+        year_m = re.search(r"<PubDate>.*?<Year>(\d{4})</Year>", block, re.DOTALL)
+        journal_m = re.search(r"<Journal>.*?<Title>(.*?)</Title>", block, re.DOTALL)
+        pages_m = re.search(r"<MedlinePgn>(.*?)</MedlinePgn>", block, re.DOTALL)
+        publication_types = [
+            html.unescape(re.sub(r"<[^>]+>", "", value)).strip()
+            for value in re.findall(r"<PublicationType[^>]*>(.*?)</PublicationType>", block, re.DOTALL)
+        ]
+
+        title = html.unescape(re.sub(r"<[^>]+>", "", title_m.group(1))).strip()
+        abstract = " ".join(
+            html.unescape(re.sub(r"<[^>]+>", "", part)).strip()
+            for part in abstract_parts
+        )[:600]
+        author = f"{author_m.group(1)} {author_m.group(2)}" if author_m else ""
+        year = int(year_m.group(1)) if year_m else None
+        source = html.unescape(journal_m.group(1)).strip() if journal_m else default_source
+        pages = html.unescape(pages_m.group(1)).strip() if pages_m else ""
         papers.append({
             "title": title,
             "abstract": abstract,
@@ -378,6 +394,8 @@ def _parse_pubmed_xml(ids: list[str], xml_text: str, default_source: str = "PubM
             "url": f"https://pubmed.ncbi.nlm.nih.gov/{uid}/",
             "source": source,
             "year": year,
+            "pages": pages,
+            "publication_types": publication_types,
         })
     return papers
 
@@ -490,6 +508,8 @@ def select_papers(recent: list[dict], classics: list[dict], recent_history: list
             f"[{label}{i+1}] {p['title']} ({p.get('year','?')})\n"
             f"Authors: {p['authors']} | Source: {p['source']} | Domain: {p.get('domain','?')}"
             + (f" | Citations: {p['citations']}" if p.get('citations') else "") + "\n"
+            f"Publication type: {', '.join(map(str, p.get('publication_types', []))) or 'unknown'} | "
+            f"Pages: {p.get('pages') or 'unknown'}\n"
             f"Abstract: {p['abstract']}\n"
             f"URL: {p['url']}"
             for i, p in enumerate(papers)
@@ -517,6 +537,8 @@ Coverage rule: The three papers should complement each other and, when strong ca
   - MultimodalAI (morphology–expression alignment, Patch-seq, CCA, OT, contrastive/adversarial learning, image or graph encoders)
   - Benchmark (cross-donor/region/dataset generalization, controls, reproducibility)
 Journal quality rule: NEVER select papers from MDPI journals. Prefer field-leading, peer-reviewed venues relevant to this dissertation (for example Nature/Science/Cell family journals, Neuron, Genome Biology, Bioinformatics, Medical Image Analysis, Acta Neuropathologica, Brain, and Glia). Use arXiv or bioRxiv only when a methods paper is unusually important and no comparable peer-reviewed candidate is available. Do not trade away direct dissertation relevance merely for a prestigious journal name.
+Article-format rule: Brief Report, Short Communication, Research Letter, Technical Note, and Application Note are fully eligible when scientifically useful; do not prefer them over a stronger full-length paper merely because they are shorter, and do not penalize them for their format.
+Computational methods flexibility: Computational Biology and ML/DL methods papers are welcome, but they must remain directly relevant to microglia, cell morphology, spatial omics, microscopy segmentation, or morphology–expression integration. A generic ML paper with no concrete transfer path is not eligible.
 Reading-brief rule: Follow the first-pass goals in Keshav's three-pass reading method. Help the reader quickly identify the problem, approach, evidence, contribution, and whether the paper deserves a deeper read. Base every statement only on the supplied metadata and abstract; explicitly say when a detail is unavailable rather than inventing it.
 For every selected paper, write polished, friendly bilingual text for a technically strong reader who is still learning the biology. Use 1–2 short sentences for each field below; keep the English direct and make the Chinese a natural explanation rather than a literal translation:
   - one_liner_en: one polished English sentence stating the paper's question, approach, and headline result.
