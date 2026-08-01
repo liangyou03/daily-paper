@@ -60,15 +60,13 @@ class DissertationDigestConfigTests(unittest.TestCase):
             "one_liner_en": "A friendly one-sentence summary.",
             "one_liner_zh": "一句友好的中文摘要。",
             "paper_type": "Interdisciplinary",
-            "paper_type_zh": "交叉学科",
             "data_types": [
-                {"name_en": "Spatial transcriptomics", "name_zh": "空间转录组"},
-                {"name_en": "Immunofluorescence images", "name_zh": "免疫荧光图像"},
+                {"name": "Omics — spatial transcriptomics"},
+                {"name": "Image — multiplex immunofluorescence"},
             ],
             "algorithms": [{
                 "name": "GeoAdvAE",
-                "purpose_en": "Aligns unpaired morphology and expression data.",
-                "purpose_zh": "用于对齐非配对的形态与表达数据。",
+                "purpose": "Aligns unpaired morphology and expression data.",
             }],
             "what": "The question, data, method, and main result.",
             "what_zh": "这篇论文研究了什么、用了什么数据和方法。",
@@ -97,15 +95,18 @@ class DissertationDigestConfigTests(unittest.TestCase):
         self.assertIn("At a glance", html)
         self.assertIn("A friendly one-sentence summary.", html)
         self.assertIn("一句友好的中文摘要。", html)
-        self.assertIn("Paper type · 文章类型", html)
-        self.assertIn("Interdisciplinary · 交叉学科", html)
-        self.assertIn("Data · 数据类型", html)
-        self.assertIn("Spatial transcriptomics · 空间转录组", html)
-        self.assertIn("Immunofluorescence images · 免疫荧光图像", html)
-        self.assertIn("Algorithms · 算法", html)
+        self.assertIn("Paper type", html)
+        self.assertIn("Interdisciplinary", html)
+        self.assertIn("Data types", html)
+        self.assertIn("Omics — spatial transcriptomics", html)
+        self.assertIn("Image — multiplex immunofluorescence", html)
+        self.assertIn("Algorithms", html)
         self.assertIn("GeoAdvAE", html)
         self.assertIn("Aligns unpaired morphology and expression data.", html)
-        self.assertIn("用于对齐非配对的形态与表达数据。", html)
+        self.assertNotIn("Paper type · 文章类型", html)
+        self.assertNotIn("Data · 数据类型", html)
+        self.assertNotIn("Algorithms · 算法", html)
+        self.assertNotIn("交叉学科", html)
         self.assertIn("What this paper did", html)
         self.assertIn("这篇论文研究了什么、用了什么数据和方法。", html)
         self.assertIn("What is genuinely new", html)
@@ -195,9 +196,10 @@ class DissertationDigestConfigTests(unittest.TestCase):
     def test_selection_prompt_extracts_structured_paper_metadata(self):
         source = (ROOT / "daily_papers.py").read_text()
         self.assertIn('"paper_type": "Biology" or "Deep Learning" or "Interdisciplinary"', source)
-        self.assertIn('"paper_type_zh":', source)
         self.assertIn('"data_types":', source)
         self.assertIn('"algorithms":', source)
+        self.assertNotIn('"paper_type_zh":', source)
+        self.assertNotIn('"purpose_zh":', source)
         self.assertIn("actual study data", source)
         self.assertIn("do not infer a specific algorithm", source)
 

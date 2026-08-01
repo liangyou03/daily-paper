@@ -461,9 +461,9 @@ For every selected paper, write polished, friendly bilingual text for a technica
   - one_liner_en: one polished English sentence stating the paper's question, approach, and headline result.
   - one_liner_zh: one natural Chinese sentence conveying the same meaning for quick comprehension.
   - "paper_type": "Biology" or "Deep Learning" or "Interdisciplinary". Use Biology when the main contribution is a biological finding, Deep Learning when it is primarily a model or algorithm paper, and Interdisciplinary when computational methodology and a biological question are both central.
-  - paper_type_zh: use 生物学, 深度学习, or 交叉学科 to match paper_type.
-  - data_types: list the actual study data analyzed in the paper, not modalities mentioned only as background. Return bilingual items such as Image — multiplex immunofluorescence / 图像——多重免疫荧光, Omics — spatial transcriptomics / 组学——空间转录组, Sequencing — scRNA-seq / 测序——单细胞RNA测序, or Morphology features / 形态特征. Use an empty list only if the abstract gives no evidence.
-  - algorithms: list named computational algorithms, model families, or analysis methods actually applied, with a one-sentence bilingual purpose. If no named method is stated, return an empty list; do not infer a specific algorithm from generic phrases such as deep learning or image analysis.
+  - data_types: list the actual study data analyzed in the paper, not modalities mentioned only as background. Return concise English items such as Image — multiplex immunofluorescence, Omics — spatial transcriptomics, Sequencing — scRNA-seq, or Morphology features. Use an empty list only if the abstract gives no evidence.
+  - algorithms: list named computational algorithms, model families, or analysis methods actually applied, with a one-sentence English purpose. If no named method is stated, return an empty list; do not infer a specific algorithm from generic phrases such as deep learning or image analysis.
+Keep paper_type, data_types, and algorithms entirely in English. Other reading-brief fields remain bilingual as specified below.
   - what: brief English covering the question, data or setting, method, and main result.
   - what_zh: concise Chinese covering the same points.
   - innovation: brief English stating the concrete advance; distinguish a biological finding from a computational method.
@@ -491,9 +491,9 @@ Return ONLY valid JSON, no markdown fences:
     {{"term_en": "<biomedical term>", "term_zh": "<标准中文译名>", "definition": "<short friendly English definition>"}}
   ],
   "papers": [
-    {{"pool": "recent", "index": <1-based in RECENT>, "domain": "<domain>", "must_read_tag": "TODAY'S PICK" or "", "one_liner_en": "<English>", "one_liner_zh": "<中文>", "paper_type": "<Biology | Deep Learning | Interdisciplinary>", "paper_type_zh": "<生物学 | 深度学习 | 交叉学科>", "data_types": [{{"name_en": "<data modality and detail>", "name_zh": "<数据类型及细节>"}}], "algorithms": [{{"name": "<algorithm name>", "purpose_en": "<what it does here>", "purpose_zh": "<在本文中的用途>"}}], "what": "<English>", "what_zh": "<中文>", "innovation": "<English>", "innovation_zh": "<中文>", "learn": "<English>", "learn_zh": "<中文>"}},
-    {{"pool": "recent", "index": <different 1-based index>, "domain": "<domain>", "must_read_tag": "TODAY'S PICK" or "", "one_liner_en": "<English>", "one_liner_zh": "<中文>", "paper_type": "<Biology | Deep Learning | Interdisciplinary>", "paper_type_zh": "<生物学 | 深度学习 | 交叉学科>", "data_types": [{{"name_en": "<data modality and detail>", "name_zh": "<数据类型及细节>"}}], "algorithms": [{{"name": "<algorithm name>", "purpose_en": "<what it does here>", "purpose_zh": "<在本文中的用途>"}}], "what": "<English>", "what_zh": "<中文>", "innovation": "<English>", "innovation_zh": "<中文>", "learn": "<English>", "learn_zh": "<中文>"}},
-    {{"pool": "classic", "index": <1-based in CLASSIC>, "domain": "<domain>", "must_read_tag": "TODAY'S PICK" or "", "one_liner_en": "<English>", "one_liner_zh": "<中文>", "paper_type": "<Biology | Deep Learning | Interdisciplinary>", "paper_type_zh": "<生物学 | 深度学习 | 交叉学科>", "data_types": [{{"name_en": "<data modality and detail>", "name_zh": "<数据类型及细节>"}}], "algorithms": [{{"name": "<algorithm name>", "purpose_en": "<what it does here>", "purpose_zh": "<在本文中的用途>"}}], "what": "<English>", "what_zh": "<中文>", "innovation": "<English>", "innovation_zh": "<中文>", "learn": "<English>", "learn_zh": "<中文>"}}
+    {{"pool": "recent", "index": <1-based in RECENT>, "domain": "<domain>", "must_read_tag": "TODAY'S PICK" or "", "one_liner_en": "<English>", "one_liner_zh": "<中文>", "paper_type": "<Biology | Deep Learning | Interdisciplinary>", "data_types": [{{"name": "<data modality and detail>"}}], "algorithms": [{{"name": "<algorithm name>", "purpose": "<what it does here>"}}], "what": "<English>", "what_zh": "<中文>", "innovation": "<English>", "innovation_zh": "<中文>", "learn": "<English>", "learn_zh": "<中文>"}},
+    {{"pool": "recent", "index": <different 1-based index>, "domain": "<domain>", "must_read_tag": "TODAY'S PICK" or "", "one_liner_en": "<English>", "one_liner_zh": "<中文>", "paper_type": "<Biology | Deep Learning | Interdisciplinary>", "data_types": [{{"name": "<data modality and detail>"}}], "algorithms": [{{"name": "<algorithm name>", "purpose": "<what it does here>"}}], "what": "<English>", "what_zh": "<中文>", "innovation": "<English>", "innovation_zh": "<中文>", "learn": "<English>", "learn_zh": "<中文>"}},
+    {{"pool": "classic", "index": <1-based in CLASSIC>, "domain": "<domain>", "must_read_tag": "TODAY'S PICK" or "", "one_liner_en": "<English>", "one_liner_zh": "<中文>", "paper_type": "<Biology | Deep Learning | Interdisciplinary>", "data_types": [{{"name": "<data modality and detail>"}}], "algorithms": [{{"name": "<algorithm name>", "purpose": "<what it does here>"}}], "what": "<English>", "what_zh": "<中文>", "innovation": "<English>", "innovation_zh": "<中文>", "learn": "<English>", "learn_zh": "<中文>"}}
   ]
 }}
 
@@ -518,9 +518,9 @@ Return ONLY valid JSON, no markdown fences:
     {{"term_en": "<biomedical term>", "term_zh": "<标准中文译名>", "definition": "<short friendly English definition>"}}
   ],
   "papers": [
-    {{"pool": "recent", "index": <1-based>, "domain": "<domain>", "must_read_tag": "TODAY'S PICK" or "", "one_liner_en": "<English>", "one_liner_zh": "<中文>", "paper_type": "<Biology | Deep Learning | Interdisciplinary>", "paper_type_zh": "<生物学 | 深度学习 | 交叉学科>", "data_types": [{{"name_en": "<data modality and detail>", "name_zh": "<数据类型及细节>"}}], "algorithms": [{{"name": "<algorithm name>", "purpose_en": "<what it does here>", "purpose_zh": "<在本文中的用途>"}}], "what": "<English>", "what_zh": "<中文>", "innovation": "<English>", "innovation_zh": "<中文>", "learn": "<English>", "learn_zh": "<中文>"}},
-    {{"pool": "recent", "index": <different 1-based index>, "domain": "<domain>", "must_read_tag": "TODAY'S PICK" or "", "one_liner_en": "<English>", "one_liner_zh": "<中文>", "paper_type": "<Biology | Deep Learning | Interdisciplinary>", "paper_type_zh": "<生物学 | 深度学习 | 交叉学科>", "data_types": [{{"name_en": "<data modality and detail>", "name_zh": "<数据类型及细节>"}}], "algorithms": [{{"name": "<algorithm name>", "purpose_en": "<what it does here>", "purpose_zh": "<在本文中的用途>"}}], "what": "<English>", "what_zh": "<中文>", "innovation": "<English>", "innovation_zh": "<中文>", "learn": "<English>", "learn_zh": "<中文>"}},
-    {{"pool": "recent", "index": <another different 1-based index>, "domain": "<domain>", "must_read_tag": "TODAY'S PICK" or "", "one_liner_en": "<English>", "one_liner_zh": "<中文>", "paper_type": "<Biology | Deep Learning | Interdisciplinary>", "paper_type_zh": "<生物学 | 深度学习 | 交叉学科>", "data_types": [{{"name_en": "<data modality and detail>", "name_zh": "<数据类型及细节>"}}], "algorithms": [{{"name": "<algorithm name>", "purpose_en": "<what it does here>", "purpose_zh": "<在本文中的用途>"}}], "what": "<English>", "what_zh": "<中文>", "innovation": "<English>", "innovation_zh": "<中文>", "learn": "<English>", "learn_zh": "<中文>"}}
+    {{"pool": "recent", "index": <1-based>, "domain": "<domain>", "must_read_tag": "TODAY'S PICK" or "", "one_liner_en": "<English>", "one_liner_zh": "<中文>", "paper_type": "<Biology | Deep Learning | Interdisciplinary>", "data_types": [{{"name": "<data modality and detail>"}}], "algorithms": [{{"name": "<algorithm name>", "purpose": "<what it does here>"}}], "what": "<English>", "what_zh": "<中文>", "innovation": "<English>", "innovation_zh": "<中文>", "learn": "<English>", "learn_zh": "<中文>"}},
+    {{"pool": "recent", "index": <different 1-based index>, "domain": "<domain>", "must_read_tag": "TODAY'S PICK" or "", "one_liner_en": "<English>", "one_liner_zh": "<中文>", "paper_type": "<Biology | Deep Learning | Interdisciplinary>", "data_types": [{{"name": "<data modality and detail>"}}], "algorithms": [{{"name": "<algorithm name>", "purpose": "<what it does here>"}}], "what": "<English>", "what_zh": "<中文>", "innovation": "<English>", "innovation_zh": "<中文>", "learn": "<English>", "learn_zh": "<中文>"}},
+    {{"pool": "recent", "index": <another different 1-based index>, "domain": "<domain>", "must_read_tag": "TODAY'S PICK" or "", "one_liner_en": "<English>", "one_liner_zh": "<中文>", "paper_type": "<Biology | Deep Learning | Interdisciplinary>", "data_types": [{{"name": "<data modality and detail>"}}], "algorithms": [{{"name": "<algorithm name>", "purpose": "<what it does here>"}}], "what": "<English>", "what_zh": "<中文>", "innovation": "<English>", "innovation_zh": "<中文>", "learn": "<English>", "learn_zh": "<中文>"}}
   ]
 }}
 
@@ -580,7 +580,6 @@ RECENT papers ({len(recent)} candidates):
         p["one_liner_en"] = item.get("one_liner_en", item.get("one_liner", ""))
         p["one_liner_zh"] = item.get("one_liner_zh", "")
         p["paper_type"] = item.get("paper_type", "Interdisciplinary")
-        p["paper_type_zh"] = item.get("paper_type_zh", "交叉学科")
         p["data_types"] = item.get("data_types", [])
         p["algorithms"] = item.get("algorithms", [])
         p["what"] = item.get("what", item.get("why", ""))
@@ -604,22 +603,13 @@ def build_subject() -> str:
     return f"Dissertation Reading Brief | From Segmentation to Cell State · {date}"
 
 
-def _bilingual_label(english: str, chinese: str) -> str:
-    english = html.escape(str(english or "").strip())
-    chinese = html.escape(str(chinese or "").strip())
-    return f"{english} · {chinese}" if english and chinese else english or chinese
-
-
 def _render_paper_metadata(p: dict) -> str:
-    paper_type = _bilingual_label(
-        p.get("paper_type", "Interdisciplinary"),
-        p.get("paper_type_zh", "交叉学科"),
-    )
+    paper_type = html.escape(str(p.get("paper_type", "Interdisciplinary")).strip())
 
     data_tags = []
     for item in p.get("data_types", []) or []:
         if isinstance(item, dict):
-            label = _bilingual_label(item.get("name_en", ""), item.get("name_zh", ""))
+            label = html.escape(str(item.get("name", "")).strip())
         else:
             label = html.escape(str(item))
         if label:
@@ -630,24 +620,21 @@ def _render_paper_metadata(p: dict) -> str:
             )
     data_html = "".join(data_tags) or (
         '<span style="color:#756f68;font-size:12px;">'
-        'Not specified in the abstract · 摘要未说明</span>'
+        'Not specified in the abstract</span>'
     )
 
     algorithm_rows = []
     for item in p.get("algorithms", []) or []:
         if isinstance(item, dict):
             name = html.escape(str(item.get("name", "")).strip())
-            purpose_en = html.escape(str(item.get("purpose_en", "")).strip())
-            purpose_zh = html.escape(str(item.get("purpose_zh", "")).strip())
+            purpose = html.escape(str(item.get("purpose", "")).strip())
         else:
-            name, purpose_en, purpose_zh = html.escape(str(item)), "", ""
+            name, purpose = html.escape(str(item)), ""
         if not name:
             continue
         purposes = ""
-        if purpose_en:
-            purposes += f'<div style="color:#4b4742;font-size:11px;line-height:1.55;">{purpose_en}</div>'
-        if purpose_zh:
-            purposes += f'<div style="color:#756f68;font-size:11px;line-height:1.55;">{purpose_zh}</div>'
+        if purpose:
+            purposes = f'<div style="color:#4b4742;font-size:11px;line-height:1.55;">{purpose}</div>'
         algorithm_rows.append(
             f'<div style="padding:7px 0;border-top:1px solid #e4ddd4;">'
             f'<div style="color:#2d2a26;font-size:12px;font-weight:700;margin-bottom:2px;">{name}</div>'
@@ -655,21 +642,21 @@ def _render_paper_metadata(p: dict) -> str:
         )
     algorithms_html = "".join(algorithm_rows) or (
         '<span style="color:#756f68;font-size:12px;">'
-        'No named algorithm in the abstract · 摘要中未提及具名算法</span>'
+        'No named algorithm in the abstract</span>'
     )
 
     return f"""
           <div style="background:#f8f5ef;border:1px solid #e1d9cf;border-radius:10px;padding:13px 15px;margin:-6px 0 18px;">
             <div style="margin-bottom:10px;">
-              <div style="color:#9a5b46;font-size:10px;font-weight:800;letter-spacing:.7px;margin-bottom:5px;">Paper type · 文章类型</div>
+              <div style="color:#9a5b46;font-size:10px;font-weight:800;letter-spacing:.7px;margin-bottom:5px;">Paper type</div>
               <span style="display:inline-block;background:#ead8cf;color:#6f4335;border-radius:999px;padding:5px 10px;font-size:11px;font-weight:700;">{paper_type}</span>
             </div>
             <div style="margin-bottom:8px;">
-              <div style="color:#9a5b46;font-size:10px;font-weight:800;letter-spacing:.7px;margin-bottom:5px;">Data · 数据类型</div>
+              <div style="color:#9a5b46;font-size:10px;font-weight:800;letter-spacing:.7px;margin-bottom:5px;">Data types</div>
               <div>{data_html}</div>
             </div>
             <div>
-              <div style="color:#9a5b46;font-size:10px;font-weight:800;letter-spacing:.7px;margin-bottom:4px;">Algorithms · 算法</div>
+              <div style="color:#9a5b46;font-size:10px;font-weight:800;letter-spacing:.7px;margin-bottom:4px;">Algorithms</div>
               <div>{algorithms_html}</div>
             </div>
           </div>"""
