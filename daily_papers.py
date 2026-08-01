@@ -140,7 +140,9 @@ def save_history(papers: list[dict]):
     today = datetime.now().strftime("%Y-%m-%d")
     with open(HISTORY_FILE, "a", encoding="utf-8") as f:
         for p in papers:
-            tag = p.get("must_read_tag", "⭐" if p.get("must_read") else "")
+            tag = p.get("reading_role") or p.get(
+                "must_read_tag", "⭐" if p.get("must_read") else ""
+            )
             title = p["title"].replace("|", "\\|")
             f.write(f"| {today} | {title} | {p['url']} | {p['source']} | {tag} |\n")
 
@@ -496,6 +498,47 @@ Current research:
 The dissertation should emphasize reusable AI-for-Science methodology while answering a concrete biological question."""
 
 
+READING_ROLES = (
+    "READ TODAY",
+    "OPTIONAL METHOD PAPER",
+    "SAVE FOR LATER",
+)
+READING_ROLE_ORDER = {role: index for index, role in enumerate(READING_ROLES)}
+
+
+def _paper_reading_role(paper: dict) -> str:
+    role = str(paper.get("reading_role") or paper.get("must_read_tag") or "").strip().upper()
+    if role == "TODAY'S PICK":
+        role = "READ TODAY"
+    if role in READING_ROLE_ORDER:
+        return role
+    return "READ TODAY" if paper.get("must_read") else ""
+
+
+def normalize_reading_roles(papers: list[dict]) -> list[dict]:
+    """Guarantee one clear reading role per paper without trusting model formatting."""
+    roles = [_paper_reading_role(paper) for paper in papers]
+    has_complete_role_set = len(papers) == 3 and set(roles) == set(READING_ROLES)
+    if not has_complete_role_set:
+        roles = list(READING_ROLES[:len(papers)])
+
+    for paper, role in zip(papers, roles):
+        paper["reading_role"] = role
+        paper["must_read_tag"] = role
+        paper["must_read"] = role == "READ TODAY"
+    return papers
+
+
+def order_papers_for_email(papers: list[dict]) -> list[dict]:
+    """Put the required read first, followed by the two pressure-free options."""
+    return sorted(
+        papers,
+        key=lambda paper: READING_ROLE_ORDER.get(
+            _paper_reading_role(paper), len(READING_ROLES)
+        ),
+    )
+
+
 def select_papers(recent: list[dict], classics: list[dict], recent_history: list[str],
                   seen_glossary_terms: set[str] | None = None) -> tuple[list[dict], list[dict]]:
     client = OpenAI(
@@ -539,8 +582,13 @@ Coverage rule: The three papers should complement each other and, when strong ca
 Journal quality rule: NEVER select papers from MDPI journals. Prefer field-leading, peer-reviewed venues relevant to this dissertation (for example Nature/Science/Cell family journals, Neuron, Genome Biology, Bioinformatics, Medical Image Analysis, Acta Neuropathologica, Brain, and Glia). Use arXiv or bioRxiv only when a methods paper is unusually important and no comparable peer-reviewed candidate is available. Do not trade away direct dissertation relevance merely for a prestigious journal name.
 Article-format rule: Brief Report, Short Communication, Research Letter, Technical Note, and Application Note are fully eligible when scientifically useful; do not prefer them over a stronger full-length paper merely because they are shorter, and do not penalize them for their format.
 Computational methods flexibility: Computational Biology and ML/DL methods papers are welcome, but they must remain directly relevant to microglia, cell morphology, spatial omics, microscopy segmentation, or morphology–expression integration. A generic ML paper with no concrete transfer path is not eligible.
+Habit-design rule: Create one required paper and two pressure-free alternatives. Assign exactly one READ TODAY, one OPTIONAL METHOD PAPER, and one SAVE FOR LATER. READ TODAY should be the best balance of relevance, value, and approachability—not automatically the most novel or difficult paper. Prefer Biology load Low/Medium and a 10–20 minute first pass for READ TODAY when a strong option exists.
 Reading-brief rule: Follow the first-pass goals in Keshav's three-pass reading method. Help the reader quickly identify the problem, approach, evidence, contribution, and whether the paper deserves a deeper read. Base every statement only on the supplied metadata and abstract; explicitly say when a detail is unavailable rather than inventing it.
 For every selected paper, write polished, friendly bilingual text for a technically strong reader who is still learning the biology. Use 1–2 short sentences for each field below; keep the English direct and make the Chinese a natural explanation rather than a literal translation:
+  - reading_role: exactly READ TODAY, OPTIONAL METHOD PAPER, or SAVE FOR LATER, used once each across the three papers.
+  - biology_load: Low, Medium, or High, judged for a computer-science reader by the density of specialized biology, pathology, anatomy, and assay knowledge.
+  - ml_load: Low, Medium, or High, judged by the mathematical and machine-learning background needed.
+  - first_pass_minutes: exactly 10, 20, or 30; estimate a first pass, not a full close reading.
   - one_liner_en: one polished English sentence stating the paper's question, approach, and headline result.
   - one_liner_zh: one natural Chinese sentence conveying the same meaning for quick comprehension.
   - "paper_type": "Biology" or "Deep Learning" or "Interdisciplinary". Use Biology when the main contribution is a biological finding, Deep Learning when it is primarily a model or algorithm paper, and Interdisciplinary when computational methodology and a biological question are both central.
@@ -561,9 +609,10 @@ Finally, return an exhaustive biomedical_dictionary for today's three papers. In
     if has_classics:
         task = f"""Select exactly 3 papers total — 2 from the RECENT pool and 1 from the CLASSIC pool.
 {diversity_rule}
-Marking rules:
-- Assign "TODAY'S PICK" to the single paper that should be read first.
-- Assign must_read_tag "" to the other paper.
+Reading-role rules:
+- Assign READ TODAY to the one required paper.
+- Assign OPTIONAL METHOD PAPER to the most directly transferable computational paper.
+- Assign SAVE FOR LATER to the remaining paper.
 
 Return ONLY valid JSON, no markdown fences:
 {{
@@ -574,9 +623,9 @@ Return ONLY valid JSON, no markdown fences:
     {{"term_en": "<biomedical term>", "term_zh": "<标准中文译名>", "definition": "<short friendly English definition>"}}
   ],
   "papers": [
-    {{"pool": "recent", "index": <1-based in RECENT>, "domain": "<domain>", "must_read_tag": "TODAY'S PICK" or "", "one_liner_en": "<English>", "one_liner_zh": "<中文>", "paper_type": "<Biology | Deep Learning | Interdisciplinary>", "data_types": [{{"name": "<data modality and detail>"}}], "algorithms": [{{"name": "<algorithm name>", "purpose": "<what it does here>"}}], "what": "<English>", "what_zh": "<中文>", "innovation": "<English>", "innovation_zh": "<中文>", "learn": "<English>", "learn_zh": "<中文>"}},
-    {{"pool": "recent", "index": <different 1-based index>, "domain": "<domain>", "must_read_tag": "TODAY'S PICK" or "", "one_liner_en": "<English>", "one_liner_zh": "<中文>", "paper_type": "<Biology | Deep Learning | Interdisciplinary>", "data_types": [{{"name": "<data modality and detail>"}}], "algorithms": [{{"name": "<algorithm name>", "purpose": "<what it does here>"}}], "what": "<English>", "what_zh": "<中文>", "innovation": "<English>", "innovation_zh": "<中文>", "learn": "<English>", "learn_zh": "<中文>"}},
-    {{"pool": "classic", "index": <1-based in CLASSIC>, "domain": "<domain>", "must_read_tag": "TODAY'S PICK" or "", "one_liner_en": "<English>", "one_liner_zh": "<中文>", "paper_type": "<Biology | Deep Learning | Interdisciplinary>", "data_types": [{{"name": "<data modality and detail>"}}], "algorithms": [{{"name": "<algorithm name>", "purpose": "<what it does here>"}}], "what": "<English>", "what_zh": "<中文>", "innovation": "<English>", "innovation_zh": "<中文>", "learn": "<English>", "learn_zh": "<中文>"}}
+    {{"pool": "recent", "index": <1-based in RECENT>, "domain": "<domain>", "reading_role": "<READ TODAY | OPTIONAL METHOD PAPER | SAVE FOR LATER>", "biology_load": "<Low | Medium | High>", "ml_load": "<Low | Medium | High>", "first_pass_minutes": <10 | 20 | 30>, "one_liner_en": "<English>", "one_liner_zh": "<中文>", "paper_type": "<Biology | Deep Learning | Interdisciplinary>", "data_types": [{{"name": "<data modality and detail>"}}], "algorithms": [{{"name": "<algorithm name>", "purpose": "<what it does here>"}}], "what": "<English>", "what_zh": "<中文>", "innovation": "<English>", "innovation_zh": "<中文>", "learn": "<English>", "learn_zh": "<中文>"}},
+    {{"pool": "recent", "index": <different 1-based index>, "domain": "<domain>", "reading_role": "<READ TODAY | OPTIONAL METHOD PAPER | SAVE FOR LATER>", "biology_load": "<Low | Medium | High>", "ml_load": "<Low | Medium | High>", "first_pass_minutes": <10 | 20 | 30>, "one_liner_en": "<English>", "one_liner_zh": "<中文>", "paper_type": "<Biology | Deep Learning | Interdisciplinary>", "data_types": [{{"name": "<data modality and detail>"}}], "algorithms": [{{"name": "<algorithm name>", "purpose": "<what it does here>"}}], "what": "<English>", "what_zh": "<中文>", "innovation": "<English>", "innovation_zh": "<中文>", "learn": "<English>", "learn_zh": "<中文>"}},
+    {{"pool": "classic", "index": <1-based in CLASSIC>, "domain": "<domain>", "reading_role": "<READ TODAY | OPTIONAL METHOD PAPER | SAVE FOR LATER>", "biology_load": "<Low | Medium | High>", "ml_load": "<Low | Medium | High>", "first_pass_minutes": <10 | 20 | 30>, "one_liner_en": "<English>", "one_liner_zh": "<中文>", "paper_type": "<Biology | Deep Learning | Interdisciplinary>", "data_types": [{{"name": "<data modality and detail>"}}], "algorithms": [{{"name": "<algorithm name>", "purpose": "<what it does here>"}}], "what": "<English>", "what_zh": "<中文>", "innovation": "<English>", "innovation_zh": "<中文>", "learn": "<English>", "learn_zh": "<中文>"}}
   ]
 }}
 
@@ -588,9 +637,10 @@ CLASSIC papers ({len(classics)} candidates):
     else:
         task = f"""Select exactly 3 papers from the RECENT pool.
 {diversity_rule}
-Marking rules:
-- Assign "TODAY'S PICK" to the single paper that should be read first.
-- Assign must_read_tag "" to the other paper.
+Reading-role rules:
+- Assign READ TODAY to the one required paper.
+- Assign OPTIONAL METHOD PAPER to the most directly transferable computational paper.
+- Assign SAVE FOR LATER to the remaining paper.
 
 Return ONLY valid JSON, no markdown fences:
 {{
@@ -601,9 +651,9 @@ Return ONLY valid JSON, no markdown fences:
     {{"term_en": "<biomedical term>", "term_zh": "<标准中文译名>", "definition": "<short friendly English definition>"}}
   ],
   "papers": [
-    {{"pool": "recent", "index": <1-based>, "domain": "<domain>", "must_read_tag": "TODAY'S PICK" or "", "one_liner_en": "<English>", "one_liner_zh": "<中文>", "paper_type": "<Biology | Deep Learning | Interdisciplinary>", "data_types": [{{"name": "<data modality and detail>"}}], "algorithms": [{{"name": "<algorithm name>", "purpose": "<what it does here>"}}], "what": "<English>", "what_zh": "<中文>", "innovation": "<English>", "innovation_zh": "<中文>", "learn": "<English>", "learn_zh": "<中文>"}},
-    {{"pool": "recent", "index": <different 1-based index>, "domain": "<domain>", "must_read_tag": "TODAY'S PICK" or "", "one_liner_en": "<English>", "one_liner_zh": "<中文>", "paper_type": "<Biology | Deep Learning | Interdisciplinary>", "data_types": [{{"name": "<data modality and detail>"}}], "algorithms": [{{"name": "<algorithm name>", "purpose": "<what it does here>"}}], "what": "<English>", "what_zh": "<中文>", "innovation": "<English>", "innovation_zh": "<中文>", "learn": "<English>", "learn_zh": "<中文>"}},
-    {{"pool": "recent", "index": <another different 1-based index>, "domain": "<domain>", "must_read_tag": "TODAY'S PICK" or "", "one_liner_en": "<English>", "one_liner_zh": "<中文>", "paper_type": "<Biology | Deep Learning | Interdisciplinary>", "data_types": [{{"name": "<data modality and detail>"}}], "algorithms": [{{"name": "<algorithm name>", "purpose": "<what it does here>"}}], "what": "<English>", "what_zh": "<中文>", "innovation": "<English>", "innovation_zh": "<中文>", "learn": "<English>", "learn_zh": "<中文>"}}
+    {{"pool": "recent", "index": <1-based>, "domain": "<domain>", "reading_role": "<READ TODAY | OPTIONAL METHOD PAPER | SAVE FOR LATER>", "biology_load": "<Low | Medium | High>", "ml_load": "<Low | Medium | High>", "first_pass_minutes": <10 | 20 | 30>, "one_liner_en": "<English>", "one_liner_zh": "<中文>", "paper_type": "<Biology | Deep Learning | Interdisciplinary>", "data_types": [{{"name": "<data modality and detail>"}}], "algorithms": [{{"name": "<algorithm name>", "purpose": "<what it does here>"}}], "what": "<English>", "what_zh": "<中文>", "innovation": "<English>", "innovation_zh": "<中文>", "learn": "<English>", "learn_zh": "<中文>"}},
+    {{"pool": "recent", "index": <different 1-based index>, "domain": "<domain>", "reading_role": "<READ TODAY | OPTIONAL METHOD PAPER | SAVE FOR LATER>", "biology_load": "<Low | Medium | High>", "ml_load": "<Low | Medium | High>", "first_pass_minutes": <10 | 20 | 30>, "one_liner_en": "<English>", "one_liner_zh": "<中文>", "paper_type": "<Biology | Deep Learning | Interdisciplinary>", "data_types": [{{"name": "<data modality and detail>"}}], "algorithms": [{{"name": "<algorithm name>", "purpose": "<what it does here>"}}], "what": "<English>", "what_zh": "<中文>", "innovation": "<English>", "innovation_zh": "<中文>", "learn": "<English>", "learn_zh": "<中文>"}},
+    {{"pool": "recent", "index": <another different 1-based index>, "domain": "<domain>", "reading_role": "<READ TODAY | OPTIONAL METHOD PAPER | SAVE FOR LATER>", "biology_load": "<Low | Medium | High>", "ml_load": "<Low | Medium | High>", "first_pass_minutes": <10 | 20 | 30>, "one_liner_en": "<English>", "one_liner_zh": "<中文>", "paper_type": "<Biology | Deep Learning | Interdisciplinary>", "data_types": [{{"name": "<data modality and detail>"}}], "algorithms": [{{"name": "<algorithm name>", "purpose": "<what it does here>"}}], "what": "<English>", "what_zh": "<中文>", "innovation": "<English>", "innovation_zh": "<中文>", "learn": "<English>", "learn_zh": "<中文>"}}
   ]
 }}
 
@@ -658,8 +708,10 @@ RECENT papers ({len(recent)} candidates):
         if idx < 0 or idx >= len(source_pool):
             continue
         p = source_pool[idx].copy()
-        p["must_read_tag"] = item.get("must_read_tag", "")
-        p["must_read"] = bool(p["must_read_tag"])
+        p["reading_role"] = item.get("reading_role", item.get("must_read_tag", ""))
+        p["biology_load"] = item.get("biology_load", "Medium")
+        p["ml_load"] = item.get("ml_load", "Medium")
+        p["first_pass_minutes"] = item.get("first_pass_minutes", 20)
         p["one_liner_en"] = item.get("one_liner_en", item.get("one_liner", ""))
         p["one_liner_zh"] = item.get("one_liner_zh", "")
         p["paper_type"] = item.get("paper_type", "Interdisciplinary")
@@ -672,6 +724,7 @@ RECENT papers ({len(recent)} candidates):
         p["learn"] = item.get("learn", item.get("why", ""))
         p["learn_zh"] = item.get("learn_zh", "")
         selected.append(p)
+    selected = order_papers_for_email(normalize_reading_roles(selected))
     glossary = filter_new_glossary_terms(result.get("glossary", []), seen_glossary_terms)
     dictionary = filter_new_glossary_terms(result.get("biomedical_dictionary", []), set())
     return selected, glossary[:5], dictionary[:40]
@@ -688,6 +741,19 @@ def build_subject() -> str:
 
 def _render_paper_metadata(p: dict) -> str:
     paper_type = html.escape(str(p.get("paper_type", "Interdisciplinary")).strip())
+
+    def clean_load(value) -> str:
+        load = str(value or "Medium").strip().title()
+        return load if load in {"Low", "Medium", "High"} else "Medium"
+
+    biology_load = clean_load(p.get("biology_load"))
+    ml_load = clean_load(p.get("ml_load"))
+    try:
+        first_pass_minutes = int(p.get("first_pass_minutes", 20))
+    except (TypeError, ValueError):
+        first_pass_minutes = 20
+    if first_pass_minutes not in {10, 20, 30}:
+        first_pass_minutes = 20
 
     data_tags = []
     for item in p.get("data_types", []) or []:
@@ -734,6 +800,13 @@ def _render_paper_metadata(p: dict) -> str:
               <div style="color:#9a5b46;font-size:10px;font-weight:800;letter-spacing:.7px;margin-bottom:5px;">Paper type</div>
               <span style="display:inline-block;background:#ead8cf;color:#6f4335;border-radius:999px;padding:5px 10px;font-size:11px;font-weight:700;">{paper_type}</span>
             </div>
+            <div style="color:#625c55;font-size:11px;line-height:1.65;margin-bottom:11px;">
+              <span style="white-space:nowrap;"><strong>Biology load</strong> · {biology_load}</span>
+              <span style="color:#b8afa5;padding:0 6px;">|</span>
+              <span style="white-space:nowrap;"><strong>ML load</strong> · {ml_load}</span>
+              <span style="color:#b8afa5;padding:0 6px;">|</span>
+              <span style="white-space:nowrap;"><strong>First-pass effort</strong> · {first_pass_minutes} min</span>
+            </div>
             <div style="margin-bottom:8px;">
               <div style="color:#9a5b46;font-size:10px;font-weight:800;letter-spacing:.7px;margin-bottom:5px;">Data types</div>
               <div>{data_html}</div>
@@ -747,6 +820,7 @@ def _render_paper_metadata(p: dict) -> str:
 
 def build_html(papers: list[dict], glossary: list[dict] | None = None,
                biomedical_dictionary: list[dict] | None = None) -> str:
+    papers = order_papers_for_email(papers)
     today = datetime.now().strftime("%B %d, %Y")
     cards = ""
     domain_labels = {
@@ -757,10 +831,24 @@ def build_html(papers: list[dict], glossary: list[dict] | None = None,
         "other": "RELATED WORK",
     }
     for number, p in enumerate(papers, start=1):
-        tag = p.get("must_read_tag", "")
-        if tag:
-            badge = f'<span style="background:#cc785c;color:#fffaf4;padding:4px 10px;border-radius:999px;font-size:11px;font-weight:700;">{html.escape(tag)}</span>'
-            border = "border:1px solid #d9b4a6;"
+        reading_role = _paper_reading_role(p)
+        if reading_role:
+            role_styles = {
+                "READ TODAY": ("#cc785c", "#fffaf4"),
+                "OPTIONAL METHOD PAPER": ("#e7ded3", "#5f554d"),
+                "SAVE FOR LATER": ("#f0ece6", "#756f68"),
+            }
+            badge_background, badge_color = role_styles[reading_role]
+            badge = (
+                f'<span style="background:{badge_background};color:{badge_color};padding:4px 10px;'
+                f'border-radius:999px;font-size:10px;font-weight:800;letter-spacing:.3px;">'
+                f'{html.escape(reading_role)}</span>'
+            )
+            border = (
+                "border:1px solid #d9b4a6;"
+                if reading_role == "READ TODAY"
+                else "border:1px solid #ded8cf;"
+            )
         else:
             badge = ""
             border = "border:1px solid #ded8cf;"
@@ -859,7 +947,7 @@ def build_html(papers: list[dict], glossary: list[dict] | None = None,
     {dictionary_rows}
   </div>""" if dictionary_rows else ""
 
-    must_count = sum(1 for p in papers if p.get("must_read"))
+    must_count = sum(1 for p in papers if _paper_reading_role(p) == "READ TODAY")
     return f"""<html><body style="margin:0;padding:24px 12px;background:#f7f4ed;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC',sans-serif;">
 <div style="max-width:650px;margin:0 auto;">
   <div style="background:#2d2a26;color:#fffaf4;padding:29px 27px;border-radius:16px;margin-bottom:18px;box-shadow:0 8px 24px rgba(58,48,42,.16);">

@@ -56,7 +56,11 @@ class DissertationDigestConfigTests(unittest.TestCase):
             "authors": "A. Author",
             "domain": "MultimodalAI",
             "must_read": True,
-            "must_read_tag": "TODAY'S PICK",
+            "must_read_tag": "READ TODAY",
+            "reading_role": "READ TODAY",
+            "biology_load": "Medium",
+            "ml_load": "Low",
+            "first_pass_minutes": 20,
             "one_liner_en": "A friendly one-sentence summary.",
             "one_liner_zh": "一句友好的中文摘要。",
             "paper_type": "Interdisciplinary",
@@ -95,6 +99,12 @@ class DissertationDigestConfigTests(unittest.TestCase):
         self.assertIn("At a glance", html)
         self.assertIn("A friendly one-sentence summary.", html)
         self.assertIn("一句友好的中文摘要。", html)
+        self.assertIn("READ TODAY", html)
+        self.assertIn("Biology load", html)
+        self.assertIn("Medium", html)
+        self.assertIn("ML load", html)
+        self.assertIn("First-pass effort", html)
+        self.assertIn("20 min", html)
         self.assertIn("Paper type", html)
         self.assertIn("Interdisciplinary", html)
         self.assertIn("Data types", html)
@@ -274,6 +284,25 @@ class DissertationDigestConfigTests(unittest.TestCase):
         self.assertIn("plos computational biology", journal_query)
         self.assertIn("medical image analysis", journal_query)
         self.assertIn("patterns", journal_query)
+
+    def test_reading_roles_put_required_paper_first(self):
+        papers = [
+            {"title": "Later", "reading_role": "SAVE FOR LATER"},
+            {"title": "Method", "reading_role": "OPTIONAL METHOD PAPER"},
+            {"title": "Today", "reading_role": "READ TODAY"},
+        ]
+        ordered = daily_papers.order_papers_for_email(papers)
+        self.assertEqual([paper["title"] for paper in ordered], ["Today", "Method", "Later"])
+
+    def test_selection_prompt_requests_habit_friendly_reading_fields(self):
+        source = (ROOT / "daily_papers.py").read_text()
+        self.assertIn('"reading_role":', source)
+        self.assertIn('"biology_load":', source)
+        self.assertIn('"ml_load":', source)
+        self.assertIn('"first_pass_minutes":', source)
+        self.assertIn("one required paper", source)
+        self.assertNotIn('"reading_goal_en":', source)
+        self.assertNotIn("15-MINUTE READING PLAN", source)
 
 
 if __name__ == "__main__":
