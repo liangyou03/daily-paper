@@ -304,6 +304,15 @@ class DissertationDigestConfigTests(unittest.TestCase):
         self.assertNotIn('"reading_goal_en":', source)
         self.assertNotIn("15-MINUTE READING PLAN", source)
 
+    def test_selection_prefers_medium_or_high_ml_difficulty(self):
+        source = (ROOT / "daily_papers.py").read_text()
+        self.assertIn("Prefer ML load Medium or High", source)
+        self.assertIn(
+            "READ TODAY and OPTIONAL METHOD PAPER should both have ML load Medium or High",
+            source,
+        )
+        self.assertIn("A Low-ML paper is acceptable only", source)
+
 
 if __name__ == "__main__":
     unittest.main()
