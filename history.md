@@ -316,3 +316,6 @@
 | 2026-07-31 | A 3D genome atlas of human tonsil and the role of loop extrusion in B cell somatic hypermutation. | https://pubmed.ncbi.nlm.nih.gov/42490500/ | Science (New York, N.Y.) | TODAY'S PICK |
 | 2026-07-31 | Single-nucleus multimodal spatial transcriptomics reveals spatial colocalization of neoantigen-expressing tumor cells and cognate T cells. | https://pubmed.ncbi.nlm.nih.gov/42486969/ | Nature biotechnology |  |
 | 2026-07-31 | HiExM Enables Scalable Mapping of Organelle Morphology and Spatial Heterogeneity. | https://pubmed.ncbi.nlm.nih.gov/42523444/ | bioRxiv : the preprint server for biology |  |
+| 2026-08-01 | Integrated In Vivo and In Vitro Analysis of Alpha-Synuclein Aggregation and Neuroinflammatory Amplification in a Composite Parkinson's Disease Model. | https://pubmed.ncbi.nlm.nih.gov/42525302/ | Neurochemical research | TODAY'S PICK |
+| 2026-08-01 | Multimodal characterization of variation in neuronal types in the mouse basal ganglia. | https://pubmed.ncbi.nlm.nih.gov/42395386/ | bioRxiv : the preprint server for biology |  |
+| 2026-08-01 | SpaMTP: integrative statistical analysis and visualization of spatial metabolomics and transcriptomics data. | https://pubmed.ncbi.nlm.nih.gov/42538468/ | Nature methods |  |
