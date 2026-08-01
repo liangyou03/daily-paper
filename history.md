@@ -322,3 +322,6 @@
 | 2026-08-01 | Multi-Dimensional Transcriptomics Reveals the Prominent Role of Neuroinflammation in Alzheimer's Disease. | https://pubmed.ncbi.nlm.nih.gov/42278544/ | International journal of molecular sciences |  |
 | 2026-08-01 | Integrative transcriptomic analysis identifies meningeal-hippocampal immune communication in Alzheimer's disease. | https://pubmed.ncbi.nlm.nih.gov/42351167/ | Journal of translational medicine | TODAY'S PICK |
 | 2026-08-01 | Grad-CAMO: Learning Interpretable Single-Cell Morphological Profiles from 3D Cell Painting Images | https://arxiv.org/abs/2403.17615v1 | arXiv |  |
+| 2026-08-01 | Must: Maximizing Latent Capacity of Spatial Transcriptomics Data | https://arxiv.org/abs/2401.07543v1 | arXiv |  |
+| 2026-08-01 | Bright 4B: Scaling Hyperspherical Learning for Segmentation in 3D Brightfield Microscopy | https://arxiv.org/abs/2512.22423v1 | arXiv |  |
+| 2026-08-01 | Learning Cell-Aware Hierarchical Multi-Modal Representations for Robust Molecular Modeling | https://arxiv.org/abs/2511.21120v1 | arXiv | TODAY'S PICK |
