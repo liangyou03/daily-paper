@@ -177,6 +177,38 @@ def tag_domain(p: dict) -> str:
     return "other"
 
 
+def score_dissertation_relevance(p: dict) -> int:
+    """Score how directly a paper supports the dissertation's biological arc."""
+    text = f"{p.get('title', '')} {p.get('abstract', '')}".lower()
+    biology_terms = [
+        "microglia", "microglial", "alzheimer", "amyloid", "plaque", "tauopathy",
+        "brain", "cortex", "cortical", "hippocamp", "neural", "neuron", "glia",
+        "neurodegeneration", "dementia",
+    ]
+    project_terms = [
+        "morphology", "morphometric", "ramification", "process complexity",
+        "spatial transcriptomics", "spatial omics", "visium", "patch-seq",
+        "gene expression", "immunofluorescence", "dapi", "cell segmentation",
+        "nucleus segmentation", "protein co-detection",
+    ]
+    transferable_method_terms = [
+        "multimodal", "multi-modal", "contrastive", "optimal transport",
+        "adversarial", "image encoder", "graph neural network", "foundation model",
+    ]
+    distant_terms = [
+        "cancer", "tumor", "tumour", "oncology", "carcinoma", "colorectal",
+        "breast cancer", "survival prediction", "clinical prediction",
+    ]
+
+    biology_hits = sum(term in text for term in biology_terms)
+    score = 4 * biology_hits
+    score += 2 * sum(term in text for term in project_terms)
+    score += sum(term in text for term in transferable_method_terms)
+    if biology_hits == 0:
+        score -= 5 * sum(term in text for term in distant_terms)
+    return score
+
+
 # ── Fetchers ─────────────────────────────────────────────────────────────────
 
 def fetch_arxiv(query: str, n: int = 15) -> list[dict]:
@@ -347,16 +379,21 @@ def deduplicate(papers: list[dict], history_keys: set[str]) -> list[dict]:
 
 
 def balance_pool(papers: list[dict], cap: int) -> list[dict]:
-    """Interleave by domain; within each domain, journal papers first."""
+    """Interleave domains while prioritizing dissertation relevance and journals."""
     domains = ["MicrogliaMorphology", "SpatialOmics", "MultimodalAI", "Benchmark", "other"]
     buckets: dict[str, list] = {domain: [] for domain in domains}
     for p in papers:
         buckets[p.get("domain", "other")].append(p)
 
     def journal_first(lst):
-        return (
-            sorted([p for p in lst if p["source"] not in ("arXiv",)], key=lambda p: p.get("year") or 0, reverse=True) +
-            [p for p in lst if p["source"] == "arXiv"]
+        return sorted(
+            lst,
+            key=lambda p: (
+                score_dissertation_relevance(p),
+                p["source"] != "arXiv",
+                p.get("year") or 0,
+            ),
+            reverse=True,
         )
 
     balanced = []
@@ -410,7 +447,7 @@ The following glossary terms have already appeared in earlier emails. NEVER use 
 """
 
     diversity_rule = """
-Relevance rule: Every selected paper must directly help the dissertation described above. Exclude generic clinical-prediction papers that do not inform this project.
+Relevance rule: Keep the reading set close to the dissertation's biology, not merely close to generic multimodal AI. At least 2 of the 3 papers must be directly anchored in microglia, brain aging or Alzheimer's disease, brain morphology–expression coupling, or brain immunofluorescence/spatial-omics data. The third may be a computational methods paper only when its method transfers clearly to microglial segmentation, morphology representation, or morphology–molecular integration; state that transfer explicitly. Exclude cancer-only studies, generic clinical prediction, unrelated organs, and broad omics/foundation-model papers when a biologically closer candidate exists.
 Coverage rule: The three papers should complement each other and, when strong candidates exist, cover at least two different domains from this list:
   - MicrogliaMorphology (microglial biology, morphology, activation, aging, Alzheimer's disease)
   - SpatialOmics (spatial transcriptomics, Visium, single-cell molecular states)
@@ -420,12 +457,15 @@ Journal preference rule: When quality is comparable, STRONGLY prefer papers from
 (Nature, Nature Methods, Nature Biotechnology, Cell, Genome Biology, Science, NEJM, Lancet, JAMA, \
 Bioinformatics, etc.) over arXiv preprints for the RECENT slots.
 Reading-brief rule: Follow the first-pass goals in Keshav's three-pass reading method. Help the reader quickly identify the problem, approach, evidence, contribution, and whether the paper deserves a deeper read. Base every statement only on the supplied metadata and abstract; explicitly say when a detail is unavailable rather than inventing it.
-For every selected paper, write polished, friendly, and substantial English for a technically strong reader who is still learning the biology:
+For every selected paper, write polished, friendly bilingual text for a technically strong reader who is still learning the biology. Use 1–2 short sentences for each field below; keep the English direct and make the Chinese a natural explanation rather than a literal translation:
   - one_liner_en: one polished English sentence stating the paper's question, approach, and headline result.
   - one_liner_zh: one natural Chinese sentence conveying the same meaning for quick comprehension.
-  - what: 3–5 sentences covering the research question, data/experimental setting, method, and main result.
-  - innovation: 2–4 sentences explaining the concrete novelty relative to prior practice; distinguish a new biological finding from a new computational method.
-  - learn: 2–4 sentences tailored to this dissertation, naming concepts/methods/figures to study and one question to keep in mind while reading.
+  - what: brief English covering the question, data or setting, method, and main result.
+  - what_zh: concise Chinese covering the same points.
+  - innovation: brief English stating the concrete advance; distinguish a biological finding from a computational method.
+  - innovation_zh: concise Chinese covering the same advance.
+  - learn: brief English naming the single most useful idea, method, or figure for this dissertation.
+  - learn_zh: concise Chinese explaining that takeaway.
 Also return a shared glossary of exactly 5 terms that the reader may not know but most needs in order to understand today's papers. Prioritize biological terms, assay/platform terminology, image-analysis concepts, and multimodal-learning terms that are central rather than merely technical jargon. Each entry must include the English term, a standard Chinese translation, one plain-English sentence, and one plain-Chinese sentence. The Chinese should explain the idea intuitively, not just translate the English sentence.
 Finally, return an exhaustive biomedical_dictionary for today's three papers. Include every difficult domain-specific biological or medical term supported by the supplied titles/abstracts: anatomical structures and brain regions, cell types and cell states, genes, proteins, molecular complexes, pathological structures, diseases and animal models, biological processes, biomarkers, and specialized biological assays. Exclude generic statistics, machine-learning vocabulary, and ordinary words. For each item provide the English term, standard Chinese translation, and one short friendly English definition. Aim for completeness (typically 10–30 entries), do not invent terms absent from the supplied material, and deduplicate spelling variants.
 """
@@ -447,9 +487,9 @@ Return ONLY valid JSON, no markdown fences:
     {{"term_en": "<biomedical term>", "term_zh": "<标准中文译名>", "definition": "<short friendly English definition>"}}
   ],
   "papers": [
-    {{"pool": "recent", "index": <1-based in RECENT>, "domain": "<domain>", "must_read_tag": "TODAY'S PICK" or "", "one_liner_en": "<English>", "one_liner_zh": "<中文>", "what": "<English>", "innovation": "<English>", "learn": "<English>"}},
-    {{"pool": "recent", "index": <different 1-based index>, "domain": "<domain>", "must_read_tag": "TODAY'S PICK" or "", "one_liner_en": "<English>", "one_liner_zh": "<中文>", "what": "<English>", "innovation": "<English>", "learn": "<English>"}},
-    {{"pool": "classic", "index": <1-based in CLASSIC>, "domain": "<domain>", "must_read_tag": "TODAY'S PICK" or "", "one_liner_en": "<English>", "one_liner_zh": "<中文>", "what": "<English>", "innovation": "<English>", "learn": "<English>"}}
+    {{"pool": "recent", "index": <1-based in RECENT>, "domain": "<domain>", "must_read_tag": "TODAY'S PICK" or "", "one_liner_en": "<English>", "one_liner_zh": "<中文>", "what": "<English>", "what_zh": "<中文>", "innovation": "<English>", "innovation_zh": "<中文>", "learn": "<English>", "learn_zh": "<中文>"}},
+    {{"pool": "recent", "index": <different 1-based index>, "domain": "<domain>", "must_read_tag": "TODAY'S PICK" or "", "one_liner_en": "<English>", "one_liner_zh": "<中文>", "what": "<English>", "what_zh": "<中文>", "innovation": "<English>", "innovation_zh": "<中文>", "learn": "<English>", "learn_zh": "<中文>"}},
+    {{"pool": "classic", "index": <1-based in CLASSIC>, "domain": "<domain>", "must_read_tag": "TODAY'S PICK" or "", "one_liner_en": "<English>", "one_liner_zh": "<中文>", "what": "<English>", "what_zh": "<中文>", "innovation": "<English>", "innovation_zh": "<中文>", "learn": "<English>", "learn_zh": "<中文>"}}
   ]
 }}
 
@@ -474,9 +514,9 @@ Return ONLY valid JSON, no markdown fences:
     {{"term_en": "<biomedical term>", "term_zh": "<标准中文译名>", "definition": "<short friendly English definition>"}}
   ],
   "papers": [
-    {{"pool": "recent", "index": <1-based>, "domain": "<domain>", "must_read_tag": "TODAY'S PICK" or "", "one_liner_en": "<English>", "one_liner_zh": "<中文>", "what": "<English>", "innovation": "<English>", "learn": "<English>"}},
-    {{"pool": "recent", "index": <different 1-based index>, "domain": "<domain>", "must_read_tag": "TODAY'S PICK" or "", "one_liner_en": "<English>", "one_liner_zh": "<中文>", "what": "<English>", "innovation": "<English>", "learn": "<English>"}},
-    {{"pool": "recent", "index": <another different 1-based index>, "domain": "<domain>", "must_read_tag": "TODAY'S PICK" or "", "one_liner_en": "<English>", "one_liner_zh": "<中文>", "what": "<English>", "innovation": "<English>", "learn": "<English>"}}
+    {{"pool": "recent", "index": <1-based>, "domain": "<domain>", "must_read_tag": "TODAY'S PICK" or "", "one_liner_en": "<English>", "one_liner_zh": "<中文>", "what": "<English>", "what_zh": "<中文>", "innovation": "<English>", "innovation_zh": "<中文>", "learn": "<English>", "learn_zh": "<中文>"}},
+    {{"pool": "recent", "index": <different 1-based index>, "domain": "<domain>", "must_read_tag": "TODAY'S PICK" or "", "one_liner_en": "<English>", "one_liner_zh": "<中文>", "what": "<English>", "what_zh": "<中文>", "innovation": "<English>", "innovation_zh": "<中文>", "learn": "<English>", "learn_zh": "<中文>"}},
+    {{"pool": "recent", "index": <another different 1-based index>, "domain": "<domain>", "must_read_tag": "TODAY'S PICK" or "", "one_liner_en": "<English>", "one_liner_zh": "<中文>", "what": "<English>", "what_zh": "<中文>", "innovation": "<English>", "innovation_zh": "<中文>", "learn": "<English>", "learn_zh": "<中文>"}}
   ]
 }}
 
@@ -536,8 +576,11 @@ RECENT papers ({len(recent)} candidates):
         p["one_liner_en"] = item.get("one_liner_en", item.get("one_liner", ""))
         p["one_liner_zh"] = item.get("one_liner_zh", "")
         p["what"] = item.get("what", item.get("why", ""))
+        p["what_zh"] = item.get("what_zh", "")
         p["innovation"] = item.get("innovation", "The abstract does not provide enough detail to judge the specific novelty.")
+        p["innovation_zh"] = item.get("innovation_zh", "")
         p["learn"] = item.get("learn", item.get("why", ""))
+        p["learn_zh"] = item.get("learn_zh", "")
         selected.append(p)
     glossary = filter_new_glossary_terms(result.get("glossary", []), seen_glossary_terms)
     dictionary = filter_new_glossary_terms(result.get("biomedical_dictionary", []), set())
@@ -582,8 +625,11 @@ def build_html(papers: list[dict], glossary: list[dict] | None = None,
         one_liner_en = html.escape(p.get("one_liner_en", p.get("one_liner", p.get("why", ""))))
         one_liner_zh = html.escape(p.get("one_liner_zh", ""))
         what = html.escape(p.get("what", p.get("why", "摘要未提供。")))
+        what_zh = html.escape(p.get("what_zh", "中文说明未提供。"))
         innovation = html.escape(p.get("innovation", "The abstract does not provide enough detail to judge the specific novelty."))
+        innovation_zh = html.escape(p.get("innovation_zh", "中文说明未提供。"))
         learn = html.escape(p.get("learn", p.get("why", "Start with the abstract, figures, and conclusion.")))
+        learn_zh = html.escape(p.get("learn_zh", "中文说明未提供。"))
         cards += f"""
         <div style="background:#fffdfa;{border}border-radius:14px;padding:25px;margin-bottom:18px;box-shadow:0 5px 18px rgba(58,48,42,.055);">
           <div style="margin-bottom:12px;">
@@ -601,16 +647,19 @@ def build_html(papers: list[dict], glossary: list[dict] | None = None,
             <span style="display:block;color:#6f5a50;font-weight:500;">{one_liner_zh}</span>
           </div>
           <div style="margin-bottom:14px;">
-            <div style="color:#9a5b46;font-size:12px;font-weight:800;margin-bottom:5px;">01 · What this paper did</div>
-            <div style="color:#3d3a36;font-size:13px;line-height:1.8;">{what}</div>
+            <div style="color:#9a5b46;font-size:12px;font-weight:800;margin-bottom:5px;">01 · What this paper did · 论文做了什么</div>
+            <div style="color:#3d3a36;font-size:13px;line-height:1.7;margin-bottom:4px;">{what}</div>
+            <div style="color:#756f68;font-size:12px;line-height:1.7;">{what_zh}</div>
           </div>
           <div style="margin-bottom:14px;">
-            <div style="color:#806b5c;font-size:12px;font-weight:800;margin-bottom:5px;">02 · What is genuinely new</div>
-            <div style="color:#3d3a36;font-size:13px;line-height:1.8;">{innovation}</div>
+            <div style="color:#806b5c;font-size:12px;font-weight:800;margin-bottom:5px;">02 · What is genuinely new · 真正的新意</div>
+            <div style="color:#3d3a36;font-size:13px;line-height:1.7;margin-bottom:4px;">{innovation}</div>
+            <div style="color:#756f68;font-size:12px;line-height:1.7;">{innovation_zh}</div>
           </div>
           <div style="background:#f2eee7;border-radius:9px;padding:13px 15px;">
-            <div style="color:#9a5b46;font-size:12px;font-weight:800;margin-bottom:5px;">03 · What you should learn</div>
-            <div style="color:#3d3a36;font-size:13px;line-height:1.8;">{learn}</div>
+            <div style="color:#9a5b46;font-size:12px;font-weight:800;margin-bottom:5px;">03 · What you should learn · 你该学什么</div>
+            <div style="color:#3d3a36;font-size:13px;line-height:1.7;margin-bottom:4px;">{learn}</div>
+            <div style="color:#756f68;font-size:12px;line-height:1.7;">{learn_zh}</div>
           </div>
         </div>"""
 
@@ -743,7 +792,10 @@ def main():
         p["domain"] = tag_domain(p)
 
     classic_pool = deduplicate(classic_pool, history_keys)
-    classic_pool.sort(key=lambda p: p.get("citations", 0), reverse=True)
+    classic_pool.sort(
+        key=lambda p: (score_dissertation_relevance(p), p.get("citations", 0)),
+        reverse=True,
+    )
     classic_pool = classic_pool[:MAX_CLASSIC]
     print(f"Classic candidates after dedup: {len(classic_pool)}")
 

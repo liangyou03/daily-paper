@@ -60,8 +60,11 @@ class DissertationDigestConfigTests(unittest.TestCase):
             "one_liner_en": "A friendly one-sentence summary.",
             "one_liner_zh": "一句友好的中文摘要。",
             "what": "The question, data, method, and main result.",
+            "what_zh": "这篇论文研究了什么、用了什么数据和方法。",
             "innovation": "The concrete advance over prior work.",
+            "innovation_zh": "它相对已有工作的主要推进。",
             "learn": "What to study and reproduce for the dissertation.",
+            "learn_zh": "你应该重点学习和复现的部分。",
         }]
         glossary = [{
             "term_en": "Ramification",
@@ -84,8 +87,11 @@ class DissertationDigestConfigTests(unittest.TestCase):
         self.assertIn("A friendly one-sentence summary.", html)
         self.assertIn("一句友好的中文摘要。", html)
         self.assertIn("What this paper did", html)
+        self.assertIn("这篇论文研究了什么、用了什么数据和方法。", html)
         self.assertIn("What is genuinely new", html)
+        self.assertIn("它相对已有工作的主要推进。", html)
         self.assertIn("What you should learn", html)
+        self.assertIn("你应该重点学习和复现的部分。", html)
         self.assertIn("BIOMEDICAL DICTIONARY", html)
         self.assertIn("Hippocampus", html)
         self.assertIn("海马体", html)
@@ -158,6 +164,27 @@ class DissertationDigestConfigTests(unittest.TestCase):
         self.assertIn("2 from the RECENT pool and 1 from the CLASSIC pool", source)
         self.assertIn("Select exactly 3 papers from the RECENT pool", source)
         self.assertNotIn("Select exactly 2 papers", source)
+
+    def test_selection_prompt_requests_brief_bilingual_sections(self):
+        source = (ROOT / "daily_papers.py").read_text()
+        self.assertIn("what_zh", source)
+        self.assertIn("innovation_zh", source)
+        self.assertIn("learn_zh", source)
+        self.assertIn("1–2 short sentences", source)
+
+    def test_dissertation_relevance_prefers_brain_biology(self):
+        brain = {
+            "title": "Microglial morphology near amyloid plaques in Alzheimer's cortex",
+            "abstract": "Paired immunofluorescence and spatial transcriptomics in human brain.",
+        }
+        distant = {
+            "title": "Multimodal survival prediction in colorectal cancer",
+            "abstract": "A generic clinical model for tumor prognosis.",
+        }
+        self.assertGreater(
+            daily_papers.score_dissertation_relevance(brain),
+            daily_papers.score_dissertation_relevance(distant),
+        )
 
 
 if __name__ == "__main__":
