@@ -325,3 +325,6 @@
 | 2026-08-01 | Must: Maximizing Latent Capacity of Spatial Transcriptomics Data | https://arxiv.org/abs/2401.07543v1 | arXiv |  |
 | 2026-08-01 | Bright 4B: Scaling Hyperspherical Learning for Segmentation in 3D Brightfield Microscopy | https://arxiv.org/abs/2512.22423v1 | arXiv |  |
 | 2026-08-01 | Learning Cell-Aware Hierarchical Multi-Modal Representations for Robust Molecular Modeling | https://arxiv.org/abs/2511.21120v1 | arXiv | TODAY'S PICK |
+| 2026-08-01 | Spatial mapping and senolytic targeting of senescent and disease-associated microglia in aged mouse brain white matter. | https://pubmed.ncbi.nlm.nih.gov/42443609/ | Nature aging | READ TODAY |
+| 2026-08-01 | DeepPlaque: a scalable multimodal platform for Aβ pathology and cell analysis in Alzheimer's disease. | https://pubmed.ncbi.nlm.nih.gov/42481826/ | EMBO molecular medicine | OPTIONAL METHOD PAPER |
+| 2026-08-01 | Mapping human microglial morphological diversity via handcrafted and deep learning-derived image features. | https://pubmed.ncbi.nlm.nih.gov/42491669/ | iScience | SAVE FOR LATER |

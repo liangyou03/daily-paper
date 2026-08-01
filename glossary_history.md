@@ -36,3 +36,8 @@
 | 2026-08-01 | Grad-CAM | 梯度加权类激活映射 |
 | 2026-08-01 | Morphological Profiling | 形态学分析 |
 | 2026-08-01 | Microglia | 小胶质细胞 |
+| 2026-08-01 | senescence | 细胞衰老 |
+| 2026-08-01 | disease-associated microglia (DAM) | 疾病相关小胶质细胞 |
+| 2026-08-01 | senolytic | 衰老细胞清除剂 |
+| 2026-08-01 | spatial transcriptomics (ST) | 空间转录组学 |
+| 2026-08-01 | diffuse, fibrillar, and core plaques | 弥散斑、纤维斑和核心斑 |
