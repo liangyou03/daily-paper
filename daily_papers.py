@@ -31,7 +31,7 @@ ARXIV_CATS = (
     "OR cat:q-bio.QM OR cat:q-bio.GN OR cat:cs.AI"
 )
 
-# Classic queries: foundational topics for high-citation older papers
+# High-impact queries: established papers within the rolling three-year window
 SS_CLASSIC_QUERIES = [
     "Cellpose CellProfiler Mesmer cell segmentation microscopy",
     "DAPI nuclei segmentation multiplex immunofluorescence",
@@ -78,8 +78,8 @@ MAX_RECENT  = 40
 MAX_CLASSIC = 15
 HISTORY_FILE = "history.md"
 GLOSSARY_HISTORY_FILE = "glossary_history.md"
-CLASSIC_YEAR_CUTOFF = datetime.now().year - 3
-RECENT_YEAR_CUTOFF  = datetime.now().year - 1
+RECENT_WINDOW_DAYS = 3 * 365
+RECENT_YEAR_CUTOFF = (datetime.now() - timedelta(days=RECENT_WINDOW_DAYS)).year
 
 # Sources that are named journals (not preprint servers)
 JOURNAL_SOURCES = {"PubMed", "Semantic Scholar", "arXiv"}  # arXiv excluded below in sort
@@ -292,11 +292,15 @@ def fetch_arxiv(query: str, n: int = 15) -> list[dict]:
     )
     feed = feedparser.parse(url)
     results = []
+    cutoff = datetime.now() - timedelta(days=RECENT_WINDOW_DAYS)
     for e in feed.entries:
         year = None
         if hasattr(e, "published"):
             try:
-                year = int(e.published[:4])
+                published_at = datetime.strptime(e.published[:19], "%Y-%m-%dT%H:%M:%S")
+                if published_at < cutoff:
+                    continue
+                year = published_at.year
             except Exception:
                 pass
         results.append({
@@ -319,6 +323,8 @@ def fetch_semantic_scholar(query: str, n: int = 10, min_year: int = None, max_ye
     }
     if sort == "citations":
         params["sort"] = "citationCount"
+    if min_year or max_year:
+        params["year"] = f"{min_year or ''}-{max_year or ''}"
     try:
         r = requests.get(
             "https://api.semanticscholar.org/graph/v1/paper/search",
@@ -408,7 +414,7 @@ def fetch_pubmed(query: str, n: int = 8) -> list[dict]:
         ids = requests.get(
             f"{base}/esearch.fcgi",
             params={"db": "pubmed", "term": query, "retmax": n,
-                    "sort": "pub+date", "retmode": "json", "reldate": 90},
+                    "sort": "pub+date", "retmode": "json", "reldate": RECENT_WINDOW_DAYS},
             timeout=12,
         ).json()["esearchresult"]["idlist"]
         if not ids:
@@ -432,7 +438,7 @@ def fetch_pubmed_journals(n: int = 12) -> list[dict]:
         ids = requests.get(
             f"{base}/esearch.fcgi",
             params={"db": "pubmed", "term": term, "retmax": n,
-                    "sort": "pub+date", "retmode": "json", "reldate": 180},
+                    "sort": "pub+date", "retmode": "json", "reldate": RECENT_WINDOW_DAYS},
             timeout=12,
         ).json()["esearchresult"]["idlist"]
         if not ids:
@@ -1019,12 +1025,12 @@ def main():
     domains = ["MicrogliaMorphology", "SpatialOmics", "MultimodalAI", "Benchmark", "other"]
     print(f"Recent pool after balancing: {len(recent_pool)} | domains: { {d: sum(1 for p in recent_pool if p.get('domain')==d) for d in domains} }")
 
-    # ── Classic pool ──
+    # ── High-impact pool (still constrained to the rolling three-year window) ──
     classic_pool = []
-    print("Fetching Semantic Scholar (classics)...")
+    print("Fetching Semantic Scholar (high-impact, within 3 years)...")
     for q in SS_CLASSIC_QUERIES:
         classic_pool.extend(
-            fetch_semantic_scholar(q, n=8, max_year=CLASSIC_YEAR_CUTOFF, sort="citations")
+            fetch_semantic_scholar(q, n=8, min_year=RECENT_YEAR_CUTOFF, sort="citations")
         )
         time.sleep(3)
 

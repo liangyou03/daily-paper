@@ -285,6 +285,79 @@ class DissertationDigestConfigTests(unittest.TestCase):
         self.assertIn("medical image analysis", journal_query)
         self.assertIn("patterns", journal_query)
 
+    def test_pubmed_searches_use_a_rolling_three_year_window(self):
+        captured_params = []
+
+        class EmptySearchResponse:
+            def json(self):
+                return {"esearchresult": {"idlist": []}}
+
+        def fake_get(_url, **kwargs):
+            captured_params.append(kwargs["params"])
+            return EmptySearchResponse()
+
+        with patch.object(daily_papers.requests, "get", side_effect=fake_get):
+            daily_papers.fetch_pubmed("microglia")
+            daily_papers.fetch_pubmed_journals()
+
+        self.assertEqual(daily_papers.RECENT_WINDOW_DAYS, 3 * 365)
+        self.assertEqual(
+            [params["reldate"] for params in captured_params],
+            [daily_papers.RECENT_WINDOW_DAYS, daily_papers.RECENT_WINDOW_DAYS],
+        )
+
+    def test_arxiv_excludes_papers_older_than_three_years(self):
+        old = types.SimpleNamespace(
+            title="Old paper",
+            summary="Old abstract",
+            authors=[types.SimpleNamespace(name="Author")],
+            link="https://example.com/old",
+            published="2022-01-01T00:00:00Z",
+        )
+        recent = types.SimpleNamespace(
+            title="Recent paper",
+            summary="Recent abstract",
+            authors=[types.SimpleNamespace(name="Author")],
+            link="https://example.com/recent",
+            published="2026-01-01T00:00:00Z",
+        )
+        with patch.object(
+            daily_papers.feedparser,
+            "parse",
+            return_value=types.SimpleNamespace(entries=[old, recent]),
+        ):
+            papers = daily_papers.fetch_arxiv("microglia", n=2)
+
+        self.assertEqual([paper["title"] for paper in papers], ["Recent paper"])
+
+    def test_high_impact_pool_also_stays_within_three_year_window(self):
+        source = (ROOT / "daily_papers.py").read_text()
+        self.assertIn("min_year=RECENT_YEAR_CUTOFF", source)
+        self.assertNotIn("max_year=CLASSIC_YEAR_CUTOFF", source)
+
+    def test_semantic_scholar_applies_year_window_at_search_time(self):
+        captured = {}
+
+        class EmptySearchResponse:
+            def raise_for_status(self):
+                return None
+
+            def json(self):
+                return {"data": []}
+
+        def fake_get(_url, **kwargs):
+            captured.update(kwargs["params"])
+            return EmptySearchResponse()
+
+        with patch.object(daily_papers.requests, "get", side_effect=fake_get):
+            daily_papers.fetch_semantic_scholar(
+                "microglia",
+                min_year=daily_papers.RECENT_YEAR_CUTOFF,
+                sort="citations",
+            )
+
+        self.assertEqual(captured["year"], f"{daily_papers.RECENT_YEAR_CUTOFF}-")
+
     def test_reading_roles_put_required_paper_first(self):
         papers = [
             {"title": "Later", "reading_role": "SAVE FOR LATER"},
