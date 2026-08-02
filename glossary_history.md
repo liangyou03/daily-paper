@@ -41,3 +41,5 @@
 | 2026-08-01 | senolytic | 衰老细胞清除剂 |
 | 2026-08-01 | spatial transcriptomics (ST) | 空间转录组学 |
 | 2026-08-01 | diffuse, fibrillar, and core plaques | 弥散斑、纤维斑和核心斑 |
+| 2026-08-02 | m1A (N1-methyladenosine) | N1-甲基腺苷 |
+| 2026-08-02 | ASK1/JNK signaling pathway | ASK1/JNK信号通路 |

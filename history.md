@@ -328,3 +328,6 @@
 | 2026-08-01 | Spatial mapping and senolytic targeting of senescent and disease-associated microglia in aged mouse brain white matter. | https://pubmed.ncbi.nlm.nih.gov/42443609/ | Nature aging | READ TODAY |
 | 2026-08-01 | DeepPlaque: a scalable multimodal platform for Aβ pathology and cell analysis in Alzheimer's disease. | https://pubmed.ncbi.nlm.nih.gov/42481826/ | EMBO molecular medicine | OPTIONAL METHOD PAPER |
 | 2026-08-01 | Mapping human microglial morphological diversity via handcrafted and deep learning-derived image features. | https://pubmed.ncbi.nlm.nih.gov/42491669/ | iScience | SAVE FOR LATER |
+| 2026-08-02 | Cell-type-specific m1A dynamics are associated with microglial phenotypic transition and neuronal metabolic adaptation during spinal cord injury. | https://pubmed.ncbi.nlm.nih.gov/42497212/ | PLoS computational biology | READ TODAY |
+| 2026-08-02 | SPADE: Spatial Transcriptomics and Pathology Alignment Using a Mixture of Data Experts for an Expressive Latent Space | https://arxiv.org/abs/2506.21857v2 | arXiv | OPTIONAL METHOD PAPER |
+| 2026-08-02 | SOX9 knockdown alleviates Aβ1‑42‑induced neuroinflammation by regulating microglial polarization via inactivation of the ASK1/JNK signaling pathway. | https://pubmed.ncbi.nlm.nih.gov/42525141/ | Journal of molecular histology | SAVE FOR LATER |
