@@ -43,3 +43,8 @@
 | 2026-08-01 | diffuse, fibrillar, and core plaques | 弥散斑、纤维斑和核心斑 |
 | 2026-08-02 | m1A (N1-methyladenosine) | N1-甲基腺苷 |
 | 2026-08-02 | ASK1/JNK signaling pathway | ASK1/JNK信号通路 |
+| 2026-08-03 | Spine density | 棘突密度 |
+| 2026-08-03 | Image cytometry | 影像细胞分析 |
+| 2026-08-03 | MLP (multi-layer perceptron) | 多层感知机 |
+| 2026-08-03 | SHAP (SHapley Additive exPlanations) | SHAP 可解释性方法 |
+| 2026-08-03 | PPI (protein-protein interaction) | 蛋白质互作网络 |
