@@ -48,3 +48,5 @@
 | 2026-08-03 | MLP (multi-layer perceptron) | 多层感知机 |
 | 2026-08-03 | SHAP (SHapley Additive exPlanations) | SHAP 可解释性方法 |
 | 2026-08-03 | PPI (protein-protein interaction) | 蛋白质互作网络 |
+| 2026-08-04 | Optimal transport | 最优传输 |
+| 2026-08-04 | Latent space | 隐空间 |
