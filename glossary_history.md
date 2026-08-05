@@ -50,3 +50,8 @@
 | 2026-08-03 | PPI (protein-protein interaction) | 蛋白质互作网络 |
 | 2026-08-04 | Optimal transport | 最优传输 |
 | 2026-08-04 | Latent space | 隐空间 |
+| 2026-08-05 | induced pluripotent stem cell (iPSC) | 诱导多能干细胞 |
+| 2026-08-05 | 3D cortical brain tissue model (3BTM) | 三维皮层脑组织模型 |
+| 2026-08-05 | saturation artifact | 饱和伪影 |
+| 2026-08-05 | generative adversarial network (GAN) | 生成对抗网络 |
+| 2026-08-05 | DAPI staining | DAPI染色 |
