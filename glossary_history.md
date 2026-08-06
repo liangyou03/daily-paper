@@ -55,3 +55,6 @@
 | 2026-08-05 | saturation artifact | 饱和伪影 |
 | 2026-08-05 | generative adversarial network (GAN) | 生成对抗网络 |
 | 2026-08-05 | DAPI staining | DAPI染色 |
+| 2026-08-06 | leukotrienes | 白三烯 |
+| 2026-08-06 | neuropathic pain | 神经病理性疼痛 |
+| 2026-08-06 | nociceptors | 伤害感受器 |

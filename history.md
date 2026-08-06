@@ -340,3 +340,6 @@
 | 2026-08-05 | A reproducible three-dimensional model of human brain tissue to investigate physiological and disease-associated microglia phenotypes. | https://pubmed.ncbi.nlm.nih.gov/42552384/ | Nature neuroscience | READ TODAY |
 | 2026-08-05 | MITIGATING OVER-SATURATED FLUORESCENCE IMAGES THROUGH A SEMI-SUPERVISED GENERATIVE ADVERSARIAL NETWORK. | https://pubmed.ncbi.nlm.nih.gov/39867569/ | Proceedings. IEEE International Symposium on Biomedical Imaging | OPTIONAL METHOD PAPER |
 | 2026-08-05 | Decoding mitochondrial apoptosis in ischemic stroke via a miR-21a-3p/Plaur-centered regulatory network. | https://pubmed.ncbi.nlm.nih.gov/42536203/ | Molecular biology reports | SAVE FOR LATER |
+| 2026-08-06 | Microglial 5-LOX-activating protein antagonism alleviates leukotriene-driven neuroinflammation. | https://pubmed.ncbi.nlm.nih.gov/42550249/ | Acta neuropathologica | READ TODAY |
+| 2026-08-06 | Molecular architecture of human dermal sleeping nociceptors. | https://pubmed.ncbi.nlm.nih.gov/41643676/ | Cell | OPTIONAL METHOD PAPER |
+| 2026-08-06 | In silico neuronal morphology classification: A systematic review. | https://pubmed.ncbi.nlm.nih.gov/41771416/ | Neuroscience | SAVE FOR LATER |
