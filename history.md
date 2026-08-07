@@ -343,3 +343,6 @@
 | 2026-08-06 | Microglial 5-LOX-activating protein antagonism alleviates leukotriene-driven neuroinflammation. | https://pubmed.ncbi.nlm.nih.gov/42550249/ | Acta neuropathologica | READ TODAY |
 | 2026-08-06 | Molecular architecture of human dermal sleeping nociceptors. | https://pubmed.ncbi.nlm.nih.gov/41643676/ | Cell | OPTIONAL METHOD PAPER |
 | 2026-08-06 | In silico neuronal morphology classification: A systematic review. | https://pubmed.ncbi.nlm.nih.gov/41771416/ | Neuroscience | SAVE FOR LATER |
+| 2026-08-07 | How Molecules Impact Cells: Unlocking Contrastive PhenoMolecular Retrieval | https://arxiv.org/abs/2409.08302v1 | arXiv | READ TODAY |
+| 2026-08-07 | Galectin-3 is elevated in Müller glia in human glaucomatous eyes and ocular hypertensive rat eyes and associated with phagocytosing states. | https://pubmed.ncbi.nlm.nih.gov/42552556/ | Acta neuropathologica communications | OPTIONAL METHOD PAPER |
+| 2026-08-07 | Continual integration of single-cell multimodal data with MIRACLE. | https://pubmed.ncbi.nlm.nih.gov/42538449/ | Nature computational science | SAVE FOR LATER |
