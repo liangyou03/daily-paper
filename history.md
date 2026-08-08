@@ -346,3 +346,6 @@
 | 2026-08-07 | How Molecules Impact Cells: Unlocking Contrastive PhenoMolecular Retrieval | https://arxiv.org/abs/2409.08302v1 | arXiv | READ TODAY |
 | 2026-08-07 | Galectin-3 is elevated in Müller glia in human glaucomatous eyes and ocular hypertensive rat eyes and associated with phagocytosing states. | https://pubmed.ncbi.nlm.nih.gov/42552556/ | Acta neuropathologica communications | OPTIONAL METHOD PAPER |
 | 2026-08-07 | Continual integration of single-cell multimodal data with MIRACLE. | https://pubmed.ncbi.nlm.nih.gov/42538449/ | Nature computational science | SAVE FOR LATER |
+| 2026-08-08 | Hematopoietic Growth Factors Induce More Extensive Transcriptomic Remodeling in Cerebral Monocytes/Macrophages than in Microglia During the Chronic Phase of Traumatic Brain Injury. | https://pubmed.ncbi.nlm.nih.gov/42557490/ | Molecular neurobiology | READ TODAY |
+| 2026-08-08 | Disrupting galectin-3 and NET-mediated microglia-neutrophil cross-talk suppresses pathological retinal angiogenesis. | https://pubmed.ncbi.nlm.nih.gov/42555755/ | Science translational medicine | OPTIONAL METHOD PAPER |
+| 2026-08-08 | Lineage-calibrated peripheral monocyte-derived myeloid states in neurodegenerative disease: Recruitment, lesion decoding, and state persistence. | https://pubmed.ncbi.nlm.nih.gov/42543118/ | Neurobiology of disease | SAVE FOR LATER |

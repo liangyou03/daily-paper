@@ -61,3 +61,7 @@
 | 2026-08-07 | Microglial morphology | 小胶质细胞形态学 |
 | 2026-08-07 | Cellpose-SAM | Cellpose-SAM |
 | 2026-08-07 | Graph neural network (GNN) | 图神经网络 |
+| 2026-08-08 | TREM2 | 髓样细胞触发受体2 |
+| 2026-08-08 | galectin-3 | 半乳糖凝集素-3 |
+| 2026-08-08 | neurotrophin | 神经营养因子 |
+| 2026-08-08 | single-cell RNA sequencing (scRNA-seq) | 单细胞RNA测序 |
