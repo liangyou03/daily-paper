@@ -75,3 +75,8 @@
 | 2026-08-11 | 5XFAD mouse model | 5XFAD小鼠模型 |
 | 2026-08-11 | tau tangle pathology | tau蛋白缠结病理 |
 | 2026-08-11 | microglia-oligodendrocyte crosstalk | 小胶质细胞-少突胶质细胞交互 |
+| 2026-08-12 | cGAS/STING pathway | cGAS/STING通路 |
+| 2026-08-12 | choroidal neovascularization (CNV) | 脉络膜新生血管 |
+| 2026-08-12 | mononuclear phagocytes (MPs) | 单核吞噬细胞 |
+| 2026-08-12 | ferroptosis | 铁死亡 |
+| 2026-08-12 | JAK-STAT-IFN signaling | JAK-STAT-IFN信号通路 |
