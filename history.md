@@ -361,3 +361,6 @@
 | 2026-08-12 | Mononuclear phagocyte-specific cGAS/STING targeting suppresses experimental choroidal neovascularization. | https://pubmed.ncbi.nlm.nih.gov/42579800/ | JCI insight | READ TODAY |
 | 2026-08-12 | Single-cell transcriptomic analysis of ferroptosis-associated cell populations in the progression of diabetic retinopathy. | https://pubmed.ncbi.nlm.nih.gov/42568025/ | International ophthalmology | OPTIONAL METHOD PAPER |
 | 2026-08-12 | Early versus late JAK-STAT-IFN signaling distinguishes no rejection from subclinical to clinical TCMR after liver transplantation. | https://pubmed.ncbi.nlm.nih.gov/42555758/ | Science translational medicine | SAVE FOR LATER |
+| 2026-08-13 | Integrating chemical structures as treatments improves representations of microscopy images for morphological profiling | https://arxiv.org/abs/2504.09544v3 | arXiv | READ TODAY |
+| 2026-08-13 | Distinct Transposable Element Transcript Patterns in Microglia Across Aging and Alzheimer's Disease. | https://pubmed.ncbi.nlm.nih.gov/42587389/ | Aging cell | OPTIONAL METHOD PAPER |
+| 2026-08-13 | A reference protein atlas of the adult mouse brain vasculature. | https://pubmed.ncbi.nlm.nih.gov/42550898/ | Proceedings of the National Academy of Sciences of the United States of America | SAVE FOR LATER |

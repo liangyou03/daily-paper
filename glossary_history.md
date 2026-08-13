@@ -80,3 +80,6 @@
 | 2026-08-12 | mononuclear phagocytes (MPs) | 单核吞噬细胞 |
 | 2026-08-12 | ferroptosis | 铁死亡 |
 | 2026-08-12 | JAK-STAT-IFN signaling | JAK-STAT-IFN信号通路 |
+| 2026-08-13 | Transposable elements (TEs) | 转座元件 |
+| 2026-08-13 | Microglial activation | 小胶质细胞活化 |
+| 2026-08-13 | Multimodal integration | 多模态整合 |
