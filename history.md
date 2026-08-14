@@ -364,3 +364,6 @@
 | 2026-08-13 | Integrating chemical structures as treatments improves representations of microscopy images for morphological profiling | https://arxiv.org/abs/2504.09544v3 | arXiv | READ TODAY |
 | 2026-08-13 | Distinct Transposable Element Transcript Patterns in Microglia Across Aging and Alzheimer's Disease. | https://pubmed.ncbi.nlm.nih.gov/42587389/ | Aging cell | OPTIONAL METHOD PAPER |
 | 2026-08-13 | A reference protein atlas of the adult mouse brain vasculature. | https://pubmed.ncbi.nlm.nih.gov/42550898/ | Proceedings of the National Academy of Sciences of the United States of America | SAVE FOR LATER |
+| 2026-08-14 | Differential effects of environmental enrichment and physical exercise on glial biology in aging and aging-related conditions: a systematic review. | https://pubmed.ncbi.nlm.nih.gov/42582005/ | Frontiers in cellular neuroscience | READ TODAY |
+| 2026-08-14 | Spatially-resolved integration of microglia morphological diversity and gene expression using Visium with protein co-detection | https://www.semanticscholar.org/paper/1a9a85212068bf97901a4794c9a06d30002133e0 | bioRxiv | OPTIONAL METHOD PAPER |
+| 2026-08-14 | Segmentation-free integration of nuclei morphology and spatial transcriptomics for retinal images | https://www.semanticscholar.org/paper/3b3fd02438e9b2af05d76b5b4afe3e180bb3fa72 | arXiv.org | SAVE FOR LATER |
