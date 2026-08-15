@@ -86,3 +86,8 @@
 | 2026-08-14 | Multiplex immunofluorescence (mIF) | 多重免疫荧光 |
 | 2026-08-14 | Visium with protein co-detection | 带蛋白质共检测的 Visium |
 | 2026-08-14 | Segmentation | 图像分割 |
+| 2026-08-15 | Fractalkine receptor (CX3CR1) | 趋化因子受体 CX3CR1 |
+| 2026-08-15 | Laser-induced cortical lesion | 激光诱导皮层损伤 |
+| 2026-08-15 | Alternative splicing | 可变剪接 |
+| 2026-08-15 | In situ graphene-sequencing | 原位石墨烯测序 |
+| 2026-08-15 | Multimodal spatial omics | 多模态空间组学 |
