@@ -370,3 +370,6 @@
 | 2026-08-15 | CX3CR1 Modulates Migration of Resident Microglia Towards Cortical Laser-Induced Lesions. | https://pubmed.ncbi.nlm.nih.gov/42601841/ | Glia | READ TODAY |
 | 2026-08-15 | RecGOAT: Graph Optimal Adaptive Transport for LLM-Enhanced Multimodal Recommendation with Dual Semantic Alignment | https://www.semanticscholar.org/paper/02a2ea7567a56d9243bb9fc1d267c8cf5bcaf2b0 | arXiv.org | OPTIONAL METHOD PAPER |
 | 2026-08-15 | In situ graphene-seq: spatial transcriptomics and chronic electrophysiological characterization of tissue microenvironments. | https://pubmed.ncbi.nlm.nih.gov/42321181/ | Nature communications | SAVE FOR LATER |
+| 2026-08-16 | Brain perivascular macrophages regulate endothelial cell function via a cMAF-dependent transcriptional program in mouse and human. | https://pubmed.ncbi.nlm.nih.gov/42600613/ | Cell | READ TODAY |
+| 2026-08-16 | The dual role of microglia in Alzheimer’s disease: from immune regulation to pathological progression | https://www.semanticscholar.org/paper/a1f1fc1ce6e85a2a88ad7a7632431a172c4fa7dc | Frontiers in Aging Neuroscience | OPTIONAL METHOD PAPER |
+| 2026-08-16 | Correlative Effects of PARP12 mRNA Knockdown on Pro-inflammatory Gene Expression and Alternative Splicing in BV2 Microglial Cells. | https://pubmed.ncbi.nlm.nih.gov/42601570/ | Molecular neurobiology | SAVE FOR LATER |
