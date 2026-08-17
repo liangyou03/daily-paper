@@ -373,3 +373,6 @@
 | 2026-08-16 | Brain perivascular macrophages regulate endothelial cell function via a cMAF-dependent transcriptional program in mouse and human. | https://pubmed.ncbi.nlm.nih.gov/42600613/ | Cell | READ TODAY |
 | 2026-08-16 | The dual role of microglia in Alzheimer’s disease: from immune regulation to pathological progression | https://www.semanticscholar.org/paper/a1f1fc1ce6e85a2a88ad7a7632431a172c4fa7dc | Frontiers in Aging Neuroscience | OPTIONAL METHOD PAPER |
 | 2026-08-16 | Correlative Effects of PARP12 mRNA Knockdown on Pro-inflammatory Gene Expression and Alternative Splicing in BV2 Microglial Cells. | https://pubmed.ncbi.nlm.nih.gov/42601570/ | Molecular neurobiology | SAVE FOR LATER |
+| 2026-08-17 | scKanFormer: A Transformer-KAN framework with biologically informed attention for cell type annotation in large-scale scRNA-seq data. | https://pubmed.ncbi.nlm.nih.gov/42599963/ | PLoS computational biology | READ TODAY |
+| 2026-08-17 | Multimodal Spatial Omics: From Data Acquisition to Computational Integration | https://arxiv.org/abs/2601.12381v1 | arXiv | OPTIONAL METHOD PAPER |
+| 2026-08-17 | Integrating single-cell transcriptomics with cellular phenotypes: cell morphology, Ca2+ imaging and electrophysiology | https://www.semanticscholar.org/paper/30ffc3962162109d1c94ba841adb15d75f59d332 | Biophysical Reviews | SAVE FOR LATER |
