@@ -376,3 +376,6 @@
 | 2026-08-17 | scKanFormer: A Transformer-KAN framework with biologically informed attention for cell type annotation in large-scale scRNA-seq data. | https://pubmed.ncbi.nlm.nih.gov/42599963/ | PLoS computational biology | READ TODAY |
 | 2026-08-17 | Multimodal Spatial Omics: From Data Acquisition to Computational Integration | https://arxiv.org/abs/2601.12381v1 | arXiv | OPTIONAL METHOD PAPER |
 | 2026-08-17 | Integrating single-cell transcriptomics with cellular phenotypes: cell morphology, Ca2+ imaging and electrophysiology | https://www.semanticscholar.org/paper/30ffc3962162109d1c94ba841adb15d75f59d332 | Biophysical Reviews | SAVE FOR LATER |
+| 2026-08-18 | PaSTel: Anchoring Histology in Spatial Transcriptomics via Multi-Scale Hierarchical Bio-Prior Contrastive Pretraining | https://arxiv.org/abs/2608.14924v1 | arXiv | READ TODAY |
+| 2026-08-18 | Graph-based contrastive learning enables unified integration and niche transfer across single-cell and spatial multi-omics. | https://pubmed.ncbi.nlm.nih.gov/42608748/ | Briefings in bioinformatics | OPTIONAL METHOD PAPER |
+| 2026-08-18 | Targeting phagocytosis for amyloid-β clearance: implications of morphology remodeling and microglia activation probed by bifunctional chimaeras | https://www.semanticscholar.org/paper/a448cf386d7980c1a80466d6b633ca5cb26463a4 | Nature Communications | SAVE FOR LATER |
