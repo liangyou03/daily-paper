@@ -379,3 +379,6 @@
 | 2026-08-18 | PaSTel: Anchoring Histology in Spatial Transcriptomics via Multi-Scale Hierarchical Bio-Prior Contrastive Pretraining | https://arxiv.org/abs/2608.14924v1 | arXiv | READ TODAY |
 | 2026-08-18 | Graph-based contrastive learning enables unified integration and niche transfer across single-cell and spatial multi-omics. | https://pubmed.ncbi.nlm.nih.gov/42608748/ | Briefings in bioinformatics | OPTIONAL METHOD PAPER |
 | 2026-08-18 | Targeting phagocytosis for amyloid-β clearance: implications of morphology remodeling and microglia activation probed by bifunctional chimaeras | https://www.semanticscholar.org/paper/a448cf386d7980c1a80466d6b633ca5cb26463a4 | Nature Communications | SAVE FOR LATER |
+| 2026-08-19 | Multimodal brain cell atlas across the adult macaque lifespan. | https://pubmed.ncbi.nlm.nih.gov/42612631/ | Cell | READ TODAY |
+| 2026-08-19 | Unsupervised deep learning enables blur-free resolution enhancement in two-photon microscopy. | https://pubmed.ncbi.nlm.nih.gov/42248144/ | Cell reports methods | OPTIONAL METHOD PAPER |
+| 2026-08-19 | EGFR inhibition promotes functional engraftment and graft survival via donor-derived CHI3L1 in fetal RPE suspension transplantation. | https://pubmed.ncbi.nlm.nih.gov/42546699/ | Cell reports. Medicine | SAVE FOR LATER |
