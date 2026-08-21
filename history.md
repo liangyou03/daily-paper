@@ -385,3 +385,6 @@
 | 2026-08-20 | Unraveling cell-cell communication through spatial transcriptomics: a review of computational methods. | https://pubmed.ncbi.nlm.nih.gov/42617152/ | Briefings in bioinformatics | READ TODAY |
 | 2026-08-20 | An Integrated Spatial Multi-Omics Workflow for Sequential RNA and Protein Profiling in FFPE Tumor Tissue. | https://pubmed.ncbi.nlm.nih.gov/42568117/ | Cancer research communications | OPTIONAL METHOD PAPER |
 | 2026-08-20 | An Evaluation of MACSima and PhenoCycler-Fusion for Spatial Image Analysis in a Medulloblastoma Xenograft Model. | https://pubmed.ncbi.nlm.nih.gov/41622774/ | Microscopy research and technique | SAVE FOR LATER |
+| 2026-08-21 | Neurodegeneration as a dysregulation of neuroimmune crosstalk. | https://pubmed.ncbi.nlm.nih.gov/42624075/ | Cell | READ TODAY |
+| 2026-08-21 | Distinct cellular phenotypes of language and executive decline in amyotrophic lateral sclerosis. | https://pubmed.ncbi.nlm.nih.gov/42551425/ | Cell | OPTIONAL METHOD PAPER |
+| 2026-08-21 | Artificial hibernation reveals synaptic engram architecture associated with memory retention. | https://pubmed.ncbi.nlm.nih.gov/42594194/ | Science (New York, N.Y.) | SAVE FOR LATER |
