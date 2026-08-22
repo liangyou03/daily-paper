@@ -388,3 +388,6 @@
 | 2026-08-21 | Neurodegeneration as a dysregulation of neuroimmune crosstalk. | https://pubmed.ncbi.nlm.nih.gov/42624075/ | Cell | READ TODAY |
 | 2026-08-21 | Distinct cellular phenotypes of language and executive decline in amyotrophic lateral sclerosis. | https://pubmed.ncbi.nlm.nih.gov/42551425/ | Cell | OPTIONAL METHOD PAPER |
 | 2026-08-21 | Artificial hibernation reveals synaptic engram architecture associated with memory retention. | https://pubmed.ncbi.nlm.nih.gov/42594194/ | Science (New York, N.Y.) | SAVE FOR LATER |
+| 2026-08-22 | Dissecting Alzheimer's proteomic landscape through NULISA profiling of brain cell-specific extracellular vesicles. | https://pubmed.ncbi.nlm.nih.gov/42630134/ | Alzheimer's & dementia : the journal of the Alzheimer's Association | READ TODAY |
+| 2026-08-22 | KDM4A promotes microglial pyroptosis and neuropathic pain via the MEG3/SMURF2/HES1 axis. | https://pubmed.ncbi.nlm.nih.gov/42627979/ | Journal of immunology (Baltimore, Md. : 1950) | OPTIONAL METHOD PAPER |
+| 2026-08-22 | Integrated single-cell and spatial transcriptomics uncover distinct cellular subtypes involved in neural invasion in pancreatic cancer. | https://www.semanticscholar.org/paper/9b4195dd8125bd09ade3622a5185e379bc316f55 | Cancer Cell | SAVE FOR LATER |
