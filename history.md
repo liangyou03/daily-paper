@@ -394,3 +394,6 @@
 | 2026-08-23 | Cell Type-Specific Extracellular Vesicles in Mouse Brain: Proteomic Signatures Highlight Astrocytic GlialCAM Network and GPCR Enrichment. | https://pubmed.ncbi.nlm.nih.gov/42627292/ | Glia | READ TODAY |
 | 2026-08-23 | Combined patch-clamp electrophysiology and single-cell genomic analysis reveal spiking tumor cells at the neocortical glioblastoma interface in humans. | https://pubmed.ncbi.nlm.nih.gov/41857760/ | Neuro-oncology | OPTIONAL METHOD PAPER |
 | 2026-08-23 | From pixels to cell types: a comprehensive review of computational methods for spatial transcriptomics deconvolution | https://www.semanticscholar.org/paper/8deefc6c8ac78ce024e07258e0a799f6fbc66b2a | Genomics & Informatics | SAVE FOR LATER |
+| 2026-08-24 | The auditory nerve glial transition zone is a focal site of age-related immune-myelin interactions. | https://pubmed.ncbi.nlm.nih.gov/42630213/ | Frontiers in immunology | READ TODAY |
+| 2026-08-24 | Bayesian inference of lineage trees by joint analysis of single-cell multimodal lineage-tracing data with BiLinT. | https://pubmed.ncbi.nlm.nih.gov/42629163/ | Genome research | OPTIONAL METHOD PAPER |
+| 2026-08-24 | Multimodal evidence for bone lymphatics in skeletal health and repair. | https://pubmed.ncbi.nlm.nih.gov/42624078/ | Cell | SAVE FOR LATER |
