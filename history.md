@@ -397,3 +397,6 @@
 | 2026-08-24 | The auditory nerve glial transition zone is a focal site of age-related immune-myelin interactions. | https://pubmed.ncbi.nlm.nih.gov/42630213/ | Frontiers in immunology | READ TODAY |
 | 2026-08-24 | Bayesian inference of lineage trees by joint analysis of single-cell multimodal lineage-tracing data with BiLinT. | https://pubmed.ncbi.nlm.nih.gov/42629163/ | Genome research | OPTIONAL METHOD PAPER |
 | 2026-08-24 | Multimodal evidence for bone lymphatics in skeletal health and repair. | https://pubmed.ncbi.nlm.nih.gov/42624078/ | Cell | SAVE FOR LATER |
+| 2026-08-25 | A multimodal analysis suggests partial IRF8/TLR7-associated myeloid transcriptional convergence between diabetic kidney disease and Parkinson's disease. | https://pubmed.ncbi.nlm.nih.gov/42623410/ | PloS one | READ TODAY |
+| 2026-08-25 | SIDISH integrates single-cell and bulk transcriptomics to identify high-risk cells and guide precision therapeutics through in silico perturbation | https://www.semanticscholar.org/paper/a4d367d47d5b6ff5a668bd75bb6a007626ff2964 | Nature Communications | OPTIONAL METHOD PAPER |
+| 2026-08-25 | WEAKLY SUPERVISED SEGMENTATION AND CLASSIFICATION OF ALPHA-SYNUCLEIN AGGREGATES IN BRIGHTFIELD MIDBRAIN IMAGES. | https://pubmed.ncbi.nlm.nih.gov/41333166/ | ArXiv | SAVE FOR LATER |
