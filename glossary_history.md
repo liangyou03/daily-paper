@@ -115,3 +115,5 @@
 | 2026-08-24 | Visium spatial transcriptomics | Visium空间转录组学 |
 | 2026-08-24 | Glial transition zone | 胶质细胞过渡区 |
 | 2026-08-25 | cell-type deconvolution | 细胞类型反卷积 |
+| 2026-08-26 | Alzheimer's disease | 阿尔茨海默病 |
+| 2026-08-26 | Multimodal learning | 多模态学习 |

@@ -400,3 +400,6 @@
 | 2026-08-25 | A multimodal analysis suggests partial IRF8/TLR7-associated myeloid transcriptional convergence between diabetic kidney disease and Parkinson's disease. | https://pubmed.ncbi.nlm.nih.gov/42623410/ | PloS one | READ TODAY |
 | 2026-08-25 | SIDISH integrates single-cell and bulk transcriptomics to identify high-risk cells and guide precision therapeutics through in silico perturbation | https://www.semanticscholar.org/paper/a4d367d47d5b6ff5a668bd75bb6a007626ff2964 | Nature Communications | OPTIONAL METHOD PAPER |
 | 2026-08-25 | WEAKLY SUPERVISED SEGMENTATION AND CLASSIFICATION OF ALPHA-SYNUCLEIN AGGREGATES IN BRIGHTFIELD MIDBRAIN IMAGES. | https://pubmed.ncbi.nlm.nih.gov/41333166/ | ArXiv | SAVE FOR LATER |
+| 2026-08-26 | CD33 and clusterin interact biophysically and genetically to modulate Alzheimer risk. | https://pubmed.ncbi.nlm.nih.gov/42469217/ | Nature communications | READ TODAY |
+| 2026-08-26 | Integrative spatial profiling of 3D genome organization and gene expression in tissue. | https://pubmed.ncbi.nlm.nih.gov/42641604/ | Cell | OPTIONAL METHOD PAPER |
+| 2026-08-26 | Rethinking the Adaptation of Vision Foundation Models for Efficient Cell Segmentation | https://arxiv.org/abs/2606.21913v1 | arXiv | SAVE FOR LATER |
