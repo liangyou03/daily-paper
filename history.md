@@ -403,3 +403,6 @@
 | 2026-08-26 | CD33 and clusterin interact biophysically and genetically to modulate Alzheimer risk. | https://pubmed.ncbi.nlm.nih.gov/42469217/ | Nature communications | READ TODAY |
 | 2026-08-26 | Integrative spatial profiling of 3D genome organization and gene expression in tissue. | https://pubmed.ncbi.nlm.nih.gov/42641604/ | Cell | OPTIONAL METHOD PAPER |
 | 2026-08-26 | Rethinking the Adaptation of Vision Foundation Models for Efficient Cell Segmentation | https://arxiv.org/abs/2606.21913v1 | arXiv | SAVE FOR LATER |
+| 2026-08-27 | Intranasal CRISPR lipid nanoparticles targeting MAPK9 attenuate neuroinflammation after traumatic brain injury. | https://pubmed.ncbi.nlm.nih.gov/42658322/ | Biomedical microdevices | READ TODAY |
+| 2026-08-27 | Cross-Modal Brain Network Disruptions in Schizophrenia: Insights from Multiplex Modeling and Transcriptomic Associations. | https://pubmed.ncbi.nlm.nih.gov/42636471/ | Schizophrenia bulletin | OPTIONAL METHOD PAPER |
+| 2026-08-27 | Physics-inspired computational methods for spatial transcriptomics reveal a dysplasia-restricted pre-malignant basin and a density-asymmetric autocrine niche in oral mucosal carcinogenesis | https://www.semanticscholar.org/paper/f66073aef9967f0c41a39bf0b59ceadad556d7fa | bioRxiv | SAVE FOR LATER |
