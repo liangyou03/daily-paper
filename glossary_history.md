@@ -118,3 +118,5 @@
 | 2026-08-26 | Alzheimer's disease | 阿尔茨海默病 |
 | 2026-08-26 | Multimodal learning | 多模态学习 |
 | 2026-08-27 | Segment Anything Model (SAM) | 分割一切模型 |
+| 2026-08-28 | Microglial phagocytosis | 小胶质细胞吞噬作用 |
+| 2026-08-28 | Weakly paired multimodal data | 弱配对多模态数据 |
