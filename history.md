@@ -415,3 +415,6 @@
 | 2026-08-30 | Multi-omic analysis of androgen-deprived human testes reveals Sertoli cell regulation and niche reprogramming. | https://pubmed.ncbi.nlm.nih.gov/42660954/ | Nature communications | READ TODAY |
 | 2026-08-30 | PAST: A multimodal single-cell foundation model for histopathology and spatial transcriptomics in cancer | https://arxiv.org/abs/2507.06418v1 | arXiv | OPTIONAL METHOD PAPER |
 | 2026-08-30 | Propensity Score Alignment of Unpaired Multimodal Data | https://www.semanticscholar.org/paper/ef23e7a41ff3f41ddf99bc57ab852472f6588b84 | Neural Information Processing Systems | SAVE FOR LATER |
+| 2026-08-31 | Longitudinal alignments and syntheses of multimodal clinical data for personalized medicine with the PULSE framework. | https://pubmed.ncbi.nlm.nih.gov/42649447/ | Nature computational science | READ TODAY |
+| 2026-08-31 | Transformation of Biological Networks into Images via Semantic Cartography for Visual Interpretation and Scalable Deep Analysis | https://arxiv.org/abs/2512.07040v1 | arXiv | OPTIONAL METHOD PAPER |
+| 2026-08-31 | Tissue-reactive zonation of mesenchymal-like phenotypes in human glioblastoma. | https://pubmed.ncbi.nlm.nih.gov/42492522/ | Med (New York, N.Y.) | SAVE FOR LATER |
