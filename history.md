@@ -418,3 +418,6 @@
 | 2026-08-31 | Longitudinal alignments and syntheses of multimodal clinical data for personalized medicine with the PULSE framework. | https://pubmed.ncbi.nlm.nih.gov/42649447/ | Nature computational science | READ TODAY |
 | 2026-08-31 | Transformation of Biological Networks into Images via Semantic Cartography for Visual Interpretation and Scalable Deep Analysis | https://arxiv.org/abs/2512.07040v1 | arXiv | OPTIONAL METHOD PAPER |
 | 2026-08-31 | Tissue-reactive zonation of mesenchymal-like phenotypes in human glioblastoma. | https://pubmed.ncbi.nlm.nih.gov/42492522/ | Med (New York, N.Y.) | SAVE FOR LATER |
+| 2026-09-01 | Longitudinal analysis reveals myeloid cell contributions to murine neuroPASC pathogenesis. | https://pubmed.ncbi.nlm.nih.gov/42669720/ | Nature communications | READ TODAY |
+| 2026-09-01 | Foundation cell segmentation models performance on live microscopy and spatial-omics data | https://www.semanticscholar.org/paper/74f17c67993771157f0851f9e634e5431ace60eb | bioRxiv | OPTIONAL METHOD PAPER |
+| 2026-09-01 | The m⁶A reader YTHDF2 regulates mRNA transport and axon outgrowth in developing neurons. | https://pubmed.ncbi.nlm.nih.gov/42669734/ | Nature communications | SAVE FOR LATER |
