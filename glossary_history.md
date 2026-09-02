@@ -128,3 +128,8 @@
 | 2026-09-01 | autofluorescence microscopy | 自体荧光显微镜 |
 | 2026-09-01 | Fourier ptychographic microscopy | 傅里叶叠层成像显微镜 |
 | 2026-09-01 | ortholog | 直系同源基因 |
+| 2026-09-02 | Microglial state | 小胶质细胞状态 |
+| 2026-09-02 | Single-cell atlas | 单细胞图谱 |
+| 2026-09-02 | Transfer learning | 迁移学习 |
+| 2026-09-02 | Multimodal embedding | 多模态嵌入 |
+| 2026-09-02 | Trajectory inference | 轨迹推断 |

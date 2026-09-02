@@ -421,3 +421,6 @@
 | 2026-09-01 | Longitudinal analysis reveals myeloid cell contributions to murine neuroPASC pathogenesis. | https://pubmed.ncbi.nlm.nih.gov/42669720/ | Nature communications | READ TODAY |
 | 2026-09-01 | Foundation cell segmentation models performance on live microscopy and spatial-omics data | https://www.semanticscholar.org/paper/74f17c67993771157f0851f9e634e5431ace60eb | bioRxiv | OPTIONAL METHOD PAPER |
 | 2026-09-01 | The m⁶A reader YTHDF2 regulates mRNA transport and axon outgrowth in developing neurons. | https://pubmed.ncbi.nlm.nih.gov/42669734/ | Nature communications | SAVE FOR LATER |
+| 2026-09-02 | Neonatal inflammation disrupts a temporally restricted postnatal Numb-enriched microglial state in mice. | https://pubmed.ncbi.nlm.nih.gov/42680728/ | Nature communications | READ TODAY |
+| 2026-09-02 | Unify learns cellular evolution with universal multimodal embeddings. | https://pubmed.ncbi.nlm.nih.gov/42669747/ | Nature communications | OPTIONAL METHOD PAPER |
+| 2026-09-02 | Evidence for hippocampal globotriaosylceramide (Gb3) accumulation and spatial memory impairment in a mouse model of Fabry disease. | https://pubmed.ncbi.nlm.nih.gov/42379398/ | Neurobiology of disease | SAVE FOR LATER |
