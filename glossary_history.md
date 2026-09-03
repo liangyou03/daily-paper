@@ -133,3 +133,8 @@
 | 2026-09-02 | Transfer learning | 迁移学习 |
 | 2026-09-02 | Multimodal embedding | 多模态嵌入 |
 | 2026-09-02 | Trajectory inference | 轨迹推断 |
+| 2026-09-03 | App<sup>NL-F</sup> knock-in mice | App<sup>NL-F</sup> 基因敲入小鼠 |
+| 2026-09-03 | Lipid-associated macrophage | 脂质相关巨噬细胞 |
+| 2026-09-03 | Single domain generalization | 单域泛化 |
+| 2026-09-03 | Dirac rebalancer | 狄拉克重平衡器 |
+| 2026-09-03 | Neoadjuvant immunotherapy | 新辅助免疫治疗 |
