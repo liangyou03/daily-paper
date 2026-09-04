@@ -138,3 +138,7 @@
 | 2026-09-03 | Single domain generalization | 单域泛化 |
 | 2026-09-03 | Dirac rebalancer | 狄拉克重平衡器 |
 | 2026-09-03 | Neoadjuvant immunotherapy | 新辅助免疫治疗 |
+| 2026-09-04 | Cerebral amyloid angiopathy (CAA) | 脑淀粉样血管病 |
+| 2026-09-04 | Alzheimer's disease neuropathologic change (ADNC) | 阿尔茨海默病神经病理改变 |
+| 2026-09-04 | Occipital lobe | 枕叶 |
+| 2026-09-04 | Differential Phase Contrast (DPC) imaging | 微分相衬成像 |

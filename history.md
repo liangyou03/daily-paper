@@ -427,3 +427,6 @@
 | 2026-09-03 | Stepwise Upregulation of Microglial Genes through the Slow Progression of Amyloid Pathology in Alzheimer's Disease Model Mice. | https://pubmed.ncbi.nlm.nih.gov/42686621/ | Biological & pharmaceutical bulletin | READ TODAY |
 | 2026-09-03 | Integrated single-cell multi-omics characterization reveals lipid-associated macrophage-mediated immunosuppression in neoadjuvant immunotherapy of hepatocellular carcinoma. | https://pubmed.ncbi.nlm.nih.gov/42680737/ | Nature communications | OPTIONAL METHOD PAPER |
 | 2026-09-03 | Single Domain Generalization for Multimodal Cross-Cancer Prognosis via Dirac Rebalancer and Distribution Entanglement | https://arxiv.org/abs/2507.08340v2 | arXiv | SAVE FOR LATER |
+| 2026-09-04 | An analysis of cerebral amyloid angiopathy based on samples from human brain bank. | https://pubmed.ncbi.nlm.nih.gov/42682443/ | Frontiers in immunology | READ TODAY |
+| 2026-09-04 | Towards Label-Free Single-Cell Phenotyping Using Multi-Task Learning | https://arxiv.org/abs/2605.14717v1 | arXiv | OPTIONAL METHOD PAPER |
+| 2026-09-04 | scMIR: a vision-language foundation model for single-cell light microscopy image representation | https://arxiv.org/abs/2607.22712v2 | arXiv | SAVE FOR LATER |
