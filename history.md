@@ -430,3 +430,6 @@
 | 2026-09-04 | An analysis of cerebral amyloid angiopathy based on samples from human brain bank. | https://pubmed.ncbi.nlm.nih.gov/42682443/ | Frontiers in immunology | READ TODAY |
 | 2026-09-04 | Towards Label-Free Single-Cell Phenotyping Using Multi-Task Learning | https://arxiv.org/abs/2605.14717v1 | arXiv | OPTIONAL METHOD PAPER |
 | 2026-09-04 | scMIR: a vision-language foundation model for single-cell light microscopy image representation | https://arxiv.org/abs/2607.22712v2 | arXiv | SAVE FOR LATER |
+| 2026-09-05 | Development of computational methods for image-based spatial transcriptomics. (Développement de méthodes computationnelles pour la transcriptomique spatiale basée sur l'image) | https://www.semanticscholar.org/paper/1dcdae0ec59c1b60abc211fb717bd97608ea36b2 | Semantic Scholar | READ TODAY |
+| 2026-09-05 | Regional diversity of cranial skeletal stem cells governs bone morphogenetic protein-2 mediated bone regeneration. | https://pubmed.ncbi.nlm.nih.gov/42693126/ | Nature communications | OPTIONAL METHOD PAPER |
+| 2026-09-05 | Chrono-atlas of cell-type specific daily gene expression rhythms in the regenerating colon. | https://pubmed.ncbi.nlm.nih.gov/42686778/ | Nature communications | SAVE FOR LATER |

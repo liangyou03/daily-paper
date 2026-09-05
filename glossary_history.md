@@ -142,3 +142,6 @@
 | 2026-09-04 | Alzheimer's disease neuropathologic change (ADNC) | 阿尔茨海默病神经病理改变 |
 | 2026-09-04 | Occipital lobe | 枕叶 |
 | 2026-09-04 | Differential Phase Contrast (DPC) imaging | 微分相衬成像 |
+| 2026-09-05 | Nucleus-to-spot assignment | 核到点分配 |
+| 2026-09-05 | Marker-guided cell-body expansion | 标记引导的细胞体扩展 |
+| 2026-09-05 | Permutation negative control | 置换阴性对照 |
