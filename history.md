@@ -436,3 +436,6 @@
 | 2026-09-06 | TREM2 as a central hub of neuroimmune-metabolic crosstalk in central nervous system disorders: from microglial biology to therapeutic targeting. | https://pubmed.ncbi.nlm.nih.gov/42694654/ | Frontiers in immunology | READ TODAY |
 | 2026-09-06 | Spatial isoform sequencing at single-cell resolution reveals cell-type-specific spatial isoform variability in multiple brain cell types. | https://pubmed.ncbi.nlm.nih.gov/42697995/ | Nature methods | OPTIONAL METHOD PAPER |
 | 2026-09-06 | Experience-Dependent Plasticity of Periglomerular Cells in the Olfactory Bulb. | https://pubmed.ncbi.nlm.nih.gov/42331624/ | eNeuro | SAVE FOR LATER |
+| 2026-09-07 | Targeting m6A writer METTL3 with engineered nanovesicles reduces neuroinflammation in vitro and in vivo. | https://pubmed.ncbi.nlm.nih.gov/42702629/ | Nature communications | READ TODAY |
+| 2026-09-07 | Learning continuous activation fields from microscopic SEM images of lycoperdioid fungi via CNN-guided neural operator modeling. | https://pubmed.ncbi.nlm.nih.gov/42236885/ | Scientific reports | OPTIONAL METHOD PAPER |
+| 2026-09-07 | Compositional and interpretable representation of histology using AI foundation models and sparse autoencoders. | https://pubmed.ncbi.nlm.nih.gov/42282624/ | bioRxiv : the preprint server for biology | SAVE FOR LATER |
