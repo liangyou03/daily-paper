@@ -146,3 +146,4 @@
 | 2026-09-05 | Marker-guided cell-body expansion | 标记引导的细胞体扩展 |
 | 2026-09-05 | Permutation negative control | 置换阴性对照 |
 | 2026-09-07 | sparse autoencoder | 稀疏自编码器 |
+| 2026-09-08 | Knowledge distillation | 知识蒸馏 |
