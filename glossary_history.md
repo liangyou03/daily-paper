@@ -147,3 +147,7 @@
 | 2026-09-05 | Permutation negative control | 置换阴性对照 |
 | 2026-09-07 | sparse autoencoder | 稀疏自编码器 |
 | 2026-09-08 | Knowledge distillation | 知识蒸馏 |
+| 2026-09-09 | perivascular macrophages | 血管周围巨噬细胞 |
+| 2026-09-09 | GPNMB | 糖蛋白非转移性黑色素瘤蛋白B |
+| 2026-09-09 | single-cell/nucleus RNA sequencing | 单细胞/单核RNA测序 |
+| 2026-09-09 | SNP heritability | SNP遗传力 |
