@@ -151,3 +151,5 @@
 | 2026-09-09 | GPNMB | 糖蛋白非转移性黑色素瘤蛋白B |
 | 2026-09-09 | single-cell/nucleus RNA sequencing | 单细胞/单核RNA测序 |
 | 2026-09-09 | SNP heritability | SNP遗传力 |
+| 2026-09-11 | genome-wide association study (GWAS) | 全基因组关联研究 |
+| 2026-09-11 | monocyte-derived macrophages | 单核细胞来源巨噬细胞 |
