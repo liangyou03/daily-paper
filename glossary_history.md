@@ -153,3 +153,8 @@
 | 2026-09-09 | SNP heritability | SNP遗传力 |
 | 2026-09-11 | genome-wide association study (GWAS) | 全基因组关联研究 |
 | 2026-09-11 | monocyte-derived macrophages | 单核细胞来源巨噬细胞 |
+| 2026-09-12 | cell-type-resolved epigenomics | 细胞类型分辨的表观基因组学 |
+| 2026-09-12 | radial glia | 放射状胶质细胞 |
+| 2026-09-12 | chromatin looping | 染色质环化 |
+| 2026-09-12 | lattice light-sheet microscopy | 晶格光片显微镜 |
+| 2026-09-12 | self-supervised learning | 自监督学习 |
