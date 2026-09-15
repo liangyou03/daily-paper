@@ -161,3 +161,5 @@
 | 2026-09-13 | S100B | S100B蛋白 |
 | 2026-09-13 | Oxygen-glucose deprivation/reperfusion (OGD/R) | 氧糖剥夺/复氧 |
 | 2026-09-13 | Endometriosis | 子宫内膜异位症 |
+| 2026-09-15 | iPSC-derived microglia (iMG) | 诱导多能干细胞来源的小胶质细胞 |
+| 2026-09-15 | Lipid-accumulated reactive microglia (aLARM) | 脂质累积的反应性小胶质细胞 |
