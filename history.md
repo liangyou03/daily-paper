@@ -463,3 +463,6 @@
 | 2026-09-15 | CD36-mediated lipid-accumulation in reactive microglia contributes to retinal degeneration via the NLRP3-IL-1β pathway in mice. | https://pubmed.ncbi.nlm.nih.gov/42736278/ | Nature communications | READ TODAY |
 | 2026-09-15 | A Standardized Protocol for Generating iPSC-Derived Human Microglia for Functional Genomic Assays. | https://pubmed.ncbi.nlm.nih.gov/42734746/ | Methods in molecular biology (Clifton, N.J.) | OPTIONAL METHOD PAPER |
 | 2026-09-15 | CellBinDB: A Large-Scale Multimodal Annotated Dataset for Cell Segmentation with Benchmarking of Universal Models | https://www.semanticscholar.org/paper/5f23d49fb5ad40ec405775b1d15f002249dee859 | bioRxiv | SAVE FOR LATER |
+| 2026-09-16 | Microglia deploy TAM receptors to kill motor neurons in a mouse model of amyotrophic lateral sclerosis. | https://pubmed.ncbi.nlm.nih.gov/42744804/ | Nature communications | READ TODAY |
+| 2026-09-16 | Artificial intelligence-based tissue segmentation and cell identification in multiplex-stained histological endometriosis sections. | https://pubmed.ncbi.nlm.nih.gov/39724530/ | Human reproduction (Oxford, England) | OPTIONAL METHOD PAPER |
+| 2026-09-16 | Unsupervised Learning of Cell Instances with Generative Routing Pyramids | https://arxiv.org/abs/2608.16810v1 | arXiv | SAVE FOR LATER |
