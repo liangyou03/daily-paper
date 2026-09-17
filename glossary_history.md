@@ -168,3 +168,4 @@
 | 2026-09-16 | SOD1G93A mouse | SOD1G93A小鼠 |
 | 2026-09-16 | Amyotrophic lateral sclerosis (ALS) | 肌萎缩侧索硬化 |
 | 2026-09-16 | Unsupervised instance segmentation | 无监督实例分割 |
+| 2026-09-17 | Mitochondrial transfer | 线粒体转移 |

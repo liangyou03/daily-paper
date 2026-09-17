@@ -466,3 +466,6 @@
 | 2026-09-16 | Microglia deploy TAM receptors to kill motor neurons in a mouse model of amyotrophic lateral sclerosis. | https://pubmed.ncbi.nlm.nih.gov/42744804/ | Nature communications | READ TODAY |
 | 2026-09-16 | Artificial intelligence-based tissue segmentation and cell identification in multiplex-stained histological endometriosis sections. | https://pubmed.ncbi.nlm.nih.gov/39724530/ | Human reproduction (Oxford, England) | OPTIONAL METHOD PAPER |
 | 2026-09-16 | Unsupervised Learning of Cell Instances with Generative Routing Pyramids | https://arxiv.org/abs/2608.16810v1 | arXiv | SAVE FOR LATER |
+| 2026-09-17 | Myeloid cell replacement induces intercellular mitochondrial transfer and restores metabolism in a mouse model of mitochondrial disease. | https://pubmed.ncbi.nlm.nih.gov/42736305/ | Nature communications | READ TODAY |
+| 2026-09-17 | Unifying multimodal single-cell data with a mixture-of-experts β-variational autoencoder framework. | https://pubmed.ncbi.nlm.nih.gov/42749491/ | Genome research | OPTIONAL METHOD PAPER |
+| 2026-09-17 | Advances in the Comprehensive Tree Shrew Brain Atlas. | https://pubmed.ncbi.nlm.nih.gov/42509820/ | Biomolecules | SAVE FOR LATER |
