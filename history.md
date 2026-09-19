@@ -472,3 +472,6 @@
 | 2026-09-18 | Halo: a pretrained model for whole-cell segmentation from nuclei images in spatial transcriptomics. | https://pubmed.ncbi.nlm.nih.gov/42752546/ | Briefings in bioinformatics | READ TODAY |
 | 2026-09-18 | CoxFormer enables spatial omics inference with multimodal generative modeling. | https://pubmed.ncbi.nlm.nih.gov/42754563/ | Nature communications | OPTIONAL METHOD PAPER |
 | 2026-09-18 | H4K12 lactylation-regulated NLRP3 is involved in cigarette smoke-accelerated Alzheimer-like pathology through mTOR-regulated autophagy and activation of microglia. | https://www.semanticscholar.org/paper/f966eeaa9c64e2642630dbb8813a8fd1aa7a9f2e | Journal of Hazardous Materials | SAVE FOR LATER |
+| 2026-09-19 | The DLX/Notch axis is necessary for spatiotemporal regulation of neural cell fate. | https://pubmed.ncbi.nlm.nih.gov/42754574/ | Nature communications | READ TODAY |
+| 2026-09-19 | Glial Dysfunction and Memory Impairments in a Model of Pediatric Obstructive Sleep Apnea. | https://pubmed.ncbi.nlm.nih.gov/42760594/ | Glia | OPTIONAL METHOD PAPER |
+| 2026-09-19 | Brain penetration of peripheral extracellular vesicles from Alzheimer's patients and induction of microglia activation | https://www.semanticscholar.org/paper/b2404d9de6616f8b6256f75fe878602c8fc3129f | Journal of Extracellular Biology | SAVE FOR LATER |

@@ -170,3 +170,4 @@
 | 2026-09-16 | Unsupervised instance segmentation | 无监督实例分割 |
 | 2026-09-17 | Mitochondrial transfer | 线粒体转移 |
 | 2026-09-18 | Whole-cell segmentation | 全细胞分割 |
+| 2026-09-19 | Alzheimer's disease (AD) | 阿尔茨海默病 |
