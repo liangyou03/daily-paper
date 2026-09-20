@@ -475,3 +475,6 @@
 | 2026-09-19 | The DLX/Notch axis is necessary for spatiotemporal regulation of neural cell fate. | https://pubmed.ncbi.nlm.nih.gov/42754574/ | Nature communications | READ TODAY |
 | 2026-09-19 | Glial Dysfunction and Memory Impairments in a Model of Pediatric Obstructive Sleep Apnea. | https://pubmed.ncbi.nlm.nih.gov/42760594/ | Glia | OPTIONAL METHOD PAPER |
 | 2026-09-19 | Brain penetration of peripheral extracellular vesicles from Alzheimer's patients and induction of microglia activation | https://www.semanticscholar.org/paper/b2404d9de6616f8b6256f75fe878602c8fc3129f | Journal of Extracellular Biology | SAVE FOR LATER |
+| 2026-09-20 | Autofluorescence Virtual Staining System for H&E Histology and Multiplex Immunofluorescence Applied to Immuno-Oncology Biomarkers in Lung Cancer. | https://pubmed.ncbi.nlm.nih.gov/39636222/ | Cancer research communications | READ TODAY |
+| 2026-09-20 | ConvexGating infers gating strategies from clusters in single cell cytometry data. | https://pubmed.ncbi.nlm.nih.gov/42760285/ | Nature communications | OPTIONAL METHOD PAPER |
+| 2026-09-20 | Transcriptome profiling of human hypothalamic agouti-related protein and proopiomelanocortin neurons regulating energy homeostasis. | https://pubmed.ncbi.nlm.nih.gov/42736279/ | Nature communications | SAVE FOR LATER |
