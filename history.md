@@ -478,3 +478,6 @@
 | 2026-09-20 | Autofluorescence Virtual Staining System for H&E Histology and Multiplex Immunofluorescence Applied to Immuno-Oncology Biomarkers in Lung Cancer. | https://pubmed.ncbi.nlm.nih.gov/39636222/ | Cancer research communications | READ TODAY |
 | 2026-09-20 | ConvexGating infers gating strategies from clusters in single cell cytometry data. | https://pubmed.ncbi.nlm.nih.gov/42760285/ | Nature communications | OPTIONAL METHOD PAPER |
 | 2026-09-20 | Transcriptome profiling of human hypothalamic agouti-related protein and proopiomelanocortin neurons regulating energy homeostasis. | https://pubmed.ncbi.nlm.nih.gov/42736279/ | Nature communications | SAVE FOR LATER |
+| 2026-09-21 | Drug screen and machine learning predict neuroprotective agents in a preclinical human model of childhood dementia. | https://pubmed.ncbi.nlm.nih.gov/42764280/ | Nature communications | READ TODAY |
+| 2026-09-21 | HIPPIE: a generative model for electrophysiological analysis across species, technologies, and modalities. | https://pubmed.ncbi.nlm.nih.gov/42764354/ | Nature communications | OPTIONAL METHOD PAPER |
+| 2026-09-21 | Practical guidelines for cell segmentation models under optical aberrations in microscopy | https://www.semanticscholar.org/paper/90a1e8757699b88cf6dc27eb2886e1dfeda58c6f | Computational and Structural Biotechnology Journal | SAVE FOR LATER |
