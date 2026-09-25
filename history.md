@@ -490,3 +490,6 @@
 | 2026-09-24 | Photoreceptor outer segments promote the accumulation of lipid droplets in microglia by reprogramming lipid metabolism. | https://pubmed.ncbi.nlm.nih.gov/42780030/ | Frontiers in immunology | READ TODAY |
 | 2026-09-24 | Distinct single-nucleus RNA-seq changes among non-neuronal cells in ADNC, LATE-NC, and mixed pathologies. | https://pubmed.ncbi.nlm.nih.gov/42779047/ | Alzheimer's & dementia : the journal of the Alzheimer's Association | OPTIONAL METHOD PAPER |
 | 2026-09-24 | AI-based characterization of Alzheimer's disease phenotypes from population-scale single-cell data. | https://pubmed.ncbi.nlm.nih.gov/42778763/ | Nature medicine | SAVE FOR LATER |
+| 2026-09-25 | Topoisomerase I inhibition yields a CD74high/MHChigh human microglial subtype with enhanced Aβ uptake. | https://pubmed.ncbi.nlm.nih.gov/42784460/ | Cell reports | READ TODAY |
+| 2026-09-25 | E3 Ubiquitin Ligase NEDD4-Mediated CTSB Ubiquitination Prevents Microglial Ferroptosis After Subarachnoid Hemorrhage. | https://pubmed.ncbi.nlm.nih.gov/42786743/ | Journal of biochemical and molecular toxicology | OPTIONAL METHOD PAPER |
+| 2026-09-25 | The cellular and molecular basis of gyrus-sulcus specialization in the primate brain. | https://pubmed.ncbi.nlm.nih.gov/42786222/ | Nature communications | SAVE FOR LATER |

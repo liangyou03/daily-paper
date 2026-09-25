@@ -188,3 +188,7 @@
 | 2026-09-24 | Photoreceptor outer segments | 光感受器外节 |
 | 2026-09-24 | Lipid metabolism reprogramming | 脂质代谢重编程 |
 | 2026-09-24 | Population-scale single-cell atlas | 人群规模单细胞图谱 |
+| 2026-09-25 | Cathepsin B (CTSB) | 组织蛋白酶B |
+| 2026-09-25 | Topoisomerase I inhibitor | 拓扑异构酶I抑制剂 |
+| 2026-09-25 | Microglial subtype | 小胶质细胞亚型 |
+| 2026-09-25 | Amyloid-beta phagocytosis | β淀粉样蛋白吞噬 |
