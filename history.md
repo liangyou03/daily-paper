@@ -493,3 +493,6 @@
 | 2026-09-25 | Topoisomerase I inhibition yields a CD74high/MHChigh human microglial subtype with enhanced Aβ uptake. | https://pubmed.ncbi.nlm.nih.gov/42784460/ | Cell reports | READ TODAY |
 | 2026-09-25 | E3 Ubiquitin Ligase NEDD4-Mediated CTSB Ubiquitination Prevents Microglial Ferroptosis After Subarachnoid Hemorrhage. | https://pubmed.ncbi.nlm.nih.gov/42786743/ | Journal of biochemical and molecular toxicology | OPTIONAL METHOD PAPER |
 | 2026-09-25 | The cellular and molecular basis of gyrus-sulcus specialization in the primate brain. | https://pubmed.ncbi.nlm.nih.gov/42786222/ | Nature communications | SAVE FOR LATER |
+| 2026-09-26 | Single-nucleus transcriptome-wide association study of human brain disorders. | https://pubmed.ncbi.nlm.nih.gov/42778697/ | Nature | READ TODAY |
+| 2026-09-26 | Lifespan single-cell transcriptomic atlas of the human prefrontal cortex. | https://pubmed.ncbi.nlm.nih.gov/42778698/ | Nature | OPTIONAL METHOD PAPER |
+| 2026-09-26 | Single-cell atlas of transcriptomic vulnerability across brain disorders. | https://pubmed.ncbi.nlm.nih.gov/42778699/ | Nature | SAVE FOR LATER |

@@ -192,3 +192,5 @@
 | 2026-09-25 | Topoisomerase I inhibitor | 拓扑异构酶I抑制剂 |
 | 2026-09-25 | Microglial subtype | 小胶质细胞亚型 |
 | 2026-09-25 | Amyloid-beta phagocytosis | β淀粉样蛋白吞噬 |
+| 2026-09-26 | Transcriptome-wide association study (TWAS) | 全转录组关联研究 |
+| 2026-09-26 | Cell-type vulnerability | 细胞类型易感性 |
