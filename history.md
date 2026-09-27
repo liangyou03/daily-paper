@@ -496,3 +496,6 @@
 | 2026-09-26 | Single-nucleus transcriptome-wide association study of human brain disorders. | https://pubmed.ncbi.nlm.nih.gov/42778697/ | Nature | READ TODAY |
 | 2026-09-26 | Lifespan single-cell transcriptomic atlas of the human prefrontal cortex. | https://pubmed.ncbi.nlm.nih.gov/42778698/ | Nature | OPTIONAL METHOD PAPER |
 | 2026-09-26 | Single-cell atlas of transcriptomic vulnerability across brain disorders. | https://pubmed.ncbi.nlm.nih.gov/42778699/ | Nature | SAVE FOR LATER |
+| 2026-09-27 | Decoding the erythroid niche: From single-cell programs to spatially resolved architecture in mouse and human hematopoiesis. | https://pubmed.ncbi.nlm.nih.gov/42754319/ | Current topics in developmental biology | READ TODAY |
+| 2026-09-27 | Hypoxia-activated scleraxis a mediates epicardial progenitor differentiation into a unique cardiac perivascular cell type. | https://pubmed.ncbi.nlm.nih.gov/42754619/ | Nature communications | OPTIONAL METHOD PAPER |
+| 2026-09-27 | Functional implications of atypical action potential generation in the (patho)physiological brain: from developmental program to glioma. | https://pubmed.ncbi.nlm.nih.gov/42344806/ | Frontiers in neural circuits | SAVE FOR LATER |
