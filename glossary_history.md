@@ -194,3 +194,5 @@
 | 2026-09-25 | Amyloid-beta phagocytosis | β淀粉样蛋白吞噬 |
 | 2026-09-26 | Transcriptome-wide association study (TWAS) | 全转录组关联研究 |
 | 2026-09-26 | Cell-type vulnerability | 细胞类型易感性 |
+| 2026-09-28 | Multimodal alignment | 多模态对齐 |
+| 2026-09-28 | Fluorescence microscopy | 荧光显微镜 |
