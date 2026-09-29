@@ -196,3 +196,4 @@
 | 2026-09-26 | Cell-type vulnerability | 细胞类型易感性 |
 | 2026-09-28 | Multimodal alignment | 多模态对齐 |
 | 2026-09-28 | Fluorescence microscopy | 荧光显微镜 |
+| 2026-09-29 | Cross-donor generalization | 跨供体泛化 |
