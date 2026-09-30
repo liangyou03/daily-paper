@@ -197,3 +197,8 @@
 | 2026-09-28 | Multimodal alignment | 多模态对齐 |
 | 2026-09-28 | Fluorescence microscopy | 荧光显微镜 |
 | 2026-09-29 | Cross-donor generalization | 跨供体泛化 |
+| 2026-09-30 | Substantia nigra | 黑质 |
+| 2026-09-30 | Dieldrin | 狄氏剂 |
+| 2026-09-30 | ALDH (aldehyde dehydrogenase) | 乙醛脱氢酶 |
+| 2026-09-30 | Reactive glial morphometry | 反应性胶质细胞形态计量学 |
+| 2026-09-30 | Dopaminergic neurodegeneration | 多巴胺能神经退行性变 |
