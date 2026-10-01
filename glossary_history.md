@@ -202,3 +202,7 @@
 | 2026-09-30 | ALDH (aldehyde dehydrogenase) | 乙醛脱氢酶 |
 | 2026-09-30 | Reactive glial morphometry | 反应性胶质细胞形态计量学 |
 | 2026-09-30 | Dopaminergic neurodegeneration | 多巴胺能神经退行性变 |
+| 2026-10-01 | Cathepsin B (CatB) | 组织蛋白酶B |
+| 2026-10-01 | Neurovascular unit (NVU) | 神经血管单元 |
+| 2026-10-01 | Middle cerebral artery occlusion (tMCAO) | 大脑中动脉闭塞（短暂性） |
+| 2026-10-01 | Optic nerve head (ONH) | 视神经乳头 |
