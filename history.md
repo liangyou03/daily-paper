@@ -511,3 +511,6 @@
 | 2026-10-01 | Macrophage-Derived, Rather Than Microglial, Cathepsin B Exacerbates Brain Injury After Ischemic Stroke. | https://pubmed.ncbi.nlm.nih.gov/42817864/ | Glia | READ TODAY |
 | 2026-10-01 | The Heterogeneity of the Neurovascular Unit in the Optic Nerve Head During Glaucomatous Neurodegeneration Based on Single-Cell RNA Sequencing. | https://pubmed.ncbi.nlm.nih.gov/42817911/ | FASEB journal : official publication of the Federation of American Societies for Experimental Biology | OPTIONAL METHOD PAPER |
 | 2026-10-01 | Subicular spatial codes arise from predictive mapping. | https://pubmed.ncbi.nlm.nih.gov/42816472/ | Nature communications | SAVE FOR LATER |
+| 2026-10-02 | Stepwise multi-scale reconstruction of cell spatial organization from single-cell RNA sequencing data with Cell2space. | https://pubmed.ncbi.nlm.nih.gov/42822864/ | Briefings in bioinformatics | READ TODAY |
+| 2026-10-02 | Regulation of mRNA poly(A) tail length governs mammalian body plan formation in gastruloids. | https://pubmed.ncbi.nlm.nih.gov/42816481/ | Nature communications | OPTIONAL METHOD PAPER |
+| 2026-10-02 | FBXW7 mitigates hepatic fibrosis by degrading NOTCH1 to transcriptionally silence SEMA3G in liver sinusoidal endothelial cells. | https://pubmed.ncbi.nlm.nih.gov/42823407/ | Nature communications | SAVE FOR LATER |
