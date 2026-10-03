@@ -514,3 +514,6 @@
 | 2026-10-02 | Stepwise multi-scale reconstruction of cell spatial organization from single-cell RNA sequencing data with Cell2space. | https://pubmed.ncbi.nlm.nih.gov/42822864/ | Briefings in bioinformatics | READ TODAY |
 | 2026-10-02 | Regulation of mRNA poly(A) tail length governs mammalian body plan formation in gastruloids. | https://pubmed.ncbi.nlm.nih.gov/42816481/ | Nature communications | OPTIONAL METHOD PAPER |
 | 2026-10-02 | FBXW7 mitigates hepatic fibrosis by degrading NOTCH1 to transcriptionally silence SEMA3G in liver sinusoidal endothelial cells. | https://pubmed.ncbi.nlm.nih.gov/42823407/ | Nature communications | SAVE FOR LATER |
+| 2026-10-03 | AI-driven transcriptomics for neurodegenerative disease research: A systematic review. | https://pubmed.ncbi.nlm.nih.gov/42826575/ | Computational biology and chemistry | READ TODAY |
+| 2026-10-03 | Urban PM0.2 Affects Astrocytes by Inducing Xenobiotic and Oxidative Stress Responses. | https://pubmed.ncbi.nlm.nih.gov/42825885/ | Molecular neurobiology | OPTIONAL METHOD PAPER |
+| 2026-10-03 | Cannabinoid modulation of central amygdala population dynamics during threat investigation. | https://pubmed.ncbi.nlm.nih.gov/42827137/ | Nature communications | SAVE FOR LATER |
